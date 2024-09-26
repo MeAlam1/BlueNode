@@ -1,0 +1,2 @@
+rootProject.name = 'BlueNode'
+include('BlueNode')
