@@ -17,6 +17,6 @@ public class WindowInteractionHandler {
         WindowResizer windowResizer = new WindowResizer();
         windowResizer.enableWindowResize(pStage, pRoot);
 
-        BaseLogger.log("Window interactions setup successfully.", ELogLevel.INFO);
+        BaseLogger.log(ELogLevel.INFO, "Window interactions setup successfully.");
     }
 }

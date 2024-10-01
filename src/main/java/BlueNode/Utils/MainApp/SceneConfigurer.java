@@ -12,6 +12,6 @@ public class SceneConfigurer {
         Scene scene = new Scene(pRoot);
         pStage.setScene(scene);
 
-        BaseLogger.log("Scene configured", ELogLevel.INFO);
+        BaseLogger.log(ELogLevel.INFO, "Scene configured");
     }
 }

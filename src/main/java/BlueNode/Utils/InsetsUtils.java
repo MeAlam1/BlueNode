@@ -4,12 +4,12 @@ import javafx.geometry.Insets;
 
 public class InsetsUtils extends Insets {
 
-    public InsetsUtils(double top, double right, double bottom, double left) {
-        super(top, right, bottom, left);
+    public InsetsUtils(double pTop, double pBottom, double pRight, double pLeft) {
+        super(pTop, pRight, pBottom, pLeft);
     }
 
-    public InsetsUtils(double value) {
-        super(value);
+    public InsetsUtils(double pValue) {
+        super(pValue);
     }
 
     public InsetsUtils(double vertical, double horizontal) {

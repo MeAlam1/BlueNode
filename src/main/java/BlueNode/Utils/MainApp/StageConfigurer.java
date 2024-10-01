@@ -22,15 +22,15 @@ public class StageConfigurer {
         pStage.initStyle(StageStyle.UNDECORATED);
         pStage.getIcons().add(loadIcon());
 
-        BaseLogger.log("Stage configured successfully.", ELogLevel.INFO);
+        BaseLogger.log(ELogLevel.INFO, "Stage configured successfully.");
     }
 
     private static Image loadIcon() {
         try {
-            BaseLogger.log("Application icon loaded successfully.", ELogLevel.INFO);
+            BaseLogger.log(ELogLevel.INFO, "Application icon loaded successfully.");
             return ImageLoader.getImage(LOGO_PATH);
         } catch (Exception pException) {
-            BaseLogger.log("Failed to load application icon.", ELogLevel.ERROR, pException);
+            BaseLogger.log(ELogLevel.ERROR, "Failed to load application icon.", pException);
             return null;
         }
     }

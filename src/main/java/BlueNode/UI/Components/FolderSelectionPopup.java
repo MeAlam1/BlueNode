@@ -39,13 +39,13 @@ public class FolderSelectionPopup {
                 File selectedDirectory = directoryChooser.showDialog(primaryStage);
 
                 if (selectedDirectory == null) {
-                    BaseLogger.log("No folder selected.", ELogLevel.WARN);
+                    BaseLogger.log(ELogLevel.WARN, "No folder selected.");
                     break;
                 }
 
                 if (selectedDirectory.isDirectory()) {
                     if (!checkIfEmpty || isDirectoryEmpty(selectedDirectory)) {
-                        BaseLogger.log("Selected folder: " + selectedDirectory.getAbsolutePath(), ELogLevel.WARN);
+                        BaseLogger.log(ELogLevel.DEBUG, "Selected folder: " + selectedDirectory.getAbsolutePath());
                         callback.onDirectorySelected(selectedDirectory);
                         break;
                     } else {

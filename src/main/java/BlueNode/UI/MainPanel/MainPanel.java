@@ -28,7 +28,7 @@ public class MainPanel extends BorderPane {
 
         canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleMouseClick);
 
-        BaseLogger.log("MainPanel initialized", ELogLevel.INFO);
+        BaseLogger.log(ELogLevel.INFO, "MainPanel initialized");
     }
 
     private void drawGrid() {
@@ -37,7 +37,7 @@ public class MainPanel extends BorderPane {
 
         gridDrawer.drawGrid(graphicsContext, width, height);
 
-        BaseLogger.log("Grid drawn", ELogLevel.INFO);
+        BaseLogger.log(ELogLevel.INFO, "Grid drawn");
     }
 
     // TODO: Code under here is purely to test the GridSnapping feature

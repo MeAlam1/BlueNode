@@ -12,6 +12,6 @@ public class MaximizeButton extends TextButton {
 
         setOnAction(event -> pStage.setMaximized(!pStage.isMaximized()));
 
-        BaseLogger.log("Maximize button created", ELogLevel.INFO);
+        BaseLogger.log(ELogLevel.INFO, "Maximize button created");
     }
 }

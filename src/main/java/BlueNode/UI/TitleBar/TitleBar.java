@@ -52,7 +52,7 @@ public class TitleBar extends BorderPane {
 
         setLeft(leftPanel);
 
-        BaseLogger.log("TitleBar has been created successfully", ELogLevel.INFO);
+        BaseLogger.log(ELogLevel.INFO, "TitleBar has been created successfully");
     }
 
     // TODO: This Method is really inefficient, it should be Optimized and fixed

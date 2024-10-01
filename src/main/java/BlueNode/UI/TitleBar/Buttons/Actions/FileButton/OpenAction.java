@@ -16,17 +16,17 @@ public class OpenAction {
             try {
                 Stage stage = new Stage();
 
-                BaseLogger.log("Opened the OpenAction popup", ELogLevel.INFO);
+                BaseLogger.log(ELogLevel.INFO, "Opened the OpenAction popup");
 
                 FolderSelectionPopup popup = new FolderSelectionPopup(false, stage, pDirectory -> {
-                    BaseLogger.log("Selected directory: " + pDirectory.getAbsolutePath(), ELogLevel.DEBUG);
+                    BaseLogger.log(ELogLevel.DEBUG, "Selected directory: " + pDirectory.getAbsolutePath());
                     BlueNode.contentBrowser.updateContent(new File(pDirectory.getAbsolutePath()));
                 });
 
                 popup.show();
 
             } catch (Exception pException) {
-                BaseLogger.log("Error while trying to open the OpenAction popup", ELogLevel.ERROR, pException);
+                BaseLogger.log(ELogLevel.ERROR, "Error while trying to open the OpenAction popup", pException);
             }
         });
     }

@@ -19,14 +19,14 @@ public class NewAction {
                 Stage stage = new Stage();
                 showFolderSelectionPopup(stage);
             } catch (Exception pException) {
-                BaseLogger.log("Error while trying to open the NewAction popup", ELogLevel.ERROR, pException);
+                BaseLogger.log(ELogLevel.ERROR, "Error while trying to open the NewAction popup", pException);
             }
         });
     }
 
     private static void showFolderSelectionPopup(Stage pStage) {
         FolderSelectionPopup popup = new FolderSelectionPopup(false, pStage, pDirectory -> {
-            BaseLogger.log("Selected directory: " + pDirectory.getAbsolutePath(), ELogLevel.DEBUG);
+            BaseLogger.log(ELogLevel.DEBUG, "Selected directory: " + pDirectory.getAbsolutePath());
             createNewFolder(pDirectory);
         });
 
@@ -43,12 +43,12 @@ public class NewAction {
         result.ifPresent(pFolderName -> {
             File newFolder = new File(pDirectory, pFolderName);
             if (newFolder.exists()) {
-                BaseLogger.log("Folder already exists.", ELogLevel.WARN);
+                BaseLogger.log(ELogLevel.WARN, "Folder already exists.");
             } else if (newFolder.mkdir()) {
-                BaseLogger.log("Folder created: " + newFolder.getAbsolutePath(), ELogLevel.INFO);
+                BaseLogger.log(ELogLevel.INFO, "Folder created: " + newFolder.getAbsolutePath());
                 BlueNode.contentBrowser.updateContent(newFolder);
             } else {
-                BaseLogger.log("Failed to create folder.", ELogLevel.ERROR);
+                BaseLogger.log(ELogLevel.ERROR, "Failed to create folder.");
             }
         });
     }

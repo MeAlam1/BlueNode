@@ -26,6 +26,6 @@ public class ButtonPanel extends HBox {
 
         setPadding(new Insets(5, 10, 5, 10));
 
-        BaseLogger.log("ButtonPanel created", ELogLevel.INFO);
+        BaseLogger.log(ELogLevel.INFO, "ButtonPanel created");
     }
 }
