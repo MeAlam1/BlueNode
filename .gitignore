@@ -68,6 +68,7 @@ artifacts/
 ScaffoldingReadMe.txt
 .publish/
 bin/
+*.bin
 
 # IntelliJ-specific
 .idea/
