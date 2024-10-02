@@ -41,7 +41,7 @@ public class BlueNode extends Application {
         root.setStyle("-fx-background-color: #232323;");
 
         TitleBar titleBar = new TitleBar(pPrimaryStage);
-        mainPanel = new MainPanel();
+        mainPanel = new MainPanel(pPrimaryStage);
         contentBrowser = new ContentBrowser();
 
         WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, root);

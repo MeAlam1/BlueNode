@@ -2,11 +2,14 @@ package BlueNode.UI.MainPanel;
 
 import BlueNode.Logging.BaseLogger;
 import BlueNode.Logging.ELogLevel;
+import BlueNode.Nodes.Browser.NodeBrowser;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class MainPanel extends BorderPane {
 
@@ -14,7 +17,7 @@ public class MainPanel extends BorderPane {
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
 
-    public MainPanel() {
+    public MainPanel(Stage pPrimaryStage) {
         graphicsContext = canvas.getGraphicsContext2D();
         gridDrawer = new GridDrawer();
 
@@ -26,7 +29,22 @@ public class MainPanel extends BorderPane {
 
         setCenter(canvas);
 
-        canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleMouseClick);
+        canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
+            if (pEvent.getButton() == MouseButton.PRIMARY) {
+                // Left click
+                BaseLogger.log(ELogLevel.INFO, "Left mouse button clicked");
+            } else if (pEvent.getButton() == MouseButton.MIDDLE) {
+                // Middle click
+                BaseLogger.log(ELogLevel.INFO, "Mouse mouse button clicked");
+            } else if (pEvent.getButton() == MouseButton.SECONDARY) {
+                // Right click
+                BaseLogger.log(ELogLevel.INFO, "Right mouse button clicked");
+                NodeBrowser.showCustomPopup(pPrimaryStage, pEvent);
+            }
+        });
+
+
+        //canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleMouseClick);
 
         BaseLogger.log(ELogLevel.INFO, "MainPanel initialized");
     }
@@ -41,7 +59,7 @@ public class MainPanel extends BorderPane {
     }
 
     // TODO: Code under here is purely to test the GridSnapping feature
-    private void handleMouseClick(MouseEvent pEvent) {
+    /** private void handleMouseClick(MouseEvent pEvent) {
         double mouseX = pEvent.getX();
         double mouseY = pEvent.getY();
 
@@ -59,5 +77,5 @@ public class MainPanel extends BorderPane {
 
         graphicsContext.setStroke(Color.BLACK);
         graphicsContext.strokeRect(pX, pY, blockSize, blockSize);
-    }
+    } */
 }
