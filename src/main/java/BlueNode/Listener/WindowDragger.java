@@ -14,13 +14,11 @@ public class WindowDragger {
         pTitleBar.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
-            BaseLogger.log(ELogLevel.DEBUG, "WindowDragger" + "xOffset: " + xOffset + " yOffset: " + yOffset);
         });
 
         pTitleBar.setOnMouseDragged(pEvent -> {
             pStage.setX(pEvent.getScreenX() - xOffset);
             pStage.setY(pEvent.getScreenY() - yOffset);
-            BaseLogger.log(ELogLevel.DEBUG, "WindowDragger" + "x: " + pStage.getX() + " y: " + pStage.getY());
         });
     }
 }
