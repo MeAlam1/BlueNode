@@ -11,4 +11,9 @@ public class MathNode extends AbstractNode {
     public Pane getNodePane() {
         return nodePane;
     }
+
+    @Override
+    protected String getNodeTitle() {
+        return "";
+    }
 }
