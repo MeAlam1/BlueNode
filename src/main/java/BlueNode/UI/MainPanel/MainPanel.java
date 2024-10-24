@@ -3,11 +3,13 @@ package BlueNode.UI.MainPanel;
 import BlueNode.Logging.BaseLogger;
 import BlueNode.Logging.ELogLevel;
 import BlueNode.Nodes.Browser.NodeBrowser;
+import BlueNode.Nodes.Events.NodeEventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -40,6 +42,7 @@ public class MainPanel extends BorderPane {
                 // Right click
                 BaseLogger.log(ELogLevel.INFO, "Right mouse button clicked");
                 NodeBrowser.showCustomPopup(pPrimaryStage, pEvent);
+                NodeEventHandler.addGlobalClickListener((Pane) pPrimaryStage.getScene().getRoot());
             }
         });
 
