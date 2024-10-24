@@ -1,7 +1,5 @@
 package BlueNode.Listener;
 
-import BlueNode.Logging.BaseLogger;
-import BlueNode.Logging.ELogLevel;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 

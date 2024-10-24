@@ -2,7 +2,7 @@ package BlueNode.Nodes.Browser;
 
 import BlueNode.Logging.BaseLogger;
 import BlueNode.Logging.ELogLevel;
-import BlueNode.Nodes.Node;
+import BlueNode.Nodes.Types.AbstractNode;
 import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
@@ -18,7 +18,7 @@ public class ButtonHandler {
 
     public void handleButtonClick(Class<? extends PopupButtonProvider> pNodeClass, MouseEvent pEvent, Popup pPopup, PopupButtonProvider pInstance) {
         try {
-            Node newNodeInstance = (Node) pNodeClass.getDeclaredConstructor().newInstance();
+            AbstractNode newNodeInstance = (AbstractNode) pNodeClass.getDeclaredConstructor().newInstance();
             Pane nodePane = newNodeInstance.getNodePane();
 
             nodePane.setLayoutX(pEvent.getSceneX());
