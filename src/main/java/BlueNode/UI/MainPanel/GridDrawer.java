@@ -14,14 +14,19 @@ public class GridDrawer {
         pGraphics.fillRect(0, 0, pWidth, pHeight);
 
         pGraphics.setStroke(GRID_COLOR);
-        for (int x = 0; x < pWidth; x += GRID_SIZE) {
-            for (int y = 0; y < pHeight; y += GRID_SIZE) {
-                pGraphics.strokeRect(x, y, GRID_SIZE, GRID_SIZE);
+
+        final int offsetX = 2;
+        final int offsetY = 11;
+
+        for (int x = -100; x < pWidth + (pWidth / 2); x += GRID_SIZE) {
+            for (int y = -100; y < pHeight + (pHeight / 2); y += GRID_SIZE) {
+                pGraphics.strokeRect(x + offsetX, y + offsetY, GRID_SIZE, GRID_SIZE);
             }
         }
     }
 
-    public int snapToGrid(double pCoord) {
+
+    public static int snapToGrid(double pCoord) {
         return (int) (Math.floor(pCoord / GRID_SIZE) * GRID_SIZE);
     }
 }

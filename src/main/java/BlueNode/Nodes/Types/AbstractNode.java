@@ -5,6 +5,7 @@ import BlueNode.Logging.ELogLevel;
 import BlueNode.Nodes.Events.NodeEventHandler;
 import BlueNode.Nodes.Interfaces.ISelectable;
 import BlueNode.Nodes.Style.AbstractNodeStyle;
+import BlueNode.UI.MainPanel.GridDrawer;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -33,20 +34,20 @@ public abstract class AbstractNode implements ISelectable {
         contentArea = new Pane();
         isSelected = false;
 
-        double nodeWidth = 150.0;
-        double nodeHeight = 80.0;
+        double nodesWidth = 148.0;
+        double nodesHeight = 85.0;
 
         nodePane.setStyle(AbstractNodeStyle.getDefaultBorderStyle() + "-fx-padding: 0; -fx-spacing: 0;");
 
         titleBar.setStyle("-fx-background-color: " + AbstractNodeStyle.TITLE_BAR_COLOR + "; -fx-padding: 10; -fx-background-radius: 10 10 0 0;");
-        titleBar.setMinWidth(nodeWidth);
-        titleBar.setPrefWidth(nodeWidth);
-        titleBar.setMaxWidth(nodeWidth);
+        titleBar.setMinWidth(nodesWidth);
+        titleBar.setPrefWidth(nodesWidth);
+        titleBar.setMaxWidth(nodesWidth);
 
         contentArea.setStyle(AbstractNodeStyle.getContentAreaStyle());
-        contentArea.setMinSize(nodeWidth, nodeHeight);
-        contentArea.setPrefSize(nodeWidth, nodeHeight);
-        contentArea.setMaxSize(nodeWidth, nodeHeight);
+        contentArea.setMinSize(nodesWidth, nodesHeight);
+        contentArea.setPrefSize(nodesWidth, nodesHeight);
+        contentArea.setMaxSize(nodesWidth, nodesHeight);
 
         Text title = new Text(getNodeTitle());
         title.setStyle(AbstractNodeStyle.TITLE_STYLE);
@@ -77,9 +78,36 @@ public abstract class AbstractNode implements ISelectable {
         });
 
         nodePane.setOnMouseReleased(event -> {
-            // Optionally handle mouse released event if needed
-            // TODO: snap the node to a grid or save its position
+            double mouseX = event.getSceneX();
+            double mouseY = event.getSceneY();
+
+            double nodeX = nodePane.getLayoutX();
+            double nodeY = nodePane.getLayoutY();
+            double nodeWidth = nodePane.getWidth();
+            double nodeHeight = nodePane.getHeight();
+
+            double snappedX;
+            double snappedY;
+
+            boolean isCloserToLeft = mouseX < (nodeX + nodeWidth / 2);
+            boolean isCloserToTop = mouseY < (nodeY + nodeHeight / 2);
+
+            if (isCloserToLeft) {
+                snappedX = GridDrawer.snapToGrid(nodeX);
+            } else {
+                snappedX = GridDrawer.snapToGrid(nodeX + nodeWidth) - nodeWidth;
+            }
+
+            if (isCloserToTop) {
+                snappedY = GridDrawer.snapToGrid(nodeY);
+            } else {
+                snappedY = GridDrawer.snapToGrid(nodeY + nodeHeight) - nodeHeight;
+            }
+
+            nodePane.setLayoutX(snappedX);
+            nodePane.setLayoutY(snappedY);
         });
+
 
         nodePane.setFocusTraversable(true);
     }
