@@ -3,14 +3,12 @@ package BlueNode.Nodes.Types;
 import BlueNode.Logging.BaseLogger;
 import BlueNode.Logging.ELogLevel;
 import BlueNode.Nodes.Events.NodeEventHandler;
+import BlueNode.Nodes.Events.NodeSelectionHandler;
 import BlueNode.Nodes.Interfaces.ISelectable;
 import BlueNode.Nodes.Style.AbstractNodeStyle;
-import BlueNode.UI.MainPanel.GridDrawer;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public abstract class AbstractNode implements ISelectable {
@@ -62,7 +60,7 @@ public abstract class AbstractNode implements ISelectable {
 
         nodePane.setOnKeyPressed(event -> {
             BaseLogger.log(ELogLevel.DEBUG, "Key pressed: " + event.getCode());
-            NodeEventHandler.handleKeyPress(this, event.getCode());
+            NodeEventHandler.handleKeyPress(event.getCode(), this);
         });
 
         final double[] dragDelta = new double[2];
@@ -77,36 +75,7 @@ public abstract class AbstractNode implements ISelectable {
             nodePane.setLayoutY(event.getSceneY() + dragDelta[1]);
         });
 
-        nodePane.setOnMouseReleased(event -> {
-            double mouseX = event.getSceneX();
-            double mouseY = event.getSceneY();
-
-            double nodeX = nodePane.getLayoutX();
-            double nodeY = nodePane.getLayoutY();
-            double nodeWidth = nodePane.getWidth();
-            double nodeHeight = nodePane.getHeight();
-
-            double snappedX;
-            double snappedY;
-
-            boolean isCloserToLeft = mouseX < (nodeX + nodeWidth / 2);
-            boolean isCloserToTop = mouseY < (nodeY + nodeHeight / 2);
-
-            if (isCloserToLeft) {
-                snappedX = GridDrawer.snapToGrid(nodeX);
-            } else {
-                snappedX = GridDrawer.snapToGrid(nodeX + nodeWidth) - nodeWidth;
-            }
-
-            if (isCloserToTop) {
-                snappedY = GridDrawer.snapToGrid(nodeY);
-            } else {
-                snappedY = GridDrawer.snapToGrid(nodeY + nodeHeight) - nodeHeight;
-            }
-
-            nodePane.setLayoutX(snappedX);
-            nodePane.setLayoutY(snappedY);
-        });
+        nodePane.setOnMouseReleased(event -> NodeEventHandler.handleMouseRelease(event, nodePane));
 
 
         nodePane.setFocusTraversable(true);
@@ -115,23 +84,13 @@ public abstract class AbstractNode implements ISelectable {
 
     @Override
     public void select() {
-        nodePane.setStyle(AbstractNodeStyle.getSelectedBorderStyle());
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setRadius(10.0);
-        dropShadow.setOffsetX(5.0);
-        dropShadow.setOffsetY(5.0);
-        dropShadow.setColor(Color.DARKBLUE);
-        nodePane.setEffect(dropShadow);
-        nodePane.setOpacity(0.9);
-        nodePane.requestFocus();
+        NodeSelectionHandler.selectNode(this);
         isSelected = true;
     }
 
     @Override
     public void deselect() {
-        nodePane.setStyle(AbstractNodeStyle.getDefaultBorderStyle());
-        nodePane.setEffect(null);
-        nodePane.setOpacity(1.0);
+        NodeSelectionHandler.deselectNode(this);
         isSelected = false;
     }
 
