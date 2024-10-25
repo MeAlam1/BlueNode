@@ -45,7 +45,7 @@ public class FolderSelectionPopup {
 
                 if (selectedDirectory.isDirectory()) {
                     if (!checkIfEmpty || isDirectoryEmpty(selectedDirectory)) {
-                        BaseLogger.log(ELogLevel.DEBUG, "Selected folder: " + selectedDirectory.getAbsolutePath());
+                        BaseLogger.log(ELogLevel.INFO, "Selected folder: " + selectedDirectory.getAbsolutePath());
                         callback.onDirectorySelected(selectedDirectory);
                         break;
                     } else {

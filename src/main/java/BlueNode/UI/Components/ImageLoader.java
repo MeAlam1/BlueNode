@@ -23,7 +23,7 @@ public class ImageLoader extends HBox {
                 setSpacing(5);
                 setAlignment(Pos.CENTER);
 
-                BaseLogger.log(ELogLevel.DEBUG, "Successfully loaded image: " + pImagePath, null);
+                BaseLogger.log(ELogLevel.INFO, "Successfully loaded image: " + pImagePath, null);
             } catch (Exception pException) {
                 BaseLogger.log(ELogLevel.ERROR, "Error occurred while loading image: " + pImagePath, pException);
             }
@@ -36,7 +36,7 @@ public class ImageLoader extends HBox {
         InputStream imageStream = ImageLoader.class.getResourceAsStream(pImagePath);
         if (imageStream != null) {
             try {
-                BaseLogger.log(ELogLevel.DEBUG, "Successfully located image at path: " + pImagePath, null);
+                BaseLogger.log(ELogLevel.INFO, "Successfully located image at path: " + pImagePath, null);
                 return new Image(imageStream);
             } catch (Exception pException) {
                 BaseLogger.log(ELogLevel.ERROR, "Error occurred while creating image from stream: " + pImagePath, pException);

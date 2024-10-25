@@ -26,7 +26,7 @@ public class FileButton extends TextButton {
             contextMenu.show(FileButton.this, x, y);
         });
 
-        BaseLogger.log(ELogLevel.INFO, "FileButton created");
+        BaseLogger.log(ELogLevel.SUCCESS, "FileButton created");
     }
 
     private ContextMenu createContextMenu() {
@@ -43,7 +43,7 @@ public class FileButton extends TextButton {
 
         contextMenu.getItems().addAll(newItem, openItem, saveItem, saveAsItem);
 
-        BaseLogger.log(ELogLevel.DEBUG, "FileButton context menu created");
+        BaseLogger.log(ELogLevel.INFO, "FileButton context menu created");
 
         return contextMenu;
     }

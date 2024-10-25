@@ -32,7 +32,7 @@ public class NodeEventHandler {
             Pane parentPane = (Pane) pNode.getNodePane().getParent();
             if (parentPane != null) {
                 parentPane.getChildren().remove(pNode.getNodePane());
-                BaseLogger.log(ELogLevel.INFO, "Node removed from parent pane.");
+                BaseLogger.log(ELogLevel.SUCCESS, "Node removed from parent pane.");
             }
         }
     }

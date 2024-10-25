@@ -1,8 +1,8 @@
 package BlueNode.Logging;
 
 public enum ELogLevel {
-    DEBUG(2, "\u001B[34m"),   // Blue
-    INFO(2, "\u001B[32m"),    // Green
+    INFO(2, "\u001B[34m"),   // Blue
+    SUCCESS(2, "\u001B[32m"),    // Green
     WARN(3, "\u001B[33m"),    // Yellow
     ERROR(4, "\u001B[31m");    // Red
 

@@ -59,7 +59,7 @@ public abstract class AbstractNode implements ISelectable {
         nodePane.setOnMouseClicked(event -> NodeEventHandler.handleSelect(this));
 
         nodePane.setOnKeyPressed(event -> {
-            BaseLogger.log(ELogLevel.DEBUG, "Key pressed: " + event.getCode());
+            BaseLogger.log(ELogLevel.INFO, "Key pressed: " + event.getCode());
             NodeEventHandler.handleKeyPress(event.getCode(), this);
         });
 

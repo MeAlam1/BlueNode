@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class BaseLogger {
-    private static final LogConfig config = new LogConfig(ELogLevel.INFO);
+    private static final LogConfig config = new LogConfig(ELogLevel.SUCCESS);
     private static boolean loggingEnabled = true;
 
     public static void setLoggingEnabled(boolean pEnabled) {

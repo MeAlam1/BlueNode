@@ -12,6 +12,6 @@ public class MinimizeButton extends TextButton {
 
         setOnAction(event -> pStage.setIconified(true));
 
-        BaseLogger.log(ELogLevel.INFO, "Minimize button created");
+        BaseLogger.log(ELogLevel.SUCCESS, "Minimize button created");
     }
 }

@@ -26,7 +26,7 @@ public class NewAction {
 
     private static void showFolderSelectionPopup(Stage pStage) {
         FolderSelectionPopup popup = new FolderSelectionPopup(false, pStage, pDirectory -> {
-            BaseLogger.log(ELogLevel.DEBUG, "Selected directory: " + pDirectory.getAbsolutePath());
+            BaseLogger.log(ELogLevel.INFO, "Selected directory: " + pDirectory.getAbsolutePath());
             createNewFolder(pDirectory);
         });
 
@@ -45,7 +45,7 @@ public class NewAction {
             if (newFolder.exists()) {
                 BaseLogger.log(ELogLevel.WARN, "Folder already exists.");
             } else if (newFolder.mkdir()) {
-                BaseLogger.log(ELogLevel.INFO, "Folder created: " + newFolder.getAbsolutePath());
+                BaseLogger.log(ELogLevel.SUCCESS, "Folder created: " + newFolder.getAbsolutePath());
                 BlueNode.contentBrowser.updateContent(newFolder);
             } else {
                 BaseLogger.log(ELogLevel.ERROR, "Failed to create folder.");

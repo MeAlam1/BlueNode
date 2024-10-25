@@ -12,6 +12,6 @@ public class CloseButton extends TextButton {
 
         setOnAction(event -> pStage.close());
 
-        BaseLogger.log(ELogLevel.INFO, "CloseButton created");
+        BaseLogger.log(ELogLevel.SUCCESS, "CloseButton created");
     }
 }

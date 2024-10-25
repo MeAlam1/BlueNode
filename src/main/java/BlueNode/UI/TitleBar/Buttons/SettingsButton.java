@@ -15,6 +15,6 @@ public class SettingsButton extends TextButton {
 
         setOnAction(event -> new SettingsWindow(pStage));
 
-        BaseLogger.log(ELogLevel.INFO, "Settings button created");
+        BaseLogger.log(ELogLevel.SUCCESS, "Settings button created");
     }
 }

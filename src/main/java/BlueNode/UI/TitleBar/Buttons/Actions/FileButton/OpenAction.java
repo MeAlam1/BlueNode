@@ -16,10 +16,10 @@ public class OpenAction {
             try {
                 Stage stage = new Stage();
 
-                BaseLogger.log(ELogLevel.INFO, "Opened the OpenAction popup");
+                BaseLogger.log(ELogLevel.SUCCESS, "Opened the OpenAction popup");
 
                 FolderSelectionPopup popup = new FolderSelectionPopup(false, stage, pDirectory -> {
-                    BaseLogger.log(ELogLevel.DEBUG, "Selected directory: " + pDirectory.getAbsolutePath());
+                    BaseLogger.log(ELogLevel.INFO, "Selected directory: " + pDirectory.getAbsolutePath());
                     BlueNode.contentBrowser.updateContent(new File(pDirectory.getAbsolutePath()));
                 });
 

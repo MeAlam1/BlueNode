@@ -30,7 +30,7 @@ public class BlueNode extends Application {
             SceneConfigurer.configureScene(pPrimaryStage, root);
 
             pPrimaryStage.show();
-            BaseLogger.log(ELogLevel.INFO, "BlueNode application started successfully.");
+            BaseLogger.log(ELogLevel.SUCCESS, "BlueNode application started successfully.");
         } catch (Exception pException) {
             BaseLogger.log(ELogLevel.ERROR, "An error occurred while starting the BlueNode application.", pException);
         }
@@ -49,7 +49,7 @@ public class BlueNode extends Application {
         root.setTop(titleBar);
         root.setCenter(mainPanel);
 
-        BaseLogger.log(ELogLevel.INFO, "Components initialized successfully.");
+        BaseLogger.log(ELogLevel.SUCCESS, "Components initialized successfully.");
     }
 
     public static void main(String[] pArgs) {

@@ -8,6 +8,6 @@ public class SaveAsAction {
     public static void handleSaveAsAction() {
         System.out.println("Save as action called!");
 
-        BaseLogger.log(ELogLevel.INFO, "Save as action called!");
+        BaseLogger.log(ELogLevel.SUCCESS, "Save as action called!");
     }
 }

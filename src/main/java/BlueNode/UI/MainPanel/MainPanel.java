@@ -34,13 +34,13 @@ public class MainPanel extends BorderPane {
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.PRIMARY) {
                 // Left click
-                BaseLogger.log(ELogLevel.INFO, "Left mouse button clicked");
+                BaseLogger.log(ELogLevel.SUCCESS, "Left mouse button clicked");
             } else if (pEvent.getButton() == MouseButton.MIDDLE) {
                 // Middle click
-                BaseLogger.log(ELogLevel.INFO, "Mouse mouse button clicked");
+                BaseLogger.log(ELogLevel.SUCCESS, "Mouse mouse button clicked");
             } else if (pEvent.getButton() == MouseButton.SECONDARY) {
                 // Right click
-                BaseLogger.log(ELogLevel.INFO, "Right mouse button clicked");
+                BaseLogger.log(ELogLevel.SUCCESS, "Right mouse button clicked");
                 NodeBrowser.showCustomPopup(pPrimaryStage, pEvent);
                 NodeEventHandler.addGlobalClickListener((Pane) pPrimaryStage.getScene().getRoot());
             }
@@ -49,7 +49,7 @@ public class MainPanel extends BorderPane {
 
         //canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleMouseClick);
 
-        BaseLogger.log(ELogLevel.INFO, "MainPanel initialized");
+        BaseLogger.log(ELogLevel.SUCCESS, "MainPanel initialized");
     }
 
     private void drawGrid() {
@@ -58,7 +58,7 @@ public class MainPanel extends BorderPane {
 
         gridDrawer.drawGrid(graphicsContext, width, height);
 
-        BaseLogger.log(ELogLevel.INFO, "Grid drawn");
+        BaseLogger.log(ELogLevel.SUCCESS, "Grid drawn");
     }
 
     // TODO: Code under here is purely to test the GridSnapping feature

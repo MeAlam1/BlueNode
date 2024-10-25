@@ -29,6 +29,6 @@ public class SettingsWindow {
         settingsStage.setScene(scene);
         settingsStage.showAndWait();
 
-        BaseLogger.log(ELogLevel.INFO, "Settings window opened");
+        BaseLogger.log(ELogLevel.SUCCESS, "Settings window opened");
     }
 }
