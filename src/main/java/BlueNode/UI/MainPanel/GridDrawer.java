@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 
 public class GridDrawer {
 
-    private static final int GRID_SIZE = 25;
+    private static final int GRID_SIZE = 10;
     private static final Color GRID_COLOR = Color.rgb(75, 75, 75);
 
     public void drawGrid(GraphicsContext pGraphics, double pWidth, double pHeight) {
