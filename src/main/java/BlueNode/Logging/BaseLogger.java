@@ -26,15 +26,24 @@ public class BaseLogger {
 
         if (pLevel.getSeverity() >= config.getLogLevel().getSeverity()) {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-            StringBuilder coloredMessage = new StringBuilder(pLevel.getColor() + "[" + timestamp + "]" + " [" + pLevel + "] " + pMessage);
+            StringBuilder coloredMessage = new StringBuilder(pLevel.getColor() +
+                    "[" + timestamp + "]" + " [" + pLevel + "]: " + pMessage);
 
             if (pThrowable != null) {
-                coloredMessage.append("\nException: ").append(pThrowable.getMessage());
+                coloredMessage.append("\nException: ").append(pMessage);
                 for (StackTraceElement element : pThrowable.getStackTrace()) {
-                    coloredMessage.append("\n\tat ").append(element.toString());
+                    String packageName = element.getClassName().substring(0, element.getClassName().lastIndexOf('.'));
+                    String className = element.getClassName().substring(element.getClassName().lastIndexOf('.') + 1);
+                    String methodName = element.getMethodName();
+                    int lineNumber = element.getLineNumber();
+
+                    coloredMessage.append("\n\tat ")
+                            .append(packageName).append(".")
+                            .append(className).append(".")
+                            .append(methodName).append("(Line: ")
+                            .append(lineNumber).append(")");
                 }
             }
-
             coloredMessage.append("\u001B[0m");
             System.out.println(coloredMessage);
         }
