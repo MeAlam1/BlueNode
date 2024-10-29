@@ -46,9 +46,6 @@ public class MainPanel extends BorderPane {
             }
         });
 
-
-        //canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleMouseClick);
-
         BaseLogger.log(ELogLevel.SUCCESS, "MainPanel initialized");
     }
 
@@ -60,25 +57,4 @@ public class MainPanel extends BorderPane {
 
         BaseLogger.log(ELogLevel.SUCCESS, "Grid drawn");
     }
-
-    // TODO: Code under here is purely to test the GridSnapping feature
-    /** private void handleMouseClick(MouseEvent pEvent) {
-        double mouseX = pEvent.getX();
-        double mouseY = pEvent.getY();
-
-        int snappedX = gridDrawer.snapToGrid(mouseX);
-        int snappedY = gridDrawer.snapToGrid(mouseY);
-
-        drawBlock(snappedX, snappedY);
-    }
-
-    private void drawBlock(int pX, int pY) {
-        int blockSize = 25;
-
-        graphicsContext.setFill(Color.BLUE);
-        graphicsContext.fillRect(pX, pY, blockSize, blockSize);
-
-        graphicsContext.setStroke(Color.BLACK);
-        graphicsContext.strokeRect(pX, pY, blockSize, blockSize);
-    } */
 }
