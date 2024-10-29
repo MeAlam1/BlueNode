@@ -18,7 +18,6 @@ public class MainPanel extends BorderPane {
     public static Canvas canvas = new Canvas();
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
-    private double zoomLevel = 1.0;
     private double translateX = 0;
     private double translateY = 0;
     private double lastX;
@@ -42,20 +41,14 @@ public class MainPanel extends BorderPane {
         });
 
         canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, pEvent -> {
-            double deltaX = pEvent.getX() - lastX;
-            double deltaY = pEvent.getY() - lastY;
-            translateX += deltaX;
-            translateY += deltaY;
+            translateX += pEvent.getX() - lastX;
+            translateY += pEvent.getY() - lastY;
+
+            graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            gridDrawer.redraw(graphicsContext, canvas.getWidth(), canvas.getHeight(), translateX, translateY);
+
             lastX = pEvent.getX();
             lastY = pEvent.getY();
-            drawGrid();
-        });
-
-        canvas.addEventHandler(ScrollEvent.SCROLL, pEvent -> {
-            double delta = pEvent.getDeltaY();
-            if (delta > 0) zoomLevel *= 1.1;
-            else if (delta < 0) zoomLevel /= 1.1;
-            drawGrid();
         });
 
         BaseLogger.log(ELogLevel.SUCCESS, "MainPanel initialized with infinite scrolling and zoom");
@@ -83,9 +76,8 @@ public class MainPanel extends BorderPane {
         graphicsContext.save();
         graphicsContext.clearRect(0, 0, width, height);
         graphicsContext.translate(translateX, translateY);
-        graphicsContext.scale(zoomLevel, zoomLevel);
 
-        gridDrawer.drawGrid(graphicsContext, width, height, zoomLevel, translateX, translateY);
+        gridDrawer.drawGrid(graphicsContext, width, height, translateX, translateY);
 
         graphicsContext.restore();
 
