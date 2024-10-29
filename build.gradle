@@ -31,7 +31,7 @@ jar {
         attributes(
                 'Main-Class': 'BlueNode.BlueNode',
                 'Application-Version': '1.0.0',
-                'Implementation-Vendor': 'SanForgeStudio, MeAlam'
+                'Implementation-Vendor': 'MeAlam'
         )
     }
 }
