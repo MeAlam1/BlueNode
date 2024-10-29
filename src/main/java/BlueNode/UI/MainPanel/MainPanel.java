@@ -8,9 +8,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MainPanel extends BorderPane {
@@ -18,6 +18,11 @@ public class MainPanel extends BorderPane {
     public static Canvas canvas = new Canvas();
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
+    private double zoomLevel = 1.0;
+    private double translateX = 0;
+    private double translateY = 0;
+    private double lastX;
+    private double lastY;
 
     public MainPanel(Stage pPrimaryStage) {
         graphicsContext = canvas.getGraphicsContext2D();
@@ -30,6 +35,30 @@ public class MainPanel extends BorderPane {
         heightProperty().addListener((observable, oldValue, newValue) -> drawGrid());
 
         setCenter(canvas);
+
+        canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
+            lastX = pEvent.getX();
+            lastY = pEvent.getY();
+        });
+
+        canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, pEvent -> {
+            double deltaX = pEvent.getX() - lastX;
+            double deltaY = pEvent.getY() - lastY;
+            translateX += deltaX;
+            translateY += deltaY;
+            lastX = pEvent.getX();
+            lastY = pEvent.getY();
+            drawGrid();
+        });
+
+        canvas.addEventHandler(ScrollEvent.SCROLL, pEvent -> {
+            double delta = pEvent.getDeltaY();
+            if (delta > 0) zoomLevel *= 1.1;
+            else if (delta < 0) zoomLevel /= 1.1;
+            drawGrid();
+        });
+
+        BaseLogger.log(ELogLevel.SUCCESS, "MainPanel initialized with infinite scrolling and zoom");
 
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.PRIMARY) {
@@ -45,16 +74,21 @@ public class MainPanel extends BorderPane {
                 NodeEventHandler.addGlobalClickListener((Pane) pPrimaryStage.getScene().getRoot());
             }
         });
-
-        BaseLogger.log(ELogLevel.SUCCESS, "MainPanel initialized");
     }
 
     private void drawGrid() {
         double width = canvas.getWidth();
         double height = canvas.getHeight();
 
-        gridDrawer.drawGrid(graphicsContext, width, height);
+        graphicsContext.save();
+        graphicsContext.clearRect(0, 0, width, height);
+        graphicsContext.translate(translateX, translateY);
+        graphicsContext.scale(zoomLevel, zoomLevel);
 
-        BaseLogger.log(ELogLevel.SUCCESS, "Grid drawn");
+        gridDrawer.drawGrid(graphicsContext, width, height, zoomLevel, translateX, translateY);
+
+        graphicsContext.restore();
+
+        BaseLogger.log(ELogLevel.SUCCESS, "Infinite grid drawn with zoom and pan support");
     }
 }
