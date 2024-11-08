@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group = group_id
+version = version
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = javafx_version
+    modules = javafx_modules.split(',')
+}
+
+dependencies {
+    implementation project(':core')
+
+    implementation 'com.google.guava:guava:32.0.0-android'
+    implementation 'org.openjfx:javafx-controls:23'
+    implementation 'org.openjfx:javafx-fxml:23'
+    implementation 'org.reflections:reflections:0.9.12'
+
+}

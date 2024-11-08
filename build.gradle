@@ -1,37 +1,33 @@
 plugins {
     id 'application'
+    id 'java'
     id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+
+application {
+    mainClass = start_class
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
-
-    implementation 'com.google.guava:guava:32.0.0-android'
-    implementation 'org.openjfx:javafx-controls:23'
-    implementation 'org.openjfx:javafx-fxml:23'
-    implementation 'org.reflections:reflections:0.9.12'
-
-}
-
-application {
-    mainClass = 'BlueNode.BlueNode'
+    implementation project(':ui')
 }
 
 javafx {
-    version = '22.0.2'
-    modules = ['javafx.web', 'javafx.swing']
+    version = javafx_version
+    modules = javafx_modules.split(',')
 }
 
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'BlueNode.BlueNode',
-                'Application-Version': '1.0.0',
-                'Implementation-Vendor': 'MeAlam'
-        )
-    }
+dependencies {
+    implementation project(':ui')
+
+    implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
+    implementation "org.openjfx:javafx-fxml:${javafx_dependency_version}"
+
 }
