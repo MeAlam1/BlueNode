@@ -17,6 +17,7 @@ javafx {
 
 dependencies {
     implementation project(':core')
+    implementation project(':utils')
 
     implementation 'com.google.guava:guava:32.0.0-android'
     implementation 'org.openjfx:javafx-controls:23'

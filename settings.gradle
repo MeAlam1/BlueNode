@@ -4,7 +4,8 @@ include 'core'
 include 'nodes'
 include 'ui'
 include 'utils'
+
+include 'compilers:general'
 include 'compilers:java:gradle'
 include 'compilers:csharp:dotnet'
-include 'intermediate-representation'
 
