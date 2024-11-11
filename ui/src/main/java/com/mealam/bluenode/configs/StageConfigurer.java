@@ -1,4 +1,4 @@
-package com.mealam.bluenode.config;
+package com.mealam.bluenode.configs;
 
 import com.mealam.bluenode.Constants;
 import com.mealam.bluenode.UIController;

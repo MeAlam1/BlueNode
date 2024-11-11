@@ -1,7 +1,8 @@
 package com.mealam.bluenode;
 
-import com.mealam.bluenode.config.StageConfigurer;
+import com.mealam.bluenode.configs.StageConfigurer;
 import com.mealam.bluenode.contentBrowser.ContentBrowser;
+import com.mealam.bluenode.handlers.WindowInteractionHandler;
 import com.mealam.bluenode.utils.conversion.ColorUtils;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
@@ -9,9 +10,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.util.Arrays;
 
 public class UIController extends Application {
 
@@ -20,13 +20,14 @@ public class UIController extends Application {
     public static final Scene MAIN_SCENE = new Scene(MAIN_ROOT);
 
     public static final ContentBrowser CONTENT_BROWSER = new ContentBrowser();;
+    public static final StackPane TITLE_BAR = new StackPane();
 
     @Override
     public void start(Stage pMainStage) {
         try {
             StageConfigurer.configureStage(pMainStage);
 
-            initializeComponents();
+            initializeComponents(pMainStage);
 
             pMainStage.show();
             BaseLogger.log(BaseLogLevel.SUCCESS, "BlueNode application started successfully.");
@@ -35,10 +36,10 @@ public class UIController extends Application {
         }
     }
 
-    private void initializeComponents() {
+    private void initializeComponents(Stage pMainStage) {
         MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(Constants.BACKGROUND_COLOR)); // grey
 
-        //WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, JavaFXConstants.mainRoot);
+        WindowInteractionHandler.setupWindowInteractions(pMainStage, TITLE_BAR, MAIN_ROOT);
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "Components initialized successfully.");
     }
