@@ -1,4 +1,5 @@
 package com.mealam.bluenode.titleBar.buttons.actions.settingsButton;
+
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.scene.Scene;

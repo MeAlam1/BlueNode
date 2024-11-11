@@ -11,7 +11,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class TitleBar extends BorderPane {

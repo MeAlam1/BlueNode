@@ -1,4 +1,5 @@
 package com.mealam.bluenode.titleBar.buttons.controlButtons;
+
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.geometry.Insets;

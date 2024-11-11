@@ -20,7 +20,8 @@ public class UIController extends Application {
     public static final Canvas MAIN_CANVAS = new Canvas();
     public static final Scene MAIN_SCENE = new Scene(MAIN_ROOT);
 
-    public static final ContentBrowser CONTENT_BROWSER = new ContentBrowser();;
+    public static final ContentBrowser CONTENT_BROWSER = new ContentBrowser();
+    ;
     public static final StackPane TITLE_BAR = new StackPane();
 
     @Override
@@ -38,7 +39,7 @@ public class UIController extends Application {
     }
 
     private void initializeComponents(Stage pMainStage) {
-        MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(Constants.BACKGROUND_COLOR)); // grey
+        MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.BACKGROUND_COLOR));
 
         TitleBar titleBar = new TitleBar(pMainStage);
         WindowInteractionHandler.setupWindowInteractions(pMainStage, TITLE_BAR, MAIN_ROOT);

@@ -12,7 +12,6 @@ public class Constants {
     public static final int DEFAULT_WIDTH = 1200;
     public static final int DEFAULT_HEIGHT = 800;
     public static final String LOGO_PATH = "/assets/images/logo.png";
-    public static final Color BACKGROUND_COLOR = new Color(35, 35, 35);
 
     /**
      * Private constructor to prevent instantiation.
