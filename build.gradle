@@ -1,7 +1,7 @@
 plugins {
     id 'application'
     id 'java'
-    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'org.openjfx.javafxplugin' version "${javafx_plugins_version}"
 }
 
 allprojects {
@@ -10,18 +10,8 @@ allprojects {
     }
 }
 
-
 application {
-    mainClass = start_class
-}
-
-dependencies {
-    implementation project(':ui')
-}
-
-javafx {
-    version = javafx_version
-    modules = javafx_modules.split(',')
+    mainClass = "${group_id}.${start_class}"
 }
 
 dependencies {
@@ -29,5 +19,31 @@ dependencies {
 
     implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
     implementation "org.openjfx:javafx-fxml:${javafx_dependency_version}"
+}
 
+javafx {
+    version = javafx_version
+    modules = javafx_modules.split(',')
+}
+
+tasks.register('runApp', JavaExec) {
+    group = 'application'
+    description = 'Run the application with JavaFX support'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = "${group_id}.${start_class}"
+
+    jvmArgs = [
+            '--module-path', configurations.runtimeClasspath.asPath,
+            '--add-modules', javafx_modules
+    ] as List<String>
+}
+
+tasks.register('buildApp') {
+    group = 'build'
+    description = 'Build the application'
+    dependsOn tasks.named('build')
+
+    doLast {
+        println "Build complete!"
+    }
 }
