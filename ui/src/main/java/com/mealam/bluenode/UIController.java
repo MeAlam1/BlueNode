@@ -3,6 +3,7 @@ package com.mealam.bluenode;
 import com.mealam.bluenode.configs.StageConfigurer;
 import com.mealam.bluenode.contentBrowser.ContentBrowser;
 import com.mealam.bluenode.handlers.WindowInteractionHandler;
+import com.mealam.bluenode.titleBar.TitleBar;
 import com.mealam.bluenode.utils.conversion.ColorUtils;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
@@ -39,7 +40,10 @@ public class UIController extends Application {
     private void initializeComponents(Stage pMainStage) {
         MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(Constants.BACKGROUND_COLOR)); // grey
 
+        TitleBar titleBar = new TitleBar(pMainStage);
         WindowInteractionHandler.setupWindowInteractions(pMainStage, TITLE_BAR, MAIN_ROOT);
+
+        MAIN_ROOT.setTop(titleBar);
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "Components initialized successfully.");
     }
