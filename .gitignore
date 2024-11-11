@@ -29,7 +29,8 @@ hs_err_pid*
 
 # Maven/Gradle specific
 target/
-build/*
+build/
+build/**
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
