@@ -1,10 +1,11 @@
-package com.mealam.bluenode.contentbrowser;
+package com.mealam.bluenode.contentBrowser;
 
-import com.mealam.bluenode.JavaFXConstants;
-import com.mealam.bluenode.utils.contentbrowser.TreeNode;
+import com.mealam.bluenode.UIController;
+import com.mealam.bluenode.utils.contentBrowser.TreeNode;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
+
 import java.io.File;
 
 public class ContentBrowser extends VBox {
@@ -44,16 +45,16 @@ public class ContentBrowser extends VBox {
     }
 
     public static void showContentBrowser() {
-        if (!JavaFXConstants.mainRoot.getChildren().contains(JavaFXConstants.contentBrowser)) {
-            JavaFXConstants.mainRoot.setBottom(JavaFXConstants.contentBrowser);
-            JavaFXConstants.contentBrowser.prefHeightProperty().bind(JavaFXConstants.mainRoot.heightProperty().divide(4));
-            JavaFXConstants.mainCanvas.heightProperty().bind(JavaFXConstants.mainRoot.heightProperty().subtract(JavaFXConstants.contentBrowser.heightProperty()));
+        if (!UIController.MAIN_ROOT.getChildren().contains(UIController.CONTENT_BROWSER)) {
+            UIController.MAIN_ROOT.setBottom(UIController.CONTENT_BROWSER);
+            UIController.CONTENT_BROWSER.prefHeightProperty().bind(UIController.MAIN_ROOT.heightProperty().divide(4));
+            UIController.MAIN_CANVAS.heightProperty().bind(UIController.MAIN_ROOT.heightProperty().subtract(UIController.CONTENT_BROWSER.heightProperty()));
         }
     }
 
     public static void hideContentBrowser() {
-        JavaFXConstants.mainRoot.getChildren().remove(JavaFXConstants.contentBrowser);
-        JavaFXConstants.mainCanvas.heightProperty().bind(JavaFXConstants.mainRoot.heightProperty());
-        JavaFXConstants.mainCanvas.widthProperty().bind(JavaFXConstants.mainRoot.widthProperty());
+        UIController.MAIN_ROOT.getChildren().remove(UIController.CONTENT_BROWSER);
+        UIController.MAIN_CANVAS.heightProperty().bind(UIController.MAIN_ROOT.heightProperty());
+        UIController.MAIN_CANVAS.widthProperty().bind(UIController.MAIN_ROOT.widthProperty());
     }
 }

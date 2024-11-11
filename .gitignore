@@ -134,6 +134,7 @@ cmake-build-*/
 !.vscode/extensions.json
 *.code-workspace
 .history/
+MANIFEST.MF
 
 # BlueNode Specific
 src/main/resources/assets/images/**

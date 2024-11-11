@@ -4,6 +4,7 @@ include 'core'
 include 'nodes'
 include 'ui'
 include 'utils'
+include 'common'
 
 include 'compilers:general'
 include 'compilers:java:gradle'

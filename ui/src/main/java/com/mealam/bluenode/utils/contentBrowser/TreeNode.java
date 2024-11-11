@@ -1,4 +1,4 @@
-package com.mealam.bluenode.utils.contentbrowser;
+package com.mealam.bluenode.utils.contentBrowser;
 
 import java.io.File;
 import java.util.ArrayList;

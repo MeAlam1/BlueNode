@@ -1,4 +1,4 @@
-package com.mealam.bluenode.contentbrowser;
+package com.mealam.bluenode.contentBrowser;
 
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeView;

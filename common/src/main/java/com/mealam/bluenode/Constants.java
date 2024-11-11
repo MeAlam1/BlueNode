@@ -1,5 +1,6 @@
 package com.mealam.bluenode;
 
+import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Logger;
@@ -8,6 +9,10 @@ public class Constants {
 
     public static final String APP_NAME = "BlueNode";
     public static final String APP_ID = "bluenode";
+    public static final int DEFAULT_WIDTH = 1200;
+    public static final int DEFAULT_HEIGHT = 800;
+    public static final String LOGO_PATH = "/assets/images/logo.png";
+    public static final Color BACKGROUND_COLOR = new Color(35, 35, 35);
 
     /**
      * Private constructor to prevent instantiation.

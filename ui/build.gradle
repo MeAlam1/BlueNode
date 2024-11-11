@@ -16,12 +16,10 @@ javafx {
 }
 
 dependencies {
-    implementation project(':core')
+    implementation project(':common')
     implementation project(':utils')
 
-    implementation 'com.google.guava:guava:32.0.0-android'
-    implementation 'org.openjfx:javafx-controls:23'
-    implementation 'org.openjfx:javafx-fxml:23'
-    implementation 'org.reflections:reflections:0.9.12'
+    implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
+    implementation "org.openjfx:javafx-fxml:${javafx_dependency_version}"
 
 }
