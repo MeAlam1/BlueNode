@@ -40,14 +40,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Generate Gradle wrapper if not present
-        run: |
-          if [ ! -f "./gradlew" ]; then
-            gradle wrapper
-          fi
-
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x ./gradlew
 
       - name: Builds the project
-        run: ./gradlew build
+        run: ./gradlew buildApp
