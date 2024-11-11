@@ -1,6 +1,6 @@
 package com.mealam.bluenode.listeners;
 
-import javafx.scene.layout.Region;
+import com.mealam.bluenode.titleBar.TitleBar;
 import javafx.stage.Stage;
 
 public class WindowDragger {
@@ -8,10 +8,10 @@ public class WindowDragger {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    public void enableWindowDrag(Stage pStage, Region pTitleBar) {
-        pTitleBar.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
+    public void enableWindowDrag(Stage pStage, TitleBar pTitleBar) {
+        pTitleBar.setOnMousePressed(pEvent -> {
+            xOffset = pEvent.getSceneX();
+            yOffset = pEvent.getSceneY();
         });
 
         pTitleBar.setOnMouseDragged(pEvent -> {

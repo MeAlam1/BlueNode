@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class WindowInteractionHandler {
 
-    public static void setupWindowInteractions(Stage pStage, StackPane pTitleBar, BorderPane pRoot) {
+    public static void setupWindowInteractions(Stage pStage, TitleBar pTitleBar, BorderPane pRoot) {
         WindowDragger windowDragger = new WindowDragger();
         windowDragger.enableWindowDrag(pStage, pTitleBar);
 

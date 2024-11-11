@@ -12,15 +12,15 @@ public class WindowResizer {
     private double startX;
     private double startY;
 
-    public void enableWindowResize(Stage stage, Pane pane) {
-        pane.setOnMouseMoved(event -> updateCursor(event, pane));
-        pane.setOnMousePressed(this::mousePressed);
-        pane.setOnMouseDragged(event -> resizeWindow(event, stage, pane));
-        pane.setOnMouseReleased(event -> resizeDirection = ResizeDirection.NONE);
+    public void enableWindowResize(Stage pStage, Pane pPane) {
+        pPane.setOnMouseMoved(event -> updateCursor(event, pPane));
+        pPane.setOnMousePressed(this::mousePressed);
+        pPane.setOnMouseDragged(event -> resizeWindow(event, pStage, pPane));
+        pPane.setOnMouseReleased(event -> resizeDirection = ResizeDirection.NONE);
     }
 
-    private void updateCursor(MouseEvent event, Pane pane) {
-        resizeDirection = determineResizeDirection(event, pane);
+    private void updateCursor(MouseEvent pEvent, Pane pPane) {
+        resizeDirection = determineResizeDirection(pEvent, pPane);
 
         Cursor cursor = switch (resizeDirection) {
             case NW -> Cursor.NW_RESIZE;
@@ -34,62 +34,62 @@ public class WindowResizer {
             default -> Cursor.DEFAULT;
         };
 
-        pane.setCursor(cursor);
+        pPane.setCursor(cursor);
     }
 
-    private void mousePressed(MouseEvent event) {
-        startX = event.getScreenX();
-        startY = event.getScreenY();
+    private void mousePressed(MouseEvent pEvent) {
+        startX = pEvent.getScreenX();
+        startY = pEvent.getScreenY();
     }
 
-    private void resizeWindow(MouseEvent event, Stage stage, Pane pane) {
+    private void resizeWindow(MouseEvent pEvent, Stage pStage, Pane pPane) {
         if (resizeDirection == ResizeDirection.NONE) return;
 
-        double deltaX = event.getScreenX() - startX;
-        double deltaY = event.getScreenY() - startY;
+        double deltaX = pEvent.getScreenX() - startX;
+        double deltaY = pEvent.getScreenY() - startY;
 
         switch (resizeDirection) {
             case NW -> {
-                stage.setX(stage.getX() + deltaX);
-                stage.setY(stage.getY() + deltaY);
-                stage.setWidth(stage.getWidth() - deltaX);
-                stage.setHeight(stage.getHeight() - deltaY);
+                pStage.setX(pStage.getX() + deltaX);
+                pStage.setY(pStage.getY() + deltaY);
+                pStage.setWidth(pStage.getWidth() - deltaX);
+                pStage.setHeight(pStage.getHeight() - deltaY);
             }
             case NE -> {
-                stage.setY(stage.getY() + deltaY);
-                stage.setWidth(stage.getWidth() + deltaX);
-                stage.setHeight(stage.getHeight() - deltaY);
+                pStage.setY(pStage.getY() + deltaY);
+                pStage.setWidth(pStage.getWidth() + deltaX);
+                pStage.setHeight(pStage.getHeight() - deltaY);
             }
             case SW -> {
-                stage.setX(stage.getX() + deltaX);
-                stage.setWidth(stage.getWidth() - deltaX);
-                stage.setHeight(stage.getHeight() + deltaY);
+                pStage.setX(pStage.getX() + deltaX);
+                pStage.setWidth(pStage.getWidth() - deltaX);
+                pStage.setHeight(pStage.getHeight() + deltaY);
             }
             case SE -> {
-                stage.setWidth(stage.getWidth() + deltaX);
-                stage.setHeight(stage.getHeight() + deltaY);
+                pStage.setWidth(pStage.getWidth() + deltaX);
+                pStage.setHeight(pStage.getHeight() + deltaY);
             }
             case W -> {
-                stage.setX(stage.getX() + deltaX);
-                stage.setWidth(stage.getWidth() - deltaX);
+                pStage.setX(pStage.getX() + deltaX);
+                pStage.setWidth(pStage.getWidth() - deltaX);
             }
-            case E -> stage.setWidth(stage.getWidth() + deltaX);
+            case E -> pStage.setWidth(pStage.getWidth() + deltaX);
             case N -> {
-                stage.setY(stage.getY() + deltaY);
-                stage.setHeight(stage.getHeight() - deltaY);
+                pStage.setY(pStage.getY() + deltaY);
+                pStage.setHeight(pStage.getHeight() - deltaY);
             }
-            case S -> stage.setHeight(stage.getHeight() + deltaY);
+            case S -> pStage.setHeight(pStage.getHeight() + deltaY);
         }
 
-        startX = event.getScreenX();
-        startY = event.getScreenY();
+        startX = pEvent.getScreenX();
+        startY = pEvent.getScreenY();
     }
 
-    private ResizeDirection determineResizeDirection(MouseEvent event, Pane pane) {
-        boolean left = event.getX() < RESIZE_MARGIN;
-        boolean right = event.getX() > pane.getWidth() - RESIZE_MARGIN;
-        boolean top = event.getY() < RESIZE_MARGIN;
-        boolean bottom = event.getY() > pane.getHeight() - RESIZE_MARGIN;
+    private ResizeDirection determineResizeDirection(MouseEvent pEvent, Pane pPane) {
+        boolean left = pEvent.getX() < RESIZE_MARGIN;
+        boolean right = pEvent.getX() > pPane.getWidth() - RESIZE_MARGIN;
+        boolean top = pEvent.getY() < RESIZE_MARGIN;
+        boolean bottom = pEvent.getY() > pPane.getHeight() - RESIZE_MARGIN;
 
         if (left && top) return ResizeDirection.NW;
         if (right && top) return ResizeDirection.NE;

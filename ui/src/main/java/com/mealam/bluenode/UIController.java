@@ -42,7 +42,7 @@ public class UIController extends Application {
         MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.BACKGROUND_COLOR));
 
         TitleBar titleBar = new TitleBar(pMainStage);
-        WindowInteractionHandler.setupWindowInteractions(pMainStage, TITLE_BAR, MAIN_ROOT);
+        WindowInteractionHandler.setupWindowInteractions(pMainStage, titleBar, MAIN_ROOT);
 
         MAIN_ROOT.setTop(titleBar);
 
