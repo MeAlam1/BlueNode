@@ -1,2 +1,12 @@
 rootProject.name = 'BlueNode'
-include('BlueNode')
+
+include 'core'
+include 'nodes'
+include 'ui'
+include 'utils'
+include 'common'
+
+include 'compilers:general'
+include 'compilers:java:gradle'
+include 'compilers:csharp:dotnet'
+

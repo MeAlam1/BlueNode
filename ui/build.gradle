@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version "${javafx_plugins_version}"
+}
+
+group = group_id
+version = version
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = javafx_version
+    modules = javafx_modules.split(',')
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':utils')
+
+    implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
+    implementation "org.openjfx:javafx-fxml:${javafx_dependency_version}"
+
+}
