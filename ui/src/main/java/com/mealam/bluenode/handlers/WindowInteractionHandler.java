@@ -6,7 +6,6 @@ import com.mealam.bluenode.titleBar.TitleBar;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class WindowInteractionHandler {

@@ -6,7 +6,7 @@ import com.mealam.bluenode.titleBar.buttons.actions.fileButton.NewAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.OpenAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAsAction;
-import com.mealam.bluenode.utils.contentBrowser.converter.UIColorConverter;
+import com.mealam.bluenode.utils.converter.UIColorConverter;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.geometry.Insets;

@@ -21,8 +21,8 @@ public class ContentBrowser extends VBox {
         setStyle("-fx-background-color: #2e2e2e;");
     }
 
-    public void updateContent(File folder) {
-        TreeNode rootNode = TreeNode.fromFolder(folder);
+    public void updateContent(File pFolder) {
+        TreeNode rootNode = TreeNode.fromFolder(pFolder);
         if (rootNode != null) {
             treeView.setRoot(convertToTreeItem(rootNode));
             showContentBrowser();
@@ -31,9 +31,9 @@ public class ContentBrowser extends VBox {
         }
     }
 
-    private TreeItem<String> convertToTreeItem(TreeNode node) {
-        TreeItem<String> treeItem = new TreeItem<>(node.getName());
-        for (TreeNode child : node.getChildren()) {
+    private TreeItem<String> convertToTreeItem(TreeNode pNode) {
+        TreeItem<String> treeItem = new TreeItem<>(pNode.getName());
+        for (TreeNode child : pNode.getChildren()) {
             treeItem.getChildren().add(convertToTreeItem(child));
         }
         return treeItem;

@@ -16,7 +16,7 @@ import java.io.File;
 public class FolderSelectionPopup {
 
     public interface DirectorySelectedCallback {
-        void onDirectorySelected(File directory);
+        void onDirectorySelected(File pDirectory);
     }
 
     private final Stage primaryStage;
@@ -74,7 +74,7 @@ public class FolderSelectionPopup {
     }
 
     // TODO: Customize the warning alert and move it to a separate class
-    private void showWarningAlert(String message) {
+    private void showWarningAlert(String pMessage) {
         Platform.runLater(() -> {
             Alert alert = new Alert(AlertType.WARNING);
 
@@ -85,7 +85,7 @@ public class FolderSelectionPopup {
 
             alert.setTitle("Warning");
             alert.setHeaderText(null);
-            alert.setContentText(message);
+            alert.setContentText(pMessage);
             alert.setGraphic(imageView);
 
             alert.showAndWait();
