@@ -3,16 +3,13 @@ plugins {
     id 'org.openjfx.javafxplugin' version "${javafx_plugins_version}"
 }
 
-group = group_id
-version = version
-
 repositories {
     mavenCentral()
 }
 
 javafx {
     version = javafx_version
-    modules = javafx_modules.split(',')
+    modules = javafx_modules.split(',').collect { it.trim() }
 }
 
 dependencies {

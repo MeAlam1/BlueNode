@@ -5,8 +5,27 @@ plugins {
 }
 
 allprojects {
+    apply plugin: 'java'
+
     repositories {
         mavenCentral()
+    }
+
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.11.3'
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
+    }
+
+    sourceSets {
+        test {
+            java {
+                srcDirs = ['src/test/java']
+            }
+        }
     }
 }
 
@@ -23,7 +42,13 @@ dependencies {
 
 javafx {
     version = javafx_version
-    modules = javafx_modules.split(',')
+    modules = javafx_modules.split(',').collect { it.trim() }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 tasks.register('runApp', JavaExec) {
@@ -42,8 +67,22 @@ tasks.register('buildApp') {
     group = 'build'
     description = 'Build the application'
     dependsOn tasks.named('build')
-
+    doFirst {
+        println "Building the application..."
+    }
     doLast {
         println "Build complete!"
+    }
+}
+
+tasks.register('rebuild') {
+    group = 'build'
+    description = 'Clean and rebuild the project'
+    dependsOn 'clean', 'buildApp'
+    doFirst {
+        println "Cleaning the application..."
+    }
+    doLast {
+        println "Clean and rebuild complete!"
     }
 }
