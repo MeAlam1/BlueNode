@@ -12,9 +12,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class TitleBar extends BorderPane {
+
+    private final StackPane stackPane;
+
     public TitleBar(Stage pStage) {
         setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.NORMAL_COLOR));
         setPrefHeight(30);
@@ -23,31 +27,41 @@ public class TitleBar extends BorderPane {
         leftPanel.setPadding(new Insets(0, 5, 0, 5));
         leftPanel.setSpacing(10);
         leftPanel.setAlignment(Pos.CENTER_LEFT);
+        HBox contentContainer = new HBox();
+        contentContainer.setAlignment(Pos.CENTER_LEFT);
 
         ImageLoader logoLoader = new ImageLoader("/assets/images/logo.png", 40, 40);
         logoLoader.setPadding(new Insets(0, 5, 0, 5));
-        leftPanel.getChildren().add(logoLoader);
+        contentContainer.getChildren().add(logoLoader);
 
         FileButton fileButton = new FileButton(pStage);
-        leftPanel.getChildren().add(fileButton);
+        contentContainer.getChildren().add(fileButton);
 
         SettingsButton settingsButton = new SettingsButton(pStage);
-        leftPanel.getChildren().add(settingsButton);
+        contentContainer.getChildren().add(settingsButton);
 
-        HBox rightPanel = new HBox();
-        rightPanel.setAlignment(Pos.CENTER_RIGHT);
+        leftPanel.getChildren().add(contentContainer);
 
+        stackPane = new StackPane();
         ButtonPanel buttonPanel = new ButtonPanel(pStage);
-        rightPanel.getChildren().add(buttonPanel);
+        stackPane.getChildren().addAll(buttonPanel);
+        stackPane.setAlignment(Pos.TOP_RIGHT);
+        setCenter(stackPane);
 
-        setRight(rightPanel);
+        updatePadding(pStage.getWidth());
+
+        pStage.widthProperty().addListener((observable, oldValue, newValue) -> updatePadding(newValue.doubleValue()));
 
         setLeft(leftPanel);
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "TitleBar has been created successfully");
     }
+
+    // TODO: This Method is really inefficient, it should be Optimized and fixed
+    private void updatePadding(double pWindowWidth) {
+        if (stackPane != null) {
+            double leftPadding = Math.max(0, pWindowWidth - 280);
+            stackPane.setPadding(new Insets(0, 0, 0, leftPadding));
+        }
+    }
 }
-
-
-
-
