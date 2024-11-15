@@ -18,7 +18,7 @@ public class MainPanel extends BorderPane {
 
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
-    public static List<Node> nodes;
+    public final List<Node> nodes;
 
     public MainPanel() {
         graphicsContext = UIController.MAIN_CANVAS.getGraphicsContext2D();
@@ -33,7 +33,7 @@ public class MainPanel extends BorderPane {
 
         setCenter(UIController.MAIN_CANVAS);
 
-        new CanvasDragHandler(UIController.MAIN_CANVAS, graphicsContext, gridDrawer);
+        new CanvasDragHandler(UIController.MAIN_CANVAS, graphicsContext, gridDrawer, nodes);
 
         UIController.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.SECONDARY) { // Right click

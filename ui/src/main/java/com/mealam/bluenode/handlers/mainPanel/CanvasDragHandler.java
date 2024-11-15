@@ -17,13 +17,15 @@ public class CanvasDragHandler {
     private final GridDrawer gridDrawer;
     private static double translateX;
     private static double translateY;
+    private final List<Node> nodes;
     private double lastX;
     private double lastY;
 
-    public CanvasDragHandler(Canvas pCanvas, GraphicsContext pGraphicsContext, GridDrawer pGridDrawer) {
+    public CanvasDragHandler(Canvas pCanvas, GraphicsContext pGraphicsContext, GridDrawer pGridDrawer, List<Node> pNodes) {
         this.canvas = pCanvas;
         this.graphicsContext = pGraphicsContext;
         this.gridDrawer = pGridDrawer;
+        this.nodes = pNodes;
         initDragHandler();
     }
 
@@ -47,7 +49,7 @@ public class CanvasDragHandler {
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gridDrawer.redraw(graphicsContext, canvas.getWidth(), canvas.getHeight(), -translateX, -translateY);
 
-        for (Node node : MainPanel.nodes) {
+        for (Node node : nodes) {
             NodeRenderer.render(graphicsContext, node, translateX, translateY);
         }
 
