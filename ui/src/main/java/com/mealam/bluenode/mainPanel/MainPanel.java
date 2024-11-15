@@ -1,8 +1,9 @@
 package com.mealam.bluenode.mainPanel;
 
+import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
-import com.mealam.bluenode.nodes.Node;
+import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,8 +18,7 @@ public class MainPanel extends BorderPane {
 
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
-    private final List<Node> nodes;
-    private final CanvasDragHandler dragHandler;
+    public static List<Node> nodes;
 
     public MainPanel() {
         graphicsContext = UIController.MAIN_CANVAS.getGraphicsContext2D();
@@ -33,21 +33,21 @@ public class MainPanel extends BorderPane {
 
         setCenter(UIController.MAIN_CANVAS);
 
-        dragHandler = new CanvasDragHandler(UIController.MAIN_CANVAS, graphicsContext, gridDrawer, nodes);
+        new CanvasDragHandler(UIController.MAIN_CANVAS, graphicsContext, gridDrawer);
 
         UIController.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.SECONDARY) { // Right click
                 double mouseX = pEvent.getX();
                 double mouseY = pEvent.getY();
 
-                double snappedX = GridDrawer.snapToGrid(mouseX - dragHandler.getTranslateX());
-                double snappedY = GridDrawer.snapToGrid(mouseY - dragHandler.getTranslateY());
+                double snappedX = GridDrawer.snapToGrid(mouseX - CanvasDragHandler.getTranslateX());
+                double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
 
                 Node newNode = new Node(snappedX, snappedY);
                 nodes.add(newNode);
 
                 for (Node node : nodes) {
-                    node.draw(graphicsContext, dragHandler.getTranslateX(), dragHandler.getTranslateY());
+                    NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
                 }
 
                 BaseLogger.log(BaseLogLevel.SUCCESS, "Node created at (" + snappedX + ", " + snappedY + ")");
@@ -63,9 +63,9 @@ public class MainPanel extends BorderPane {
 
         graphicsContext.save();
         graphicsContext.clearRect(0, 0, width, height);
-        graphicsContext.translate(dragHandler.getTranslateX(), dragHandler.getTranslateY());
+        graphicsContext.translate(CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
 
-        gridDrawer.drawGrid(graphicsContext, width, height, dragHandler.getTranslateX(), dragHandler.getTranslateY());
+        gridDrawer.drawGrid(graphicsContext, width, height, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
 
         graphicsContext.restore();
     }
