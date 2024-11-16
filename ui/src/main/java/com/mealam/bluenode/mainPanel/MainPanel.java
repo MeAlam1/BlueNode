@@ -37,20 +37,21 @@ public class MainPanel extends BorderPane {
 
         UIController.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.SECONDARY) { // Right click
-                double mouseX = pEvent.getX();
-                double mouseY = pEvent.getY();
+                    double mouseX = pEvent.getX();
+                    double mouseY = pEvent.getY();
 
-                double snappedX = GridDrawer.snapToGrid(mouseX - CanvasDragHandler.getTranslateX());
-                double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
+                    double snappedX = GridDrawer.snapToGrid(mouseX - CanvasDragHandler.getTranslateX());
+                    double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
+                if (!isNodeAtLocation(snappedX, snappedY)) {
+                    Node newNode = new Node(snappedX, snappedY);
+                    nodes.add(newNode);
 
-                Node newNode = new Node(snappedX, snappedY);
-                nodes.add(newNode);
+                    for (Node node : nodes) {
+                        NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
+                    }
 
-                for (Node node : nodes) {
-                    NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
+                    BaseLogger.log(BaseLogLevel.SUCCESS, "Node created at (" + snappedX + ", " + snappedY + ")");
                 }
-
-                BaseLogger.log(BaseLogLevel.SUCCESS, "Node created at (" + snappedX + ", " + snappedY + ")");
             }
         });
 
@@ -68,5 +69,14 @@ public class MainPanel extends BorderPane {
         gridDrawer.drawGrid(graphicsContext, width, height, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
 
         graphicsContext.restore();
+    }
+
+    private boolean isNodeAtLocation(double pX, double pY) {
+        for (Node node : nodes) {
+            if (node.pX() == pX && node.pY() == pY) {
+                return true;
+            }
+        }
+        return false;
     }
 }
