@@ -1,11 +1,13 @@
 package com.mealam.bluenode.mainPanel;
 
+import com.mealam.bluenode.nodes.MathNode;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
+import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -13,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class MainPanel extends BorderPane {
 
@@ -43,14 +46,14 @@ public class MainPanel extends BorderPane {
                     double snappedX = GridDrawer.snapToGrid(mouseX - CanvasDragHandler.getTranslateX());
                     double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
                 if (!isNodeAtLocation(snappedX, snappedY)) {
-                    Node newNode = new Node(snappedX, snappedY);
+                    Node newNode = new MathNode(snappedX, snappedY, NodeIDGenerator.generateID("MathNode"));
                     nodes.add(newNode);
 
                     for (Node node : nodes) {
                         NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
                     }
 
-                    BaseLogger.log(BaseLogLevel.SUCCESS, "Node created at (" + snappedX + ", " + snappedY + ")");
+                    BaseLogger.log(BaseLogLevel.SUCCESS, "Node [" + newNode.getId() + "] created at (" + snappedX + ", " + snappedY + ")");
                 }
             }
         });
@@ -73,7 +76,7 @@ public class MainPanel extends BorderPane {
 
     private boolean isNodeAtLocation(double pX, double pY) {
         for (Node node : nodes) {
-            if (node.pX() == pX && node.pY() == pY) {
+            if (node.getPX() == pX && node.getPY() == pY) {
                 return true;
             }
         }
