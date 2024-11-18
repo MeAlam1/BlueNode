@@ -2,22 +2,22 @@ package com.mealam.bluenode.nodes;
 
 public abstract class Node {
 
-    private final double pX;
-    private final double pY;
+    private final double X;
+    private final double Y;
     private final String id;
 
     protected Node(double pX, double pY, String pId) {
-        this.pX = pX;
-        this.pY = pY;
+        this.X = pX;
+        this.Y = pY;
         this.id = pId;
     }
 
     public double getPX() {
-        return pX;
+        return X;
     }
 
     public double getPY() {
-        return pY;
+        return Y;
     }
 
     public String getId() {
