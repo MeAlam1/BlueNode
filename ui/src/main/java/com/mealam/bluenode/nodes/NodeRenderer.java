@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 public class NodeRenderer {
 
     public static void render(GraphicsContext pGraphicsContext, Node pNode, double pTranslateX, double pTranslateY) {
-        double x = pNode.getPX() + pTranslateX;
-        double y = pNode.getPY() + pTranslateY;
+        double x = pNode.getX() + pTranslateX;
+        double y = pNode.getY() + pTranslateY;
 
         double nodeWidth = 150;
         double titleBarHeight = 30;
@@ -26,13 +26,14 @@ public class NodeRenderer {
         pGraphicsContext.setFill(Color.BLACK);
         pGraphicsContext.fillText(pNode.getType(), x + 5, y + 20);
 
-        renderFormElements(pGraphicsContext, x, contentAreaY);
+        // Render Components
+        double contentStartY = y + titleBarHeight + 5;
+        for (NodeComponent component : pNode.getComponents()) {
+            if (component instanceof RenderableNodeComponent renderableComponent) {
+                renderableComponent.render(pGraphicsContext, x + 10, contentStartY);
+                contentStartY += renderableComponent.getHeight();
+            }
+        }
     }
 
-    private static void renderFormElements(GraphicsContext pGraphicsContext, double pX, double pY) {
-        pGraphicsContext.setFill(Color.BLACK);
-        pGraphicsContext.fillText("Checkbox", pX + 5, pY + 20);
-        pGraphicsContext.fillText("Slider", pX + 5, pY + 40);
-        pGraphicsContext.fillText("Input Field", pX + 5, pY + 60);
-    }
 }

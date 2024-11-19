@@ -1,30 +1,40 @@
 package com.mealam.bluenode.nodes;
 
-public abstract class Node {
+import java.util.ArrayList;
+import java.util.List;
 
-    private final double X;
-    private final double Y;
+public abstract class Node {
+    private final double x;
+    private final double y;
     private final String id;
+    private final List<NodeComponent> components = new ArrayList<>();
 
     protected Node(double pX, double pY, String pId) {
-        this.X = pX;
-        this.Y = pY;
+        this.x = pX;
+        this.y = pY;
         this.id = pId;
     }
 
-    public double getPX() {
-        return X;
+    public double getX() {
+        return x;
     }
 
-    public double getPY() {
-        return Y;
+    public double getY() {
+        return y;
     }
 
     public String getId() {
         return id;
     }
 
-    public abstract String getType();
+    public List<NodeComponent> getComponents() {
+        return components;
+    }
 
+    public void addComponent(NodeComponent pComponent) {
+        components.add(pComponent);
+    }
+
+    public abstract String getType();
     public abstract String getColor();
 }

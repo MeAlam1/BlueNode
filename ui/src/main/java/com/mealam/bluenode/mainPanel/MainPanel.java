@@ -2,9 +2,7 @@ package com.mealam.bluenode.mainPanel;
 
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
-import com.mealam.bluenode.nodes.MathNode;
-import com.mealam.bluenode.nodes.Node;
-import com.mealam.bluenode.nodes.NodeRenderer;
+import com.mealam.bluenode.nodes.*;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
@@ -46,6 +44,10 @@ public class MainPanel extends BorderPane {
                 double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
                 if (!isNodeAtLocation(snappedX, snappedY)) {
                     Node newNode = new MathNode(snappedX, snappedY, NodeIDGenerator.generateID("MathNode"));
+                    InputComponent coreInput = new InputComponent("Name");
+                    RenderableNodeComponent inputRenderer = new InputComponentRenderer(coreInput);
+                    newNode.addComponent(inputRenderer);
+
                     nodes.add(newNode);
 
                     for (Node node : nodes) {
@@ -75,7 +77,7 @@ public class MainPanel extends BorderPane {
 
     private boolean isNodeAtLocation(double pX, double pY) {
         for (Node node : nodes) {
-            if (node.getPX() == pX && node.getPY() == pY) {
+            if (node.getX() == pX && node.getY() == pY) {
                 return true;
             }
         }
