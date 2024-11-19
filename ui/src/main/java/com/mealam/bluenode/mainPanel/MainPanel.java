@@ -1,9 +1,9 @@
 package com.mealam.bluenode.mainPanel;
 
-import com.mealam.bluenode.nodes.MathNode;
-import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
+import com.mealam.bluenode.nodes.MathNode;
+import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
@@ -15,13 +15,12 @@ import javafx.scene.layout.BorderPane;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class MainPanel extends BorderPane {
 
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
-    public final List<Node> nodes;
+    public static List<Node> nodes;
 
     public MainPanel() {
         graphicsContext = UIController.MAIN_CANVAS.getGraphicsContext2D();
@@ -40,11 +39,11 @@ public class MainPanel extends BorderPane {
 
         UIController.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.SECONDARY) { // Right click
-                    double mouseX = pEvent.getX();
-                    double mouseY = pEvent.getY();
+                double mouseX = pEvent.getX();
+                double mouseY = pEvent.getY();
 
-                    double snappedX = GridDrawer.snapToGrid(mouseX - CanvasDragHandler.getTranslateX());
-                    double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
+                double snappedX = GridDrawer.snapToGrid(mouseX - CanvasDragHandler.getTranslateX());
+                double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
                 if (!isNodeAtLocation(snappedX, snappedY)) {
                     Node newNode = new MathNode(snappedX, snappedY, NodeIDGenerator.generateID("MathNode"));
                     nodes.add(newNode);
