@@ -41,11 +41,22 @@ public class MainPanel extends BorderPane {
 
                 double snappedX = GridDrawer.snapToGrid(mouseX - CanvasDragHandler.getTranslateX());
                 double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
-                if (!isNodeAtLocation(snappedX, snappedY)) {
-                    Node newNode = new MathNode(snappedX, snappedY, NodeIDGenerator.generateID("MathNode"));
-                    InputComponent coreInput = new InputComponent("Name");
-                    RenderableNodeComponent inputRenderer = new InputComponentRenderer(coreInput);
-                    newNode.addComponent(inputRenderer);
+
+                double newX = snappedX;
+                double newY = snappedY;
+
+                if (isNodeNearby(snappedX, snappedY, 200)) {
+                    if (!isNodeNearby(snappedX, snappedY - 100, -200)) {
+                        newY = snappedY - 100; // Move up
+                    }
+
+                    if (!isNodeNearby(snappedX - 150, snappedY, 200)) {
+                        newX = snappedX - 150; // Move left
+                    }
+                }
+
+                if (!isNodeAtLocation(newX, newY)) {
+                    Node newNode = new MathNode(150, 100, newX, newY, NodeIDGenerator.generateID("MathNode"));
 
                     nodes.add(newNode);
 
@@ -53,10 +64,11 @@ public class MainPanel extends BorderPane {
                         NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
                     }
 
-                    BaseLogger.log(BaseLogLevel.SUCCESS, "Node [" + newNode.getId() + "] created at (" + snappedX + ", " + snappedY + ")");
+                    BaseLogger.log(BaseLogLevel.SUCCESS, "Node [" + newNode.getId() + "] created at (" + newX + ", " + newY + ")");
                 }
             }
         });
+
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "MainPanel initialized with infinite scrolling and zoom");
     }
@@ -76,7 +88,29 @@ public class MainPanel extends BorderPane {
 
     private boolean isNodeAtLocation(double pX, double pY) {
         for (Node node : nodes) {
-            if (node.getX() == pX && node.getY() == pY) {
+            double nodeX = node.getX();
+            double nodeY = node.getY();
+            double nodeWidth = node.getWidth();
+            double nodeHeight = node.getHeight();
+
+            if (pX >= nodeX && pX <= nodeX + nodeWidth && pY >= nodeY && pY <= nodeY + nodeHeight) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isNodeNearby(double pX, double pY, double threshold) {
+        for (Node node : nodes) {
+            double nodeX = node.getX();
+            double nodeY = node.getY();
+            double nodeWidth = node.getWidth();
+            double nodeHeight = node.getHeight();
+
+            double deltaX = Math.abs(pX - (nodeX + nodeWidth / 2));
+            double deltaY = Math.abs(pY - (nodeY + nodeHeight / 2));
+
+            if (deltaX <= threshold && deltaY <= threshold) {
                 return true;
             }
         }

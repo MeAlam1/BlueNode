@@ -5,15 +5,27 @@ import java.util.List;
 
 public abstract class Node {
 
+    private final double width;
+    private final double height;
     private final double x;
     private final double y;
     private final String id;
     private final List<NodeComponent> components = new ArrayList<>();
 
-    protected Node(double pX, double pY, String pId) {
+    protected Node(double pWidth, double pHeight, double pX, double pY, String pId) {
+        this.width = pWidth;
+        this.height = pHeight;
         this.x = pX;
         this.y = pY;
         this.id = pId;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
     }
 
     public double getX() {
