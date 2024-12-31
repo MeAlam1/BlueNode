@@ -4,7 +4,6 @@ package com.mealam.bluenode.utils.math;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,15 +14,16 @@ import java.util.Set;
  * <p>
  * Key Methods:
  * <ul>
- *   <li>{@link #solveQuadraticEquation(double, double, double)} - Solves a quadratic equation.</li>
- *   <li>{@link #factorial(int)} - Calculates the factorial of a non-negative integer.</li>
- *   <li>{@link #calculateGCD(int, int)} - Calculates the greatest common divisor of two integers.</li>
- *   <li>{@link #generatePowerSet(Set)} - Generates the power set of a given set.</li>
+ * <li>{@link #solveQuadraticEquation(double, double, double)} - Solves a quadratic equation.</li>
+ * <li>{@link #factorial(int)} - Calculates the factorial of a non-negative integer.</li>
+ * <li>{@link #calculateGCD(int, int)} - Calculates the greatest common divisor of two integers.</li>
+ * <li>{@link #generatePowerSet(Set)} - Generates the power set of a given set.</li>
  * </ul>
  *
  * @author MeAlam
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class AlgebraicUtils {
 
     /**
@@ -35,8 +35,7 @@ public class AlgebraicUtils {
      * @author MeAlam
      * @since 1.0.0
      */
-    private AlgebraicUtils() {
-    }
+    private AlgebraicUtils() {}
 
     /**
      * A {@link Double}{@code []} that solves the quadratic equation {@code ax^2 + bx + c = 0}
@@ -50,7 +49,6 @@ public class AlgebraicUtils {
      * @since 1.0.0
      */
     public static double[] solveQuadraticEquation(double pA, double pB, double pC) {
-
         double discriminant = pB * pB - 4 * pA * pC;
         if (discriminant < 0) {
             BaseLogger.log(BaseLogLevel.WARNING, "No real roots found for the quadratic equation.");
@@ -62,7 +60,7 @@ public class AlgebraicUtils {
         double root2 = (-pB - sqrtDiscriminant) / (2 * pA);
 
         BaseLogger.log(BaseLogLevel.INFO, "Roots found: root1=" + root1 + ", root2=" + root2);
-        return new double[]{root1, root2};
+        return new double[] { root1, root2 };
     }
 
     /**
@@ -99,7 +97,6 @@ public class AlgebraicUtils {
      * @since 1.0.0
      */
     public static int calculateGCD(int pA, int pB) {
-
         while (pB != 0) {
             int temp = pB;
             pB = pA % pB;
@@ -119,7 +116,6 @@ public class AlgebraicUtils {
      * @since 1.0.0
      */
     public static <T> List<Set<T>> generatePowerSet(Set<T> pSet) {
-
         List<Set<T>> powerSet = new ArrayList<>();
         powerSet.add(new HashSet<>());
         for (T element : pSet) {

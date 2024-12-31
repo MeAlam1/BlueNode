@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Node {
+
     private final double x;
     private final double y;
     private final String id;
@@ -36,5 +37,6 @@ public abstract class Node {
     }
 
     public abstract String getType();
+
     public abstract String getColor();
 }

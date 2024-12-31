@@ -1,10 +1,10 @@
 package com.mealam.bluenode;
 
-import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Logger;
 
+@SuppressWarnings("unused")
 public class Constants {
 
     public static final String APP_NAME = "BlueNode";

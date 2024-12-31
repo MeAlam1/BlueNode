@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class InputComponentRenderer implements RenderableNodeComponent {
+
     private final InputComponent coreComponent;
 
     public InputComponentRenderer(InputComponent pCoreComponent) {

@@ -4,12 +4,11 @@ import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.components.FolderSelectionPopup;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
+import java.io.File;
+import java.util.Optional;
 import javafx.application.Platform;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.util.Optional;
 
 public class NewAction {
 

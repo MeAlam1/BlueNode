@@ -2,8 +2,6 @@ package com.mealam.bluenode.mainPanel;
 
 import com.mealam.bluenode.ColorConstants;
 import com.mealam.bluenode.utils.converter.UIColorConverter;
-import com.mealam.bluenode.utils.logging.BaseLogLevel;
-import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 

@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 public class ButtonPanel extends HBox {
 
     public ButtonPanel(Stage pStage) {
-
         MinimizeButton minimizeButton = new MinimizeButton(pStage);
         MaximizeButton maximizeButton = new MaximizeButton(pStage);
         CloseButton closeButton = new CloseButton(pStage);
