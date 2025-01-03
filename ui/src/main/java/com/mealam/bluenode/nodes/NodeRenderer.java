@@ -28,9 +28,9 @@ public class NodeRenderer {
         // Render Components
         double contentStartY = y + titleBarHeight + 5;
         for (NodeComponent component : pNode.getComponents()) {
-            if (component instanceof RenderableNodeComponent renderableComponent) {
-                renderableComponent.render(pGraphicsContext, x + 10, contentStartY);
-                contentStartY += renderableComponent.getHeight();
+            if (component instanceof RenderableNodeComponent renderableNodeComponent) {
+                renderableNodeComponent.render(pGraphicsContext, x + 10, contentStartY);
+                contentStartY += renderableNodeComponent.getHeight();
             }
         }
     }

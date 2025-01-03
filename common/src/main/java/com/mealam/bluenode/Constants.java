@@ -22,8 +22,7 @@ public class Constants {
      * @author MeAlam
      * @since 1.0.0
      */
-    private Constants() {
-    }
+    private Constants() {}
 
     /**
      * A {@code public static} {@link ScheduledExecutorService} used to schedule tasks, such as printing messages after a delay.

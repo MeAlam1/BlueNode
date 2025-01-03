@@ -35,7 +35,7 @@ public class MainPanel extends BorderPane {
         new CanvasDragHandler(UIController.MAIN_CANVAS, graphicsContext, gridDrawer, nodes);
 
         UIController.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
-            if (pEvent.getButton() == MouseButton.SECONDARY) { // Right click
+            if (pEvent.getButton() == MouseButton.SECONDARY) { // Right-click
                 double mouseX = pEvent.getX();
                 double mouseY = pEvent.getY();
 
@@ -44,20 +44,21 @@ public class MainPanel extends BorderPane {
 
                 double newX = snappedX;
                 double newY = snappedY;
+                double nodeWidth = 150;
+                double nodeHeight = 100;
 
-                if (isNodeNearby(snappedX, snappedY, 200)) {
-                    if (!isNodeNearby(snappedX, snappedY - 100, -200)) {
-                        newY = snappedY - 100; // Move up
-                    }
-
-                    if (!isNodeNearby(snappedX - 150, snappedY, 200)) {
-                        newX = snappedX - 150; // Move left
+                while (isNodeAtLocation(newX, newY, nodeWidth, nodeHeight)) {
+                    if (!isNodeAtLocation(newX - 10, newY, nodeWidth, nodeHeight)) {
+                        newX -= 10;
+                    } else if (!isNodeAtLocation(newX, newY - 10, nodeWidth, nodeHeight)) {
+                        newY -= 10;
+                    } else {
+                        break;
                     }
                 }
 
-                if (!isNodeAtLocation(newX, newY)) {
-                    Node newNode = new MathNode(150, 100, newX, newY, NodeIDGenerator.generateID("MathNode"));
-
+                if (!isNodeAtLocation(newX, newY, nodeWidth, nodeHeight)) {
+                    Node newNode = new MathNode(nodeWidth, nodeHeight, newX, newY, NodeIDGenerator.generateID("MathNode"));
                     nodes.add(newNode);
 
                     for (Node node : nodes) {
@@ -65,10 +66,11 @@ public class MainPanel extends BorderPane {
                     }
 
                     BaseLogger.log(BaseLogLevel.SUCCESS, "Node [" + newNode.getId() + "] created at (" + newX + ", " + newY + ")");
+                } else {
+                    BaseLogger.log(BaseLogLevel.ERROR, "No suitable position found for new node.");
                 }
             }
         });
-
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "MainPanel initialized with infinite scrolling and zoom");
     }
@@ -86,31 +88,14 @@ public class MainPanel extends BorderPane {
         graphicsContext.restore();
     }
 
-    private boolean isNodeAtLocation(double pX, double pY) {
+    private boolean isNodeAtLocation(double pX, double pY, double width, double height) {
         for (Node node : nodes) {
             double nodeX = node.getX();
             double nodeY = node.getY();
             double nodeWidth = node.getWidth();
             double nodeHeight = node.getHeight();
 
-            if (pX >= nodeX && pX <= nodeX + nodeWidth && pY >= nodeY && pY <= nodeY + nodeHeight) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isNodeNearby(double pX, double pY, double threshold) {
-        for (Node node : nodes) {
-            double nodeX = node.getX();
-            double nodeY = node.getY();
-            double nodeWidth = node.getWidth();
-            double nodeHeight = node.getHeight();
-
-            double deltaX = Math.abs(pX - (nodeX + nodeWidth / 2));
-            double deltaY = Math.abs(pY - (nodeY + nodeHeight / 2));
-
-            if (deltaX <= threshold && deltaY <= threshold) {
+            if (pX < nodeX + nodeWidth && pX + width > nodeX && pY < nodeY + nodeHeight && pY + height > nodeY) {
                 return true;
             }
         }
