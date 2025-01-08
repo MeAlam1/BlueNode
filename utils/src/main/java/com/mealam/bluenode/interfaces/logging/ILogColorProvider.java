@@ -1,4 +1,4 @@
-package com.mealam.bluenode.interfaces.logging.logging;
+package com.mealam.bluenode.interfaces.logging;
 
 import java.util.logging.Level;
 

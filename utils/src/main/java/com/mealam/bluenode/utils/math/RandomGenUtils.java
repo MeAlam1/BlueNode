@@ -74,7 +74,7 @@ public class RandomGenUtils {
     public static double generateRandomDouble(double pMin, double pMax) {
         if (pMin > pMax) {
             Throwable throwable = new IllegalArgumentException("Minimum value must not be greater than maximum value.");
-            BaseLogger.log(BaseLogLevel.WARNING, "Error generating random double");
+            BaseLogger.log(BaseLogLevel.WARNING, "Error generating random double", throwable);
             return 0;
         }
         return pMin + Math.random() * (pMax - pMin);
