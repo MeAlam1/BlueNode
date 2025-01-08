@@ -1,4 +1,3 @@
 package com.mealam.bluenode;
 
-public class CoreController {
-}
+public class CoreController {}

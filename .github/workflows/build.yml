@@ -1,12 +1,14 @@
-name: CI for BlueNode
+name: Building the App
 
 on:
   pull_request:
     branches:
-      - Production
+      - 'releases/*'
+      - 'dev/*'
   push:
     branches:
-      - Production
+      - 'releases/*'
+      - 'dev/*'
 
 jobs:
   build:

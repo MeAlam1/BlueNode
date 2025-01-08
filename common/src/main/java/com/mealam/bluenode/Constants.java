@@ -1,10 +1,10 @@
 package com.mealam.bluenode;
 
-import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Logger;
 
+@SuppressWarnings("unused")
 public class Constants {
 
     public static final String APP_NAME = "BlueNode";
@@ -22,8 +22,7 @@ public class Constants {
      * @author MeAlam
      * @since 1.0.0
      */
-    private Constants() {
-    }
+    private Constants() {}
 
     /**
      * A {@code public static} {@link ScheduledExecutorService} used to schedule tasks, such as printing messages after a delay.

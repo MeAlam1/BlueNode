@@ -1,7 +1,6 @@
 package com.mealam.bluenode.utils.logging;
 
 import com.mealam.bluenode.Constants;
-
 import java.util.logging.Level;
 
 /**
@@ -10,16 +9,17 @@ import java.util.logging.Level;
  * <p>
  * Key Methods:
  * <ul>
- *   <li>{@link #setLoggingEnabled(boolean)} - Enables or disables {logging.</li>
- *   <li>{@link #isLoggingEnabled()} - Checks if logging is enabled.</li>
- *   <li>{@link #log(Level, String, Throwable)} - Logs a message with an associated {@link Throwable}, if logging is enabled.</li>
- *   <li>{@link #log(Level, String)} - Logs a message with a specified logging level, if logging is enabled.</li>
- *   <li>{@link #logDefinite(String)} - Logs a message bypassing all checks.</li>
+ * <li>{@link #setLoggingEnabled(boolean)} - Enables or disables {logging.</li>
+ * <li>{@link #isLoggingEnabled()} - Checks if logging is enabled.</li>
+ * <li>{@link #log(Level, String, Throwable)} - Logs a message with an associated {@link Throwable}, if logging is enabled.</li>
+ * <li>{@link #log(Level, String)} - Logs a message with a specified logging level, if logging is enabled.</li>
+ * <li>{@link #logDefinite(String)} - Logs a message bypassing all checks.</li>
  * </ul>
  *
  * @author MeAlam
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class BaseLogger {
 
     /**
@@ -31,8 +31,7 @@ public class BaseLogger {
      * @author MeAlam
      * @since 1.0.0
      */
-    private BaseLogger() {
-    }
+    private BaseLogger() {}
 
     /**
      * A {@link Boolean} method that checks if logging is enabled.

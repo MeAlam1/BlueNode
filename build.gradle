@@ -2,11 +2,55 @@ plugins {
     id 'application'
     id 'java'
     id 'org.openjfx.javafxplugin' version "${javafx_plugins_version}"
+    id 'com.diffplug.spotless' version '6.25.0' apply false
 }
 
 allprojects {
+    apply plugin: 'java'
+    apply plugin: 'com.diffplug.spotless'
+
     repositories {
         mavenCentral()
+    }
+
+    dependencies {
+        testImplementation "org.junit.jupiter:junit-jupiter:${junit_jupiter_version}"
+        testRuntimeOnly "org.junit.platform:junit-platform-launcher:${junit_platform_version}"
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(java_version)
+        }
+    }
+
+    sourceSets {
+        test {
+            java {
+                srcDirs = ['src/test/java']
+            }
+        }
+    }
+
+    spotless {
+        java {
+            endWithNewline()
+            indentWithSpaces()
+            removeUnusedImports()
+            toggleOffOn()
+            eclipse('4.31').configFile rootProject.file('codeformat/formatter-config.xml')
+            importOrder()
+
+            custom 'jetbrainsNullable', { String fileContents ->
+                fileContents.replace('javax.annotation.Nullable', 'org.jetbrains.annotations.Nullable')
+            }
+
+            bumpThisNumberIfACustomStepChanges(2)
+        }
     }
 }
 
@@ -16,19 +60,12 @@ application {
 
 dependencies {
     implementation project(':ui')
-
-    implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
-    implementation "org.openjfx:javafx-fxml:${javafx_dependency_version}"
-}
-
-javafx {
-    version = javafx_version
-    modules = javafx_modules.split(',')
 }
 
 tasks.register('runApp', JavaExec) {
     group = 'application'
     description = 'Run the application with JavaFX support'
+
     classpath = sourceSets.main.runtimeClasspath
     mainClass = "${group_id}.${start_class}"
 
@@ -43,7 +80,25 @@ tasks.register('buildApp') {
     description = 'Build the application'
     dependsOn tasks.named('build')
 
+    doFirst {
+        println "Building the application..."
+    }
+
     doLast {
         println "Build complete!"
+    }
+}
+
+tasks.register('rebuild') {
+    group = 'build'
+    description = 'Clean and rebuild the project'
+    dependsOn 'clean', 'buildApp'
+
+    doFirst {
+        println "Cleaning the application..."
+    }
+
+    doLast {
+        println "Clean and rebuild complete!"
     }
 }

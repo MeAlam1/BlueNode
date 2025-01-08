@@ -4,10 +4,9 @@ import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.components.FolderSelectionPopup;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
+import java.io.File;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-
-import java.io.File;
 
 public class OpenAction {
 

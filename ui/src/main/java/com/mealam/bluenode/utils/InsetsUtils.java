@@ -2,6 +2,7 @@ package com.mealam.bluenode.utils;
 
 import javafx.geometry.Insets;
 
+@SuppressWarnings("unused")
 public class InsetsUtils extends Insets {
 
     public InsetsUtils(double pTop, double pBottom, double pRight, double pLeft) {

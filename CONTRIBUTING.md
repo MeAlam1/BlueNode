@@ -53,7 +53,7 @@
     - If you update a Class, please add/update the `@version` to indicate it has been changed.
     - Copyright: Each file should start with `// Copyright (c) BlueNode. Licensed under the MIT License.`
     - Tags: Use `@see` to link to the correct Wiki Documentation page if it exists.
-    - Logging: Log every step using `BaseLogger.log`, Always remove the `@EnableLogging` annotation/disable the logging before committing.
+    - Logging: Log every step using `BaseLogger.log`.
     - Error Handling: Always ensure that errors and warnings are logged using appropriate logging levels. Critical steps must be logged at least with `BaseLogger.log(BaseLogLevel.Error)` to keep a trail of execution.
 
 ### Deprecation
@@ -115,8 +115,8 @@
 
 6. **Test Your Changes**
     - Before committing, test your changes by running the game using the appropriate test mod loader folder.
-      - Use the `example` package to test your changes.
-      - If no code is available to test, create new test code in the `example` package.
+      - Use the `test` package to test your changes.
+      - If no code is available to test, create new test code in the `test` package.
     - Ensure that your changes do not introduce any issues or regressions.
 
 7. **Commit Your Changes**

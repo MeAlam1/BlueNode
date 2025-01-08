@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class StageConfigurer {
+
     public static void configureStage(Stage pStage) {
         pStage.setTitle(Constants.APP_NAME);
         pStage.setWidth(Constants.DEFAULT_WIDTH);

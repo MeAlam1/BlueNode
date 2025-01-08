@@ -2,6 +2,7 @@ package com.mealam.bluenode.utils.converter;
 
 import javafx.scene.paint.Color;
 
+@SuppressWarnings("unused")
 public class UIColorConverter {
 
     /**

@@ -1,7 +1,7 @@
 package com.mealam.bluenode.handlers;
 
-import com.mealam.bluenode.listeners.WindowDragger;
-import com.mealam.bluenode.listeners.WindowResizer;
+import com.mealam.bluenode.events.WindowDragger;
+import com.mealam.bluenode.events.WindowResizer;
 import com.mealam.bluenode.titleBar.TitleBar;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;

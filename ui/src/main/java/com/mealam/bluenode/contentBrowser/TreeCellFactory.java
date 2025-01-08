@@ -7,9 +7,11 @@ import javafx.scene.control.TreeView;
 import javafx.util.Callback;
 
 public class TreeCellFactory implements Callback<TreeView<String>, TreeCell<String>> {
+
     @Override
     public TreeCell<String> call(TreeView<String> pTreeView) {
         return new TreeCell<>() {
+
             @Override
             protected void updateItem(String pItem, boolean pEmpty) {
                 super.updateItem(pItem, pEmpty);

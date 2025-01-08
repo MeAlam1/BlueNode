@@ -10,14 +10,15 @@ import com.mealam.bluenode.utils.logging.BaseLogger;
  * <p>
  * Key Methods:
  * <ul>
- *   <li>{@link #isValidEmail(String)} - Checks if a string is a valid email address.</li>
- *   <li>{@link #stringToIntWithDefault(String, int)} - Converts a string to an integer with a default value if conversion fails.</li>
- *   <li>{@link #calculateLevenshteinDistance(String, String)} - Calculates the Levenshtein distance between two strings.</li>
+ * <li>{@link #isValidEmail(String)} - Checks if a string is a valid email address.</li>
+ * <li>{@link #stringToIntWithDefault(String, int)} - Converts a string to an integer with a default value if conversion fails.</li>
+ * <li>{@link #calculateLevenshteinDistance(String, String)} - Calculates the Levenshtein distance between two strings.</li>
  * </ul>
  *
  * @author MeAlam
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class MiscUtils {
 
     /**
@@ -29,8 +30,7 @@ public class MiscUtils {
      * @author MeAlam
      * @since 1.0.0
      */
-    private MiscUtils() {
-    }
+    private MiscUtils() {}
 
     /**
      * A {@link Boolean} that checks if a string is a valid email address.
@@ -84,8 +84,7 @@ public class MiscUtils {
                     int cost = (pStr1.charAt(i - 1) == pStr2.charAt(j - 1)) ? 0 : 1;
                     dp[i][j] = Math.min(
                             Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1),
-                            dp[i - 1][j - 1] + cost
-                    );
+                            dp[i - 1][j - 1] + cost);
                 }
             }
         }

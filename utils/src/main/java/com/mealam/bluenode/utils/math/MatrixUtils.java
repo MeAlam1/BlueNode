@@ -10,15 +10,16 @@ import com.mealam.bluenode.utils.logging.BaseLogger;
  * <p>
  * Key Methods:
  * <ul>
- *   <li>{@link #multiplyMatrices(double[][], double[][])} - Performs matrix multiplication on two matrices.</li>
- *   <li>{@link #transposeMatrix(double[][])} - Computes the transpose of a matrix.</li>
- *   <li>{@link #calculate2x2MatrixDeterminant(double[][])} - Calculates the determinant of a 2x2 matrix.</li>
- *   <li>{@link #invert2x2Matrix(double[][])} - Calculates the inverse of a 2x2 matrix.</li>
+ * <li>{@link #multiplyMatrices(double[][], double[][])} - Performs matrix multiplication on two matrices.</li>
+ * <li>{@link #transposeMatrix(double[][])} - Computes the transpose of a matrix.</li>
+ * <li>{@link #calculate2x2MatrixDeterminant(double[][])} - Calculates the determinant of a 2x2 matrix.</li>
+ * <li>{@link #invert2x2Matrix(double[][])} - Calculates the inverse of a 2x2 matrix.</li>
  * </ul>
  *
  * @author MeAlam
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class MatrixUtils {
 
     /**
@@ -30,8 +31,7 @@ public class MatrixUtils {
      * @author MeAlam
      * @since 1.0.0
      */
-    private MatrixUtils() {
-    }
+    private MatrixUtils() {}
 
     /**
      * A {@link Double}{@code [][]} that performs matrix multiplication on two matrices.

@@ -2,11 +2,10 @@ package com.mealam.bluenode.contentBrowser;
 
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.utils.contentBrowser.TreeNode;
+import java.io.File;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
-
-import java.io.File;
 
 public class ContentBrowser extends VBox {
 

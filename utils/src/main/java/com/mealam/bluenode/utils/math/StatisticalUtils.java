@@ -4,7 +4,6 @@ package com.mealam.bluenode.utils.math;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,13 +18,13 @@ import java.util.Map;
  * <p>
  * Key Methods:
  * <ul>
- *   <li>{@link #calculateMean(double[])} - Calculates the mean (average) of an array of values.</li>
- *   <li>{@link #calculateMedian(double[])} - Calculates the median value of an array of values.</li>
- *   <li>{@link #calculateMode(double[])} - Determines the mode (most frequent value) of an array of values.</li>
- *   <li>{@link #calculateStandardDeviation(double[])} - Computes the standard deviation of an array of values.</li>
- *   <li>{@link #calculateVariance(double[])} - Computes the variance of an array of values.</li>
- *   <li>{@link #calculateRange(double[])} - Determines the range (difference between maximum and minimum) of an array of values.</li>
- *   <li>{@link #calculateCoefficientOfVariation(double[])} - Calculates the coefficient of variation (CV) of an array of values.</li>
+ * <li>{@link #calculateMean(double[])} - Calculates the mean (average) of an array of values.</li>
+ * <li>{@link #calculateMedian(double[])} - Calculates the median value of an array of values.</li>
+ * <li>{@link #calculateMode(double[])} - Determines the mode (most frequent value) of an array of values.</li>
+ * <li>{@link #calculateStandardDeviation(double[])} - Computes the standard deviation of an array of values.</li>
+ * <li>{@link #calculateVariance(double[])} - Computes the variance of an array of values.</li>
+ * <li>{@link #calculateRange(double[])} - Determines the range (difference between maximum and minimum) of an array of values.</li>
+ * <li>{@link #calculateCoefficientOfVariation(double[])} - Calculates the coefficient of variation (CV) of an array of values.</li>
  * </ul>
  * <p>
  * Each method logs a success message with the computed value or a warning if the input array is empty.
@@ -35,6 +34,7 @@ import java.util.Map;
  * @author MeAlam
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class StatisticalUtils {
 
     /**
@@ -46,8 +46,7 @@ public class StatisticalUtils {
      * @author MeAlam
      * @since 1.0.0
      */
-    private StatisticalUtils() {
-    }
+    private StatisticalUtils() {}
 
     /**
      * A {@link Double} that calculates the mean (average) of an array of values.
@@ -94,9 +93,7 @@ public class StatisticalUtils {
         Arrays.sort(sorted);
         int middle = sorted.length / 2;
 
-        return (sorted.length % 2 == 0) ?
-                (sorted[middle - 1] + sorted[middle]) / 2.0 :
-                sorted[middle];
+        return (sorted.length % 2 == 0) ? (sorted[middle - 1] + sorted[middle]) / 2.0 : sorted[middle];
     }
 
     /**

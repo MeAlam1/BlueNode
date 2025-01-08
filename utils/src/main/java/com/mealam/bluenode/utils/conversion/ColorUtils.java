@@ -2,11 +2,12 @@ package com.mealam.bluenode.utils.conversion;
 
 import java.awt.Color;
 
+@SuppressWarnings("unused")
 public class ColorUtils {
 
     // Convert java.awt.Color to RGB array
     public static int[] toRGB(Color pColor) {
-        return new int[]{pColor.getRed(), pColor.getGreen(), pColor.getBlue()};
+        return new int[] { pColor.getRed(), pColor.getGreen(), pColor.getBlue() };
     }
 
     // Convert java.awt.Color to HEX string

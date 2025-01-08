@@ -4,7 +4,6 @@ package com.mealam.bluenode.utils.conversion;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,19 +13,20 @@ import java.util.Date;
  * <p>
  * Key Methods:
  * <ul>
- *   <li>{@link #inchesToCentimeters(double)} - Converts inches to centimeters.</li>
- *   <li>{@link #centimetersToInches(double)} - Converts centimeters to inches.</li>
- *   <li>{@link #celsiusToFahrenheit(double)} - Converts Celsius to Fahrenheit.</li>
- *   <li>{@link #fahrenheitToCelsius(double)} - Converts Fahrenheit to Celsius.</li>
- *   <li>{@link #kilometersToMiles(double)} - Converts kilometers to miles.</li>
- *   <li>{@link #milesToKilometers(double)} - Converts miles to kilometers.</li>
- *   <li>{@link #stringToDate(String, String)} - Converts a string to a {@link Date} object.</li>
- *   <li>{@link #dateToString(Date, String)} - Converts a {@link Date} object to a string.</li>
+ * <li>{@link #inchesToCentimeters(double)} - Converts inches to centimeters.</li>
+ * <li>{@link #centimetersToInches(double)} - Converts centimeters to inches.</li>
+ * <li>{@link #celsiusToFahrenheit(double)} - Converts Celsius to Fahrenheit.</li>
+ * <li>{@link #fahrenheitToCelsius(double)} - Converts Fahrenheit to Celsius.</li>
+ * <li>{@link #kilometersToMiles(double)} - Converts kilometers to miles.</li>
+ * <li>{@link #milesToKilometers(double)} - Converts miles to kilometers.</li>
+ * <li>{@link #stringToDate(String, String)} - Converts a string to a {@link Date} object.</li>
+ * <li>{@link #dateToString(Date, String)} - Converts a {@link Date} object to a string.</li>
  * </ul>
  *
  * @author MeAlam
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class MathUtils {
 
     /**
@@ -38,8 +38,7 @@ public class MathUtils {
      * @author MeAlam
      * @since 1.0.0
      */
-    private MathUtils() {
-    }
+    private MathUtils() {}
 
     /**
      * A {@link Double} that converts a length from inches to centimeters.

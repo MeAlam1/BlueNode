@@ -11,19 +11,20 @@ import com.mealam.bluenode.utils.logging.BaseLogger;
  * <p>
  * Key Methods:
  * <ul>
- *   <li>{@link #toCamelCase(String)} - Converts input to camelCase.</li>
- *   <li>{@link #toPascalCase(String)} - Converts input to PascalCase.</li>
- *   <li>{@link #toSnakeCase(String)} - Converts input to snake_case.</li>
- *   <li>{@link #toKebabCase(String)} - Converts input to kebab-case.</li>
- *   <li>{@link #toUpperSnakeCase(String)} - Converts input to UPPER_SNAKE_CASE.</li>
- *   <li>{@link #toTrainCase(String)} - Converts input to Train-Case.</li>
- *   <li>{@link #toFlatcase(String)} - Converts input to flatcase.</li>
- *   <li>{@link #toCobolCase(String)} - Converts input to COBOL-CASE.</li>
+ * <li>{@link #toCamelCase(String)} - Converts input to camelCase.</li>
+ * <li>{@link #toPascalCase(String)} - Converts input to PascalCase.</li>
+ * <li>{@link #toSnakeCase(String)} - Converts input to snake_case.</li>
+ * <li>{@link #toKebabCase(String)} - Converts input to kebab-case.</li>
+ * <li>{@link #toUpperSnakeCase(String)} - Converts input to UPPER_SNAKE_CASE.</li>
+ * <li>{@link #toTrainCase(String)} - Converts input to Train-Case.</li>
+ * <li>{@link #toFlatcase(String)} - Converts input to flatcase.</li>
+ * <li>{@link #toCobolCase(String)} - Converts input to COBOL-CASE.</li>
  * </ul>
  *
  * @author MeAlam
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class CaseUtils {
 
     /**
@@ -35,8 +36,7 @@ public class CaseUtils {
      * @author MeAlam
      * @since 1.0.0
      */
-    private CaseUtils() {
-    }
+    private CaseUtils() {}
 
     /**
      * A {@link String} that converts a given {@link String} to camelCase.

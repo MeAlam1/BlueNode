@@ -1,4 +1,4 @@
-package com.mealam.bluenode.listeners;
+package com.mealam.bluenode.events;
 
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
