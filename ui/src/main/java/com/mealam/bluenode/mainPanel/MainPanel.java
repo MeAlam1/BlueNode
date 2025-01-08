@@ -39,36 +39,17 @@ public class MainPanel extends BorderPane {
                 double mouseX = pEvent.getX();
                 double mouseY = pEvent.getY();
 
-                double snappedX = GridDrawer.snapToGrid(mouseX - CanvasDragHandler.getTranslateX());
-                double snappedY = GridDrawer.snapToGrid(mouseY - CanvasDragHandler.getTranslateY());
-
-                double newX = snappedX;
-                double newY = snappedY;
                 double nodeWidth = 150;
                 double nodeHeight = 100;
 
-                while (isNodeAtLocation(newX, newY, nodeWidth, nodeHeight)) {
-                    if (!isNodeAtLocation(newX - 10, newY, nodeWidth, nodeHeight)) {
-                        newX -= 10;
-                    } else if (!isNodeAtLocation(newX, newY - 10, nodeWidth, nodeHeight)) {
-                        newY -= 10;
-                    } else {
-                        break;
-                    }
-                }
+                double centerX = mouseX - (nodeWidth / 2);
+                double centerY = mouseY - (nodeHeight / 2);
 
-                if (!isNodeAtLocation(newX, newY, nodeWidth, nodeHeight)) {
-                    Node newNode = new MathNode(nodeWidth, nodeHeight, newX, newY, NodeIDGenerator.generateID("MathNode"));
-                    nodes.add(newNode);
+                double snappedX = GridDrawer.snapToGrid(centerX - CanvasDragHandler.getTranslateX());
+                double snappedY = GridDrawer.snapToGrid(centerY - CanvasDragHandler.getTranslateY());
 
-                    for (Node node : nodes) {
-                        NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
-                    }
-
-                    BaseLogger.log(BaseLogLevel.SUCCESS, "Node [" + newNode.getId() + "] created at (" + newX + ", " + newY + ")");
-                } else {
-                    BaseLogger.log(BaseLogLevel.ERROR, "No suitable position found for new node.");
-                }
+                Node newNode = new MathNode(nodeWidth, nodeHeight, snappedX, snappedY, NodeIDGenerator.generateID("MathNode"));
+                placeNode(newNode);
             }
         });
 
@@ -88,7 +69,7 @@ public class MainPanel extends BorderPane {
         graphicsContext.restore();
     }
 
-    private boolean isNodeAtLocation(double pX, double pY, double width, double height) {
+    public boolean isNodeAtLocation(double pX, double pY, double width, double height) {
         for (Node node : nodes) {
             double nodeX = node.getX();
             double nodeY = node.getY();
@@ -101,4 +82,33 @@ public class MainPanel extends BorderPane {
         }
         return false;
     }
+
+    public void placeNode(Node pNode) {
+        if (!isNodeAtLocation(pNode.getX(), pNode.getY(), pNode.getWidth(),  pNode.getHeight())) {
+            nodes.add(pNode);
+
+            for (Node node : nodes) {
+                NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
+            }
+
+            BaseLogger.log(BaseLogLevel.SUCCESS, "Node [" + pNode.getId() + "] created at (" + pNode.getX() + ", " + pNode.getY() + ")");
+        } else {
+            BaseLogger.log(BaseLogLevel.WARNING, "No suitable position found for new node.");
+        }
+    }
+
+    public static boolean isOverlapping(Node pNode1, Node pNode2) {
+        boolean overlapping = pNode1.getX() < pNode2.getX() + pNode2.getWidth() &&
+                pNode1.getX() + pNode1.getWidth() > pNode2.getX() &&
+                pNode1.getY() < pNode2.getY() + pNode2.getHeight() &&
+                pNode1.getY() + pNode1.getHeight() > pNode2.getY();
+
+        if (overlapping) {
+            BaseLogger.log(BaseLogLevel.WARNING, "Nodes are overlapping with positions: \n" +
+                    "(Node1)(X: " + pNode1.getX() + ", Y: " + pNode1.getY() + ") \n" +
+                    "(Node2)(X: " + pNode2.getX() + ", Y: " + pNode2.getY() + ")");
+        }
+        return overlapping;
+    }
+
 }
