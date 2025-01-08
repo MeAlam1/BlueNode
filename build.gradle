@@ -22,6 +22,12 @@ allprojects {
         useJUnitPlatform()
     }
 
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(java_version)
+        }
+    }
+
     sourceSets {
         test {
             java {
@@ -55,20 +61,6 @@ application {
 
 dependencies {
     implementation project(':ui')
-
-    implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
-    implementation "org.openjfx:javafx-fxml:${javafx_dependency_version}"
-}
-
-javafx {
-    version = javafx_version
-    modules = javafx_modules.split(',').collect { it.trim() }
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(java_version)
-    }
 }
 
 tasks.register('runApp', JavaExec) {

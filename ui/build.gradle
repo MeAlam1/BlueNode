@@ -1,10 +1,5 @@
 plugins {
-    id 'java'
     id 'org.openjfx.javafxplugin' version "${javafx_plugins_version}"
-}
-
-repositories {
-    mavenCentral()
 }
 
 javafx {
@@ -19,5 +14,7 @@ dependencies {
 
     implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
     implementation "org.openjfx:javafx-fxml:${javafx_dependency_version}"
-
+    implementation "org.openjfx:javafx-media:${javafx_dependency_version}"
+    implementation "org.openjfx:javafx-web:${javafx_dependency_version}"
+    implementation "org.openjfx:javafx-swing:${javafx_dependency_version}"
 }
