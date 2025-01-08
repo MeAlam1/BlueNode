@@ -39,7 +39,7 @@ allprojects {
     spotless {
         java {
             endWithNewline()
-            indentWithSpaces()
+            leadingTabsToSpaces()
             removeUnusedImports()
             toggleOffOn()
             eclipse('4.31').configFile rootProject.file('codeformat/formatter-config.xml')
