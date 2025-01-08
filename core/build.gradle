@@ -1,14 +1,3 @@
-plugins {
-    id 'java'
-}
-
-group = group_id
-version = version
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation project(':common')
 }
