@@ -2,7 +2,7 @@ plugins {
     id 'application'
     id 'java'
     id 'org.openjfx.javafxplugin' version "${javafx_plugins_version}"
-    id 'com.diffplug.spotless' version '6.25.0' apply false
+    id 'com.diffplug.spotless' version '7.0.1' apply false
 }
 
 allprojects {
