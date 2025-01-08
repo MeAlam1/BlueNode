@@ -3,10 +3,12 @@ name: CI for BlueNode
 on:
   pull_request:
     branches:
-      - Production
+      - 'releases/*'
+      - 'dev/*'
   push:
     branches:
-      - Production
+      - 'releases/*'
+      - 'dev/*'
 
 jobs:
   build:
