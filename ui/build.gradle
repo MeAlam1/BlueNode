@@ -15,4 +15,5 @@ dependencies {
     implementation "org.openjfx:javafx-media:${javafx_dependency_version}"
     implementation "org.openjfx:javafx-web:${javafx_dependency_version}"
     implementation "org.openjfx:javafx-swing:${javafx_dependency_version}"
+    implementation "org.controlsfx:controlsfx:${controlsfx_version}"
 }
