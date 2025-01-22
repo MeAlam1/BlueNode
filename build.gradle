@@ -9,6 +9,9 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'com.diffplug.spotless'
 
+    group "${group_id}"
+    version "${version}"
+
     repositories {
         mavenCentral()
     }
@@ -63,7 +66,7 @@ dependencies {
 }
 
 tasks.register('runApp', JavaExec) {
-    group = 'application'
+    group = "${group_id}"
     description = 'Run the application with JavaFX support'
 
     classpath = sourceSets.main.runtimeClasspath
