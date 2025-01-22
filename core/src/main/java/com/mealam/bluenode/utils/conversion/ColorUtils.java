@@ -1,6 +1,6 @@
 package com.mealam.bluenode.utils.conversion;
 
-import java.awt.Color;
+import java.awt.*;
 
 @SuppressWarnings("unused")
 public class ColorUtils {

@@ -1,0 +1,40 @@
+tasks.register('runApp', JavaExec) {
+    group = "${group_id}"
+    description = 'Run the application with JavaFX support'
+
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = "${group_id}.${start_class}"
+
+    jvmArgs = [
+            '--module-path', configurations.runtimeClasspath.asPath,
+            '--add-modules', javafx_modules
+    ]
+}
+
+tasks.register('buildApp') {
+    group = 'build'
+    description = 'Build the application'
+    dependsOn tasks.named('build')
+
+    doFirst {
+        println "Building the application..."
+    }
+
+    doLast {
+        println "Build complete!"
+    }
+}
+
+tasks.register('rebuild') {
+    group = 'build'
+    description = 'Clean and rebuild the project'
+    dependsOn 'clean', 'buildApp'
+
+    doFirst {
+        println "Cleaning the application..."
+    }
+
+    doLast {
+        println "Clean and rebuild complete!"
+    }
+}
