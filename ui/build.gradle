@@ -9,6 +9,7 @@ javafx {
 
 dependencies {
     implementation project(':core')
+    implementation project(':nodes')
 
     implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
     implementation "org.openjfx:javafx-fxml:${javafx_dependency_version}"
