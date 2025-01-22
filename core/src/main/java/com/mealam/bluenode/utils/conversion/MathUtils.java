@@ -4,7 +4,6 @@ package com.mealam.bluenode.utils.conversion;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

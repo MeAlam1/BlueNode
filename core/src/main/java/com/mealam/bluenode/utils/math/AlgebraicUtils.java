@@ -4,7 +4,6 @@ package com.mealam.bluenode.utils.math;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.mealam.bluenode.utils.logging;
 
 import com.mealam.bluenode.Constants;
-
 import java.util.logging.Level;
 
 /**

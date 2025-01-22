@@ -1,7 +1,6 @@
 package com.mealam.bluenode.utils.logging;
 
 import com.mealam.bluenode.interfaces.logging.ILogColorProvider;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.ConsoleHandler;

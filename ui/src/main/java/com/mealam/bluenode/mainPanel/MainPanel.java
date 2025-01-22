@@ -84,7 +84,7 @@ public class MainPanel extends BorderPane {
     }
 
     public void placeNode(Node pNode) {
-        if (!isNodeAtLocation(pNode.getX(), pNode.getY(), pNode.getWidth(),  pNode.getHeight())) {
+        if (!isNodeAtLocation(pNode.getX(), pNode.getY(), pNode.getWidth(), pNode.getHeight())) {
             nodes.add(pNode);
 
             for (Node node : nodes) {
@@ -110,5 +110,4 @@ public class MainPanel extends BorderPane {
         }
         return overlapping;
     }
-
 }
