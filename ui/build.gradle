@@ -8,8 +8,6 @@ javafx {
 }
 
 dependencies {
-    implementation project(':common')
-    implementation project(':utils')
     implementation project(':core')
 
     implementation "org.openjfx:javafx-controls:${javafx_dependency_version}"
