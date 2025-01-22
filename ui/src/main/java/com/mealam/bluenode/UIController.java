@@ -46,6 +46,8 @@ public class UIController extends Application {
         MAIN_ROOT.setTop(titleBar);
         MAIN_ROOT.setCenter(mainPanel);
 
+        TestLoader.loadVariants("boop.json");
+
         BaseLogger.log(BaseLogLevel.SUCCESS, "Components initialized successfully.");
     }
 
