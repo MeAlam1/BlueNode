@@ -46,9 +46,7 @@ public class JSONLoader {
 
         try (InputStream inputStream = new FileInputStream(file);
              InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-            BaseLogger.log(BaseLogLevel.SUCCESS, "Successfully loaded JSON from file: " + file.getPath());
-            return jsonObject;
+            return loadJsonFromReader(reader);
         }
     }
 
@@ -63,10 +61,12 @@ public class JSONLoader {
 
             try (InputStream inputStream = zipFile.getInputStream(entry);
                  InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-                JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-                BaseLogger.log(BaseLogLevel.SUCCESS, "Successfully loaded JSON from JAR: " + resourcePath);
-                return jsonObject;
+                return loadJsonFromReader(reader);
             }
         }
+    }
+
+    public static JsonObject loadJsonFromReader(Reader reader) {
+        return gson.fromJson(reader, JsonObject.class);
     }
 }
