@@ -1,4 +1,4 @@
-package com.mealam.bluenode.nodes;
+package com.mealam.bluenode.interfaces.nodes;
 
 public interface NodeComponent {
 

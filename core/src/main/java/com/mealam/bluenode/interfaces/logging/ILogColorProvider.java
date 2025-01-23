@@ -17,6 +17,7 @@ import java.util.logging.Level;
  * @author MeAlam
  * @since 1.0.0
  */
+@FunctionalInterface
 public interface ILogColorProvider {
 
     /**

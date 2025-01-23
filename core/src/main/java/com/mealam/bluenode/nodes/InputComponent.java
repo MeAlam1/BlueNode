@@ -1,5 +1,7 @@
 package com.mealam.bluenode.nodes;
 
+import com.mealam.bluenode.interfaces.nodes.NodeComponent;
+
 public class InputComponent implements NodeComponent {
 
     private final String label;

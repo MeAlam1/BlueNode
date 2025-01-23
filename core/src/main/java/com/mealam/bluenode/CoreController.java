@@ -1,3 +1,9 @@
 package com.mealam.bluenode;
 
-public class CoreController {}
+import com.mealam.bluenode.nodes.NodeLoader;
+
+public class CoreController {
+    public static void initializeCore() {
+        NodeLoader.loadNodes("nodes");
+    }
+}

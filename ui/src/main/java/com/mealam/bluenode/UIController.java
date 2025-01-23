@@ -28,6 +28,7 @@ public class UIController extends Application {
             StageConfigurer.configureStage(pPrimaryStage);
 
             initializeComponents(pPrimaryStage);
+            CoreController.initializeCore();
 
             pPrimaryStage.show();
             BaseLogger.log(BaseLogLevel.SUCCESS, "BlueNode application started successfully.");
@@ -45,8 +46,6 @@ public class UIController extends Application {
 
         MAIN_ROOT.setTop(titleBar);
         MAIN_ROOT.setCenter(mainPanel);
-
-        TestLoader.loadVariants("nodes");
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "Components initialized successfully.");
     }
