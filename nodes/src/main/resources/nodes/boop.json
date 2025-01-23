@@ -1,0 +1,33 @@
+{
+  "boop": [
+    {
+      "id": null,
+      "title": "Node Title",
+      "description": "This is a description of the node.",
+      "color": "#FF5733",
+      "category": "Math",
+      "inputs": [
+        {
+          "id": "input1",
+          "name": "Input Name",
+          "type": "number",
+          "defaultValue": 0
+        }
+      ],
+      "outputs": [
+        {
+          "id": "output1",
+          "name": "Output Name",
+          "type": "number"
+        }
+      ],
+      "metadata": {
+        "createdBy": null,
+        "createdAt": null,
+        "updatedAt": null,
+        "tags": ["example", "node", "editor"]
+      }
+    }
+
+  ]
+}

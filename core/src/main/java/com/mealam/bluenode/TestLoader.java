@@ -11,8 +11,7 @@ public class TestLoader {
     public static List<JsonObject> AllData = null;
 
     public static void loadVariants(String pFolderPath) {
-        List<JsonObject> allJsonData = JSONParser.parseJsonFiles(pFolderPath);
-        AllData = allJsonData;
+        AllData = JSONParser.parseJsonFiles(pFolderPath);
         BaseLogger.log(BaseLogLevel.INFO, "All data: " + AllData);
     }
 }
