@@ -1,4 +1,6 @@
-package com.mealam.bluenode.nodes;
+package com.mealam.bluenode.nodes.categories;
+
+import com.mealam.bluenode.nodes.Node;
 
 public class MathNode extends Node {
 

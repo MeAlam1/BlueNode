@@ -1,6 +1,5 @@
-package com.mealam.bluenode.nodes;
+package com.mealam.bluenode.interfaces.nodes;
 
-import com.mealam.bluenode.interfaces.nodes.NodeComponent;
 import javafx.scene.canvas.GraphicsContext;
 
 public interface RenderableNodeComponent extends NodeComponent {

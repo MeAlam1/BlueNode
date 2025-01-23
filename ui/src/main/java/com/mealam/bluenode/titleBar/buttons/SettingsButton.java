@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class SettingsButton extends TextButton {
 
     public SettingsButton(Stage pStage) {
-        super("Settings", UIColorConverter.toJavaFXColor(ColorConstants.NORMAL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.HOVER_COLOR), 70, 30);
+        super("Settings", UIColorConverter.toJavaFXColor(ColorConstants.NORMAL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_HOVER_COLOR), 70, 30);
         setPadding(new Insets(5, 10, 5, 10));
 
         setOnAction(event -> new SettingsWindow(pStage));

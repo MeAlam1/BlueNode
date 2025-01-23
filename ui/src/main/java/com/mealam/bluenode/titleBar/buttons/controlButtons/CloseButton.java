@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class CloseButton extends TextButton {
 
     public CloseButton(Stage pStage) {
-        super("x", UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.HOVER_COLOR), 40, 30);
+        super("x", UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_HOVER_COLOR), 40, 30);
 
         setOnAction(event -> pStage.close());
 

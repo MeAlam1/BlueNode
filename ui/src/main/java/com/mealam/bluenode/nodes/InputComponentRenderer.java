@@ -1,5 +1,7 @@
 package com.mealam.bluenode.nodes;
 
+import com.mealam.bluenode.interfaces.nodes.RenderableNodeComponent;
+import com.mealam.bluenode.nodes.components.InputComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 

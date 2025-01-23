@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class FileButton extends TextButton {
 
     public FileButton(Stage pStage) {
-        super("File", UIColorConverter.toJavaFXColor(ColorConstants.NORMAL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.HOVER_COLOR), 45, 30);
+        super("File", UIColorConverter.toJavaFXColor(ColorConstants.NORMAL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_HOVER_COLOR), 45, 30);
         setPadding(new Insets(5, 10, 5, 10));
 
         ContextMenu contextMenu = createContextMenu();

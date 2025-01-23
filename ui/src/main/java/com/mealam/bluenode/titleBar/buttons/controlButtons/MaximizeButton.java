@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class MaximizeButton extends TextButton {
 
     public MaximizeButton(Stage pStage) {
-        super("+", UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.HOVER_COLOR), 40, 30);
+        super("+", UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_HOVER_COLOR), 40, 30);
 
         setOnAction(event -> pStage.setMaximized(!pStage.isMaximized()));
 
