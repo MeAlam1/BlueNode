@@ -15,3 +15,7 @@ dependencies {
 
 apply from: 'gradle/allProjects.gradle'
 apply from: 'gradle/tasks.gradle'
+
+artifacts {
+    archives tasks.named('javadocJar')
+}
