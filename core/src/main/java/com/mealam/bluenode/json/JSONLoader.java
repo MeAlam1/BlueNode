@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -45,7 +44,7 @@ public class JSONLoader {
         }
 
         try (InputStream inputStream = new FileInputStream(file);
-             InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+                InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
             return loadJsonFromReader(reader);
         }
     }
@@ -60,7 +59,7 @@ public class JSONLoader {
             }
 
             try (InputStream inputStream = zipFile.getInputStream(entry);
-                 InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+                    InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
                 return loadJsonFromReader(reader);
             }
         }

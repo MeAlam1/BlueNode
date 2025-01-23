@@ -3,7 +3,6 @@ package com.mealam.bluenode.json;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
