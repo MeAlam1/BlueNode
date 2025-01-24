@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Base64;
 
 public class NodeIDGenerator {
 
@@ -13,14 +14,27 @@ public class NodeIDGenerator {
      * Generates a unique ID for a node based on its type, an incrementing counter, and a human-readable timestamp.
      *
      * @param pNodeType The type of the node (e.g., "MathNode", "LogicNode").
-     * @return A unique ID in the format: NodeType-<Counter>-<ReadableTimestamp>.
+     * @return A unique ID in the format: NodeType-<Counter>-<ReadableTimestamp>, Base64 encoded.
      */
     public static String generateID(String pNodeType) {
         counters.putIfAbsent(pNodeType, new AtomicInteger(0));
         int uniqueNumber = counters.get(pNodeType).incrementAndGet();
 
-        String timestamp = new SimpleDateFormat("ddMMyyyyHHmmssSSS").format(new Date());
+        String timestamp = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss-SSS").format(new Date());
 
-        return pNodeType + "-" + uniqueNumber + "-" + timestamp;
+        String originalID = pNodeType + uniqueNumber + "_" + timestamp;
+
+        return Base64.getEncoder().encodeToString(originalID.getBytes());
+    }
+
+    /**
+     * Decrypts the Base64 encoded node ID back to the original format.
+     *
+     * @param encodedID The Base64 encoded ID.
+     * @return The original node ID string.
+     */
+    public static String decryptID(String encodedID) {
+        byte[] decodedBytes = Base64.getDecoder().decode(encodedID);
+        return new String(decodedBytes);
     }
 }

@@ -93,6 +93,7 @@ public class MainPanel extends BorderPane {
             }
 
             BaseLogger.log(BaseLogLevel.SUCCESS, "Node [" + pNode.getId() + "] created at (" + pNode.getX() + ", " + pNode.getY() + ")");
+            BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + NodeIDGenerator.decryptID(pNode.getId()));
         } else {
             BaseLogger.log(BaseLogLevel.WARNING, "No suitable position found for new node.");
         }
