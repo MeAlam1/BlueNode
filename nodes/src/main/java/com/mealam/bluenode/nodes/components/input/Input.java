@@ -3,6 +3,9 @@ package com.mealam.bluenode.nodes.components.input;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mealam.bluenode.nodes.components.input.category.InputCategoryData;
+import com.mealam.bluenode.nodes.components.input.category.InputCategoryManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +19,12 @@ public class Input {
 
     public static Input fromJson(JsonObject jsonObject) {
         Input input = new Input();
-        input.properties.id = jsonObject.get("id").getAsString();
-        input.properties.name = jsonObject.get("name").getAsString();
-        input.properties.type = jsonObject.get("type").getAsString();
+        input.properties.setId(jsonObject.get("id").getAsString());
+        input.properties.setName(jsonObject.get("name").getAsString());
+        input.properties.setType(jsonObject.get("type").getAsString());
+        InputCategoryData categoryData = InputCategoryManager.getCategoryData(input.properties.getType());
+        input.properties.setColor(categoryData.color());
+
         input.properties.defaultValue = jsonObject.has("defaultValue") ? jsonObject.get("defaultValue").getAsInt() : 0;
         return input;
     }
@@ -45,6 +51,7 @@ public class Input {
         private String id;
         private String name;
         private String type;
+        private String color;
         private int defaultValue;
 
         public String getId() {
@@ -71,6 +78,14 @@ public class Input {
             this.type = type;
         }
 
+        public String getColor() {
+            return color;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
+        }
+
         public int getDefaultValue() {
             return defaultValue;
         }
@@ -85,6 +100,7 @@ public class Input {
                     "      \"id\": \"" + id + "\",\n" +
                     "      \"name\": \"" + name + "\",\n" +
                     "      \"type\": \"" + type + "\",\n" +
+                    "      \"color\": \"" + color + "\",\n" +
                     "      \"defaultValue\": " + defaultValue + "\n" +
                     "    }\n  ";
         }
