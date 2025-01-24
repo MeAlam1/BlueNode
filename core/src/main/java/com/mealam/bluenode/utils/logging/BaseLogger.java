@@ -1,6 +1,7 @@
 package com.mealam.bluenode.utils.logging;
 
 import com.mealam.bluenode.Constants;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class BaseLogger {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     static {
+        clearLogFile();
         LoggerConfig.configureLogger(Constants.LOGGER, new DefaultLogColorProvider());
     }
 
@@ -33,7 +35,8 @@ public class BaseLogger {
      *
      * @since 1.0.0
      */
-    private BaseLogger() {}
+    private BaseLogger() {
+    }
 
     /**
      * Checks if general logging is enabled.
@@ -121,7 +124,7 @@ public class BaseLogger {
     }
 
     /**
-     * Writes a log message to the file {@code bluenode_complete_log.txt}.
+     * Writes a log message to the file {@code log.txt}.
      *
      * @param message {@link String} - The message to write to the file.
      */
@@ -131,6 +134,14 @@ public class BaseLogger {
             writer.newLine();
         } catch (IOException e) {
             System.err.println("[ERROR] Failed to write to log file: " + e.getMessage());
+        }
+    }
+
+    private static void clearLogFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_FILE, false))) {
+            writer.write("");
+        } catch (IOException e) {
+            System.err.println("[ERROR] Failed to clear the log file: " + e.getMessage());
         }
     }
 }
