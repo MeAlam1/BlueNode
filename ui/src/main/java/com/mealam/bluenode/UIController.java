@@ -29,6 +29,7 @@ public class UIController extends Application {
 
             initializeComponents(pPrimaryStage);
             CoreController.initializeCore();
+            NodeController.initializeNodes();
 
             pPrimaryStage.show();
             BaseLogger.log(BaseLogLevel.SUCCESS, "BlueNode application started successfully.");

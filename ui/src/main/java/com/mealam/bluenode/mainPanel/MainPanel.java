@@ -61,13 +61,13 @@ public class MainPanel extends BorderPane {
     }
 
     private Node getNewNode(Node newNode) {
-        Node getNode = NodeLoaderUtils.getNodeByKey("testNode", newNode.getX(), newNode.getY());
+        Node getNode = NodeLoaderUtils.getNodeByKey("testNode", newNode.getProperties().getX(), newNode.getProperties().getY());
         if (getNode == null) {
             throw new NullPointerException("Node not found in Library");
         }
-        getNode.setId(NodeIDGenerator.generateID(getNode.getTitle()));
-        getNode.setWidth(150);
-        getNode.setHeight(100);
+        getNode.getProperties().setId(NodeIDGenerator.generateID(getNode.getProperties().getTitle()));
+        getNode.getProperties().setWidth(150);
+        getNode.getProperties().setHeight(100);
         return getNode;
     }
 
@@ -86,10 +86,10 @@ public class MainPanel extends BorderPane {
 
     public boolean isNodeAtLocation(double pX, double pY, double width, double height) {
         for (Node node : nodes) {
-            double nodeX = node.getX();
-            double nodeY = node.getY();
-            double nodeWidth = node.getWidth();
-            double nodeHeight = node.getHeight();
+            double nodeX = node.getProperties().getX();
+            double nodeY = node.getProperties().getY();
+            double nodeWidth = node.getProperties().getWidth();
+            double nodeHeight = node.getProperties().getHeight();
 
             if (pX < nodeX + nodeWidth && pX + width > nodeX && pY < nodeY + nodeHeight && pY + height > nodeY) {
                 return true;
@@ -99,30 +99,30 @@ public class MainPanel extends BorderPane {
     }
 
     public void placeNode(Node pNode) {
-        if (!isNodeAtLocation(pNode.getX(), pNode.getY(), pNode.getWidth(), pNode.getHeight())) {
+        if (!isNodeAtLocation(pNode.getProperties().getX(), pNode.getProperties().getY(), pNode.getProperties().getWidth(), pNode.getProperties().getHeight())) {
             nodes.add(pNode);
+            BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());
 
             for (Node node : nodes) {
                 NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
             }
 
-            BaseLogger.log(BaseLogLevel.SUCCESS, "Node [" + pNode.getId() + "] created at (" + pNode.getX() + ", " + pNode.getY() + ")");
-            BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + NodeIDGenerator.decryptID(pNode.getId()));
+            BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + NodeIDGenerator.decryptID(pNode.getProperties().getId()));
         } else {
             BaseLogger.log(BaseLogLevel.WARNING, "No suitable position found for new node.");
         }
     }
 
     public static boolean isOverlapping(Node pNode1, Node pNode2) {
-        boolean overlapping = pNode1.getX() < pNode2.getX() + pNode2.getWidth() &&
-                pNode1.getX() + pNode1.getWidth() > pNode2.getX() &&
-                pNode1.getY() < pNode2.getY() + pNode2.getHeight() &&
-                pNode1.getY() + pNode1.getHeight() > pNode2.getY();
+        boolean overlapping = pNode1.getProperties().getX() < pNode2.getProperties().getX() + pNode2.getProperties().getWidth() &&
+                pNode1.getProperties().getX() + pNode1.getProperties().getWidth() > pNode2.getProperties().getX() &&
+                pNode1.getProperties().getY() < pNode2.getProperties().getY() + pNode2.getProperties().getHeight() &&
+                pNode1.getProperties().getY() + pNode1.getProperties().getHeight() > pNode2.getProperties().getY();
 
         if (overlapping) {
             BaseLogger.log(BaseLogLevel.WARNING, "Nodes are overlapping with positions: \n" +
-                    "(Node1)(X: " + pNode1.getX() + ", Y: " + pNode1.getY() + ") \n" +
-                    "(Node2)(X: " + pNode2.getX() + ", Y: " + pNode2.getY() + ")");
+                    "(Node1)(X: " + pNode1.getProperties().getX() + ", Y: " + pNode1.getProperties().getY() + ") \n" +
+                    "(Node2)(X: " + pNode2.getProperties().getX() + ", Y: " + pNode2.getProperties().getY() + ")");
         }
         return overlapping;
     }

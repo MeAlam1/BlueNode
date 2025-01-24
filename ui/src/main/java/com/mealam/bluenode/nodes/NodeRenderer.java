@@ -6,13 +6,13 @@ import javafx.scene.paint.Color;
 public class NodeRenderer {
 
     public static void render(GraphicsContext pGraphicsContext, Node pNode, double pTranslateX, double pTranslateY) {
-        double x = pNode.getX() + pTranslateX;
-        double y = pNode.getY() + pTranslateY;
-        double width = pNode.getWidth();
-        double titleBarHeight = pNode.getHeight() - 70;
-        double contentAreaHeight = pNode.getHeight() - titleBarHeight;
+        double x = pNode.getProperties().getX() + pTranslateX;
+        double y = pNode.getProperties().getY() + pTranslateY;
+        double width = pNode.getProperties().getWidth();
+        double titleBarHeight = pNode.getProperties().getHeight() - 70;
+        double contentAreaHeight = pNode.getProperties().getHeight() - titleBarHeight;
 
-        Color nodeColor = Color.web(pNode.getColor());
+        Color nodeColor = Color.web(pNode.getProperties().getColor());
 
         // Content Area
         double contentAreaY = y + titleBarHeight - 5;
@@ -23,6 +23,6 @@ public class NodeRenderer {
         pGraphicsContext.setFill(nodeColor);
         pGraphicsContext.fillRoundRect(x, y, width, titleBarHeight, 10, 10);
         pGraphicsContext.setFill(Color.BLACK);
-        pGraphicsContext.fillText(pNode.getTitle(), x + 5, y + 20);
+        pGraphicsContext.fillText(pNode.getProperties().getTitle(), x + 5, y + 20);
     }
 }
