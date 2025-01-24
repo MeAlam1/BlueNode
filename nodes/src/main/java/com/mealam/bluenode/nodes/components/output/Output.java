@@ -1,4 +1,4 @@
-package com.mealam.bluenode.nodes.components;
+package com.mealam.bluenode.nodes.components.output;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
