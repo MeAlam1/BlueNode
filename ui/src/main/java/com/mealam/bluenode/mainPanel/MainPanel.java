@@ -2,19 +2,20 @@ package com.mealam.bluenode.mainPanel;
 
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
-import com.mealam.bluenode.nodes.*;
+import com.mealam.bluenode.nodes.Node;
+import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.nodes.categories.MathNode;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainPanel extends BorderPane {
 
@@ -51,7 +52,7 @@ public class MainPanel extends BorderPane {
                 double snappedX = GridDrawer.snapToGrid(centerX - CanvasDragHandler.getTranslateX());
                 double snappedY = GridDrawer.snapToGrid(centerY - CanvasDragHandler.getTranslateY());
 
-                //TODO: This is where the node is Drawn!!!!
+                //NOTE: This is where the node is Drawn!!!!
                 Node newNode = new MathNode(snappedX, snappedY);
                 Node getNode = getNewNode(newNode);
                 placeNode(getNode);
@@ -62,8 +63,11 @@ public class MainPanel extends BorderPane {
     }
 
     private Node getNewNode(Node newNode) {
-        Node getNode = NodeLoaderUtils.getNodeByKey("boop", newNode.getX(), newNode.getY());
-        getNode.setId(NodeIDGenerator.generateID(getNode.getCategory()));
+        Node getNode = NodeLoaderUtils.getNodeByKey("testNode", newNode.getX(), newNode.getY());
+        if (getNode == null) {
+            throw new NullPointerException("Node not found in Library");
+        }
+        getNode.setId(NodeIDGenerator.generateID(getNode.getTitle()));
         getNode.setWidth(150);
         getNode.setHeight(100);
         return getNode;

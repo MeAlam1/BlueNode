@@ -23,6 +23,6 @@ public class NodeRenderer {
         pGraphicsContext.setFill(nodeColor);
         pGraphicsContext.fillRoundRect(x, y, width, titleBarHeight, 10, 10);
         pGraphicsContext.setFill(Color.BLACK);
-        pGraphicsContext.fillText(pNode.getCategory(), x + 5, y + 20);
+        pGraphicsContext.fillText(pNode.getTitle(), x + 5, y + 20);
     }
 }

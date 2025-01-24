@@ -1,0 +1,31 @@
+{
+  "testNode": [
+    {
+      "title": "Test Title",
+      "description": "Testing the Description.",
+      "category": "Test Category",
+      "inputs": [
+        {
+          "id": "inputTest",
+          "name": "Input Test Name",
+          "type": "number",
+          "defaultValue": 0
+        }
+      ],
+      "outputs": [
+        {
+          "id": "outputTest",
+          "name": "Output Test Name",
+          "type": "number"
+        }
+      ],
+      "metadata": {
+        "createdBy": null,
+        "createdAt": null,
+        "updatedAt": null,
+        "tags": ["example", "test", "testing"]
+      }
+    }
+
+  ]
+}

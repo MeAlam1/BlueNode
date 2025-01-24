@@ -2,6 +2,7 @@ package com.mealam.bluenode.utils.nodes;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,18 +20,11 @@ public class NodeIDGenerator {
      * @param pNodeType The type of the node (e.g., "MathNode", "LogicNode").
      * @return A unique ID in the format: NodeType-<Counter>-<ReadableTimestamp>, Base64 encoded.
      */
-    public static String generateID(String pNodeType) {
-        if (pNodeType == null) {
-            BaseLogger.log(BaseLogLevel.ERROR, "Node type cannot be null");
-            throw new IllegalArgumentException("Node type cannot be null");
-        }
+    public static String generateID(@NonNull String pNodeType) {
         counters.putIfAbsent(pNodeType, new AtomicInteger(0));
         int uniqueNumber = counters.get(pNodeType).incrementAndGet();
-
         String timestamp = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss-SSS").format(new Date());
-
         String originalID = pNodeType + uniqueNumber + "_" + timestamp;
-
         return Base64.getEncoder().encodeToString(originalID.getBytes());
     }
 

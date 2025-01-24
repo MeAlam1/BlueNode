@@ -6,6 +6,11 @@
 
 A node is an object with the following fields:
 
+### `uniqueID`
+- **Type:** The JSONArray Title of the node.
+- **Description:** A unique identifier for the node. This is used to reference the node in the editor.
+- **Example:** `"node1"`
+
 ---
 
 ### `title`
@@ -19,13 +24,6 @@ A node is an object with the following fields:
 - **Type:** String
 - **Description:** A brief explanation of the node’s functionality or purpose.
 - **Example:** `"This is a description of the node."`
-
----
-
-### `color`
-- **Type:** String (Hex Color Code)
-- **Description:** The color used to visually represent the node in the editor.
-- **Example:** `"#FF5733"`
 
 ---
 
@@ -102,18 +100,6 @@ A node is an object with the following fields:
 ### `metadata`
 - **Type:** Object
 - **Description:** Additional information about the node, such as timestamps and tags. It contains the following fields:
-    - **`createdBy`**: The user who created the node.
-        - **Type:** String
-        - **Example:** `null` (Generated through Code)
-
-    - **`createdAt`**: The timestamp when the node was created.
-        - **Type:** String (ISO 8601 format)
-        - **Example:** `null` (Generated through Code)
-
-    - **`updatedAt`**: The timestamp when the node was last updated.
-        - **Type:** String (ISO 8601 format)
-        - **Example:** `null` (Generated through Code)
-
     - **`tags`**: An array of tags associated with the node.
         - **Type:** Array of Strings
         - **Example:** `["example", "node", "editor"]`
@@ -134,32 +120,32 @@ A node is an object with the following fields:
 Here’s a complete example of a node following this structure:
 ```json
 {
-  "id": null,
-  "title": "Node Title",
-  "description": "This is a description of the node.",
-  "color": "#FF5733",
-  "category": "Math",
-  "inputs": [
+  "uniqueID": [
     {
-      "id": "input1",
-      "name": "Input Name",
-      "type": "number",
-      "defaultValue": 0
+      "title": "Title",
+      "description": "Description.",
+      "category": "Name of Category",
+      "inputs": [
+        {
+          "id": "input1",
+          "name": "Input Name",
+          "type": "number",
+          "defaultValue": 0
+        }
+      ],
+      "outputs": [
+        {
+          "id": "output1",
+          "name": "Output Name",
+          "type": "number"
+        }
+      ],
+      "metadata": {
+        "tags": ["example", "test", "testing"]
+      }
     }
-  ],
-  "outputs": [
-    {
-      "id": "output1",
-      "name": "Output Name",
-      "type": "number"
-    }
-  ],
-  "metadata": {
-    "createdBy": null,
-    "createdAt": null,
-    "updatedAt": null,
-    "tags": ["example", "node", "editor"]
-  }
+
+  ]
 }
 ```  
 

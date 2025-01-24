@@ -57,7 +57,10 @@ public class TitleBar extends BorderPane {
         BaseLogger.log(BaseLogLevel.SUCCESS, "TitleBar has been created successfully");
     }
 
-    // TODO: This Method is really inefficient, it should be Optimized and fixed
+    /* OPTIMIZE: This Method is really inefficient
+        * 1. This method hardcodes the padding value of 280
+        * 2. If the Window Width changes the padding will be incorrect
+     */
     private void updatePadding(double pWindowWidth) {
         if (stackPane != null) {
             double leftPadding = Math.max(0, pWindowWidth - 280);
