@@ -1,5 +1,6 @@
 package com.mealam.bluenode.nodes;
 
+import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -9,8 +10,9 @@ public class NodeRenderer {
         double x = pNode.getProperties().getX() + pTranslateX;
         double y = pNode.getProperties().getY() + pTranslateY;
         double width = pNode.getProperties().getWidth();
-        double titleBarHeight = pNode.getProperties().getHeight() - 70;
-        double contentAreaHeight = pNode.getProperties().getHeight() - titleBarHeight;
+        double height = pNode.getProperties().getHeight();
+        double titleBarHeight = height - 70;
+        double contentAreaHeight = height - titleBarHeight;
 
         Color nodeColor = Color.web(pNode.getProperties().getColor());
 
@@ -24,5 +26,10 @@ public class NodeRenderer {
         pGraphicsContext.fillRoundRect(x, y, width, titleBarHeight, 10, 10);
         pGraphicsContext.setFill(Color.BLACK);
         pGraphicsContext.fillText(pNode.getProperties().getTitle(), x + 5, y + 20);
+
+        // Inputs
+        for (Input input : pNode.getProperties().getInputs()) {
+            //InputRenderer.render(pGraphicsContext, input, x, y, width, height);
+        }
     }
 }

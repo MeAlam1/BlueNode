@@ -52,7 +52,7 @@ public class Input {
         private String name;
         private String type;
         private String color;
-        private int defaultValue;
+        private Object defaultValue;
 
         public String getId() {
             return id;
@@ -86,11 +86,11 @@ public class Input {
             this.color = color;
         }
 
-        public int getDefaultValue() {
+        public Object getDefaultValue() {
             return defaultValue;
         }
 
-        public void setDefaultValue(int defaultValue) {
+        public void setDefaultValue(Object defaultValue) {
             this.defaultValue = defaultValue;
         }
 

@@ -1,21 +1,22 @@
 package com.mealam.bluenode.mainPanel;
 
 import com.mealam.bluenode.UIConstants;
-import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeRenderer;
-import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainPanel extends BorderPane {
 
@@ -28,13 +29,17 @@ public class MainPanel extends BorderPane {
         gridDrawer = new GridDrawer();
         nodes = new ArrayList<>();
 
-        UIConstants.MAIN_CANVAS.widthProperty().bind(widthProperty());
-        UIConstants.MAIN_CANVAS.heightProperty().bind(heightProperty());
+        Pane overlayPane = new Pane();
+        overlayPane.setPickOnBounds(false);
+
+        StackPane stackPane = new StackPane(UIConstants.MAIN_CANVAS, overlayPane);
+        setCenter(stackPane);
+
+        UIConstants.MAIN_CANVAS.widthProperty().bind(stackPane.widthProperty());
+        UIConstants.MAIN_CANVAS.heightProperty().bind(stackPane.heightProperty());
 
         widthProperty().addListener((observable, oldValue, newValue) -> drawGrid());
         heightProperty().addListener((observable, oldValue, newValue) -> drawGrid());
-
-        setCenter(UIConstants.MAIN_CANVAS);
 
         new CanvasDragHandler(UIConstants.MAIN_CANVAS, graphicsContext, gridDrawer, nodes);
 
