@@ -8,7 +8,7 @@
         {
           "id": "inputTest",
           "name": "Input Test Name",
-          "type": "number",
+          "type": "float",
           "defaultValue": 0
         }
       ],
@@ -16,7 +16,7 @@
         {
           "id": "outputTest",
           "name": "Output Test Name",
-          "type": "number"
+          "type": "float"
         }
       ],
       "metadata": {

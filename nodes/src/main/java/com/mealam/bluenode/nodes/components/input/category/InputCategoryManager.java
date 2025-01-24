@@ -8,7 +8,7 @@ public class InputCategoryManager {
     private static final Map<String, InputCategoryData> CATEGORY_DATA_MAP = new HashMap<>();
 
     public static void initCategoryData() {
-        CATEGORY_DATA_MAP.putIfAbsent("number", new InputCategoryData("#00FF00"));
+        CATEGORY_DATA_MAP.putIfAbsent("float", new InputCategoryData("#00FF00"));
     }
 
     public static InputCategoryData getCategoryData(String category) {

@@ -8,7 +8,7 @@ public class OutputCategoryManager {
     private static final Map<String, OutputCategoryData> CATEGORY_DATA_MAP = new HashMap<>();
 
     public static void initCategoryData() {
-        CATEGORY_DATA_MAP.putIfAbsent("number", new OutputCategoryData("#00FF00"));
+        CATEGORY_DATA_MAP.putIfAbsent("float", new OutputCategoryData("#00FF00"));
     }
 
     public static OutputCategoryData getCategoryData(String category) {
