@@ -16,12 +16,6 @@ import javafx.stage.Stage;
 
 public class UIController extends Application {
 
-    public static final BorderPane MAIN_ROOT = new BorderPane();
-    public static final Canvas MAIN_CANVAS = new Canvas();
-    public static final Scene MAIN_SCENE = new Scene(MAIN_ROOT);
-
-    public static final ContentBrowser CONTENT_BROWSER = new ContentBrowser();
-
     @Override
     public void start(Stage pPrimaryStage) {
         try {
@@ -39,14 +33,14 @@ public class UIController extends Application {
     }
 
     private void initializeComponents(Stage pPrimaryStage) {
-        MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.BACKGROUND_COLOR));
+        UIConstants.MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.BACKGROUND_COLOR));
 
         TitleBar titleBar = new TitleBar(pPrimaryStage);
         MainPanel mainPanel = new MainPanel();
-        WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, MAIN_ROOT);
+        WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, UIConstants.MAIN_ROOT);
 
-        MAIN_ROOT.setTop(titleBar);
-        MAIN_ROOT.setCenter(mainPanel);
+        UIConstants.MAIN_ROOT.setTop(titleBar);
+        UIConstants.MAIN_ROOT.setCenter(mainPanel);
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "Components initialized successfully.");
     }

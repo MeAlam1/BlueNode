@@ -1,5 +1,6 @@
 package com.mealam.bluenode.mainPanel;
 
+import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;
@@ -23,21 +24,21 @@ public class MainPanel extends BorderPane {
     public static List<Node> nodes;
 
     public MainPanel() {
-        graphicsContext = UIController.MAIN_CANVAS.getGraphicsContext2D();
+        graphicsContext = UIConstants.MAIN_CANVAS.getGraphicsContext2D();
         gridDrawer = new GridDrawer();
         nodes = new ArrayList<>();
 
-        UIController.MAIN_CANVAS.widthProperty().bind(widthProperty());
-        UIController.MAIN_CANVAS.heightProperty().bind(heightProperty());
+        UIConstants.MAIN_CANVAS.widthProperty().bind(widthProperty());
+        UIConstants.MAIN_CANVAS.heightProperty().bind(heightProperty());
 
         widthProperty().addListener((observable, oldValue, newValue) -> drawGrid());
         heightProperty().addListener((observable, oldValue, newValue) -> drawGrid());
 
-        setCenter(UIController.MAIN_CANVAS);
+        setCenter(UIConstants.MAIN_CANVAS);
 
-        new CanvasDragHandler(UIController.MAIN_CANVAS, graphicsContext, gridDrawer, nodes);
+        new CanvasDragHandler(UIConstants.MAIN_CANVAS, graphicsContext, gridDrawer, nodes);
 
-        UIController.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
+        UIConstants.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.SECONDARY) { // Right-click
                 double mouseX = pEvent.getX();
                 double mouseY = pEvent.getY();
@@ -73,8 +74,8 @@ public class MainPanel extends BorderPane {
     }
 
     private void drawGrid() {
-        double width = UIController.MAIN_CANVAS.getWidth();
-        double height = UIController.MAIN_CANVAS.getHeight();
+        double width = UIConstants.MAIN_CANVAS.getWidth();
+        double height = UIConstants.MAIN_CANVAS.getHeight();
 
         graphicsContext.save();
         graphicsContext.clearRect(0, 0, width, height);

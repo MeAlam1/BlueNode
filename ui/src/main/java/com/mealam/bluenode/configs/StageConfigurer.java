@@ -1,6 +1,7 @@
 package com.mealam.bluenode.configs;
 
 import com.mealam.bluenode.Constants;
+import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
@@ -16,7 +17,7 @@ public class StageConfigurer {
         pStage.centerOnScreen();
         pStage.initStyle(StageStyle.UNDECORATED);
         //pStage.getIcons().add(loadIcon());
-        pStage.setScene(UIController.MAIN_SCENE);
+        pStage.setScene(UIConstants.MAIN_SCENE);
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "Stage configured successfully.");
     }

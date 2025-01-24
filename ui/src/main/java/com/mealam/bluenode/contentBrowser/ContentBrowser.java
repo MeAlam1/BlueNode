@@ -1,5 +1,6 @@
 package com.mealam.bluenode.contentBrowser;
 
+import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.utils.contentBrowser.TreeNode;
 import java.io.File;
@@ -44,16 +45,16 @@ public class ContentBrowser extends VBox {
     }
 
     public static void showContentBrowser() {
-        if (!UIController.MAIN_ROOT.getChildren().contains(UIController.CONTENT_BROWSER)) {
-            UIController.MAIN_ROOT.setBottom(UIController.CONTENT_BROWSER);
-            UIController.CONTENT_BROWSER.prefHeightProperty().bind(UIController.MAIN_ROOT.heightProperty().divide(4));
-            UIController.MAIN_CANVAS.heightProperty().bind(UIController.MAIN_ROOT.heightProperty().subtract(UIController.CONTENT_BROWSER.heightProperty()));
+        if (!UIConstants.MAIN_ROOT.getChildren().contains(UIConstants.CONTENT_BROWSER)) {
+            UIConstants.MAIN_ROOT.setBottom(UIConstants.CONTENT_BROWSER);
+            UIConstants.CONTENT_BROWSER.prefHeightProperty().bind(UIConstants.MAIN_ROOT.heightProperty().divide(4));
+            UIConstants.MAIN_CANVAS.heightProperty().bind(UIConstants.MAIN_ROOT.heightProperty().subtract(UIConstants.CONTENT_BROWSER.heightProperty()));
         }
     }
 
     public static void hideContentBrowser() {
-        UIController.MAIN_ROOT.getChildren().remove(UIController.CONTENT_BROWSER);
-        UIController.MAIN_CANVAS.heightProperty().bind(UIController.MAIN_ROOT.heightProperty());
-        UIController.MAIN_CANVAS.widthProperty().bind(UIController.MAIN_ROOT.widthProperty());
+        UIConstants.MAIN_ROOT.getChildren().remove(UIConstants.CONTENT_BROWSER);
+        UIConstants.MAIN_CANVAS.heightProperty().bind(UIConstants.MAIN_ROOT.heightProperty());
+        UIConstants.MAIN_CANVAS.widthProperty().bind(UIConstants.MAIN_ROOT.widthProperty());
     }
 }

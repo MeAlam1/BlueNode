@@ -1,5 +1,6 @@
 package com.mealam.bluenode.titleBar.buttons.actions.fileButton;
 
+import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.components.FolderSelectionPopup;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
@@ -19,7 +20,7 @@ public class OpenAction {
 
                 FolderSelectionPopup popup = new FolderSelectionPopup(false, stage, pDirectory -> {
                     BaseLogger.log(BaseLogLevel.INFO, "Selected directory: " + pDirectory.getAbsolutePath());
-                    UIController.CONTENT_BROWSER.updateContent(new File(pDirectory.getAbsolutePath()));
+                    UIConstants.CONTENT_BROWSER.updateContent(new File(pDirectory.getAbsolutePath()));
                 });
 
                 popup.show();
