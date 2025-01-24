@@ -1,10 +1,8 @@
 {
   "boop": [
     {
-      "id": null,
       "title": "Node Title",
       "description": "This is a description of the node.",
-      "color": "#FF5733",
       "category": "Math",
       "inputs": [
         {

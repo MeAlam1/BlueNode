@@ -4,13 +4,8 @@ import com.mealam.bluenode.nodes.Node;
 
 public class MathNode extends Node {
 
-    public MathNode(double pWidth, double pHeight, double pX, double pY, String pId) {
-        super(pWidth, pHeight, pX, pY, pId);
-    }
-
-    @Override
-    public String getType() {
-        return "Math";
+    public MathNode(double pX, double pY) {
+        super(pX, pY);
     }
 
     @Override

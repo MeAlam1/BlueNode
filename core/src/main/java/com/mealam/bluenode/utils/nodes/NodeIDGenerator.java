@@ -1,5 +1,8 @@
 package com.mealam.bluenode.utils.nodes;
 
+import com.mealam.bluenode.utils.logging.BaseLogLevel;
+import com.mealam.bluenode.utils.logging.BaseLogger;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,6 +20,10 @@ public class NodeIDGenerator {
      * @return A unique ID in the format: NodeType-<Counter>-<ReadableTimestamp>, Base64 encoded.
      */
     public static String generateID(String pNodeType) {
+        if (pNodeType == null) {
+            BaseLogger.log(BaseLogLevel.ERROR, "Node type cannot be null");
+            throw new IllegalArgumentException("Node type cannot be null");
+        }
         counters.putIfAbsent(pNodeType, new AtomicInteger(0));
         int uniqueNumber = counters.get(pNodeType).incrementAndGet();
 

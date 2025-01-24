@@ -1,32 +1,69 @@
 package com.mealam.bluenode.nodes;
 
-import com.mealam.bluenode.interfaces.nodes.NodeComponent;
-import java.util.ArrayList;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.mealam.bluenode.nodes.components.Input;
+import com.mealam.bluenode.nodes.components.Output;
+import com.mealam.bluenode.utils.logging.BaseLogLevel;
+import com.mealam.bluenode.utils.logging.BaseLogger;
+
 import java.util.List;
 
-public abstract class Node {
+public class Node {
+    private String id;
+    private double x;
+    private double y;
+    private double width;
+    private double height;
+    private String title;
+    private String description;
+    private String category;
+    private List<Input> inputs;
+    private List<Output> outputs;
+    private Metadata metadata;
 
-    private final double width;
-    private final double height;
-    private final double x;
-    private final double y;
-    private final String id;
-    private final List<NodeComponent> components = new ArrayList<>();
+    public Node(double pX, double pY) {
+        x = pX;
+        y = pY;
+    }
 
-    protected Node(double pWidth, double pHeight, double pX, double pY, String pId) {
-        this.width = pWidth;
-        this.height = pHeight;
-        this.x = pX;
-        this.y = pY;
+    public static Node fromJson(JsonArray jsonArray, double pX, double pY) {
+        if (jsonArray == null || jsonArray.isEmpty()) {
+            throw new IllegalArgumentException("JsonArray is null or empty, cannot create Node.");
+        }
+
+        JsonElement firstElement = jsonArray.get(0);
+        if (!firstElement.isJsonObject()) {
+            throw new IllegalArgumentException("First element in JsonArray is not a JsonObject.");
+        }
+
+        JsonObject jsonObject = firstElement.getAsJsonObject();
+
+        Node node = new Node(pX, pY);
+        node.title = jsonObject.get("title").getAsString();
+        node.description = jsonObject.get("description").getAsString();
+        node.category = jsonObject.get("category").getAsString();
+        BaseLogger.log(BaseLogLevel.INFO, "All Data from Node: " + node.title + " " + node.description + " " + node.category);
+
+        JsonArray inputsJsonArray = jsonObject.getAsJsonArray("inputs");
+        //node.inputs = Input.fromJsonArray(inputsJsonArray);
+
+        JsonArray outputsJsonArray = jsonObject.getAsJsonArray("outputs");
+        //node.outputs = Output.fromJsonArray(outputsJsonArray);
+
+        //node.metadata = Metadata.fromJson(jsonObject.getAsJsonObject("metadata"));
+
+        return node;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String pId) {
         this.id = pId;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
     }
 
     public double getX() {
@@ -37,19 +74,47 @@ public abstract class Node {
         return y;
     }
 
-    public String getId() {
-        return id;
+    public void setWidth(double width) {
+        this.width = width;
     }
 
-    public List<NodeComponent> getComponents() {
-        return components;
+    public void setHeight(double height) {
+        this.height = height;
     }
 
-    public void addComponent(NodeComponent pComponent) {
-        components.add(pComponent);
+    public double getWidth() {
+        return width;
     }
 
-    public abstract String getType();
+    public double getHeight() {
+        return height;
+    }
 
-    public abstract String getColor();
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getColor() {
+        return "#FFFFFF";
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public List<Input> getInputs() {
+        return inputs;
+    }
+
+    public List<Output> getOutputs() {
+        return outputs;
+    }
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
 }

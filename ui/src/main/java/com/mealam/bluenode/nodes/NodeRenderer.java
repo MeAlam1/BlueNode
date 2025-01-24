@@ -1,7 +1,5 @@
 package com.mealam.bluenode.nodes;
 
-import com.mealam.bluenode.interfaces.nodes.NodeComponent;
-import com.mealam.bluenode.interfaces.nodes.RenderableNodeComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -25,15 +23,6 @@ public class NodeRenderer {
         pGraphicsContext.setFill(nodeColor);
         pGraphicsContext.fillRoundRect(x, y, width, titleBarHeight, 10, 10);
         pGraphicsContext.setFill(Color.BLACK);
-        pGraphicsContext.fillText(pNode.getType(), x + 5, y + 20);
-
-        // Render Components
-        double contentStartY = y + titleBarHeight + 5;
-        for (NodeComponent component : pNode.getComponents()) {
-            if (component instanceof RenderableNodeComponent renderableNodeComponent) {
-                renderableNodeComponent.render(pGraphicsContext, x + 10, contentStartY);
-                contentStartY += renderableNodeComponent.getHeight();
-            }
-        }
+        pGraphicsContext.fillText(pNode.getCategory(), x + 5, y + 20);
     }
 }

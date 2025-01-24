@@ -9,6 +9,8 @@ import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -49,12 +51,22 @@ public class MainPanel extends BorderPane {
                 double snappedX = GridDrawer.snapToGrid(centerX - CanvasDragHandler.getTranslateX());
                 double snappedY = GridDrawer.snapToGrid(centerY - CanvasDragHandler.getTranslateY());
 
-                Node newNode = new MathNode(nodeWidth, nodeHeight, snappedX, snappedY, NodeIDGenerator.generateID("MathNode"));
-                placeNode(newNode);
+                //TODO: This is where the node is Drawn!!!!
+                Node newNode = new MathNode(snappedX, snappedY);
+                Node getNode = getNewNode(newNode);
+                placeNode(getNode);
             }
         });
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "MainPanel initialized with infinite scrolling and zoom");
+    }
+
+    private Node getNewNode(Node newNode) {
+        Node getNode = NodeLoaderUtils.getNodeByKey("boop", newNode.getX(), newNode.getY());
+        getNode.setId(NodeIDGenerator.generateID(getNode.getCategory()));
+        getNode.setWidth(150);
+        getNode.setHeight(100);
+        return getNode;
     }
 
     private void drawGrid() {

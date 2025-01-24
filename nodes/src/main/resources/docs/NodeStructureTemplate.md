@@ -6,11 +6,6 @@
 
 A node is an object with the following fields:
 
-### `id`
-- **Type:** String
-- **Description:** A unique identifier for the node. This should be unique across all nodes.
-- **Example:** `null` (Generated through Code)
-
 ---
 
 ### `title`
