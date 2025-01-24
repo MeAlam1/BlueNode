@@ -6,7 +6,7 @@ import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import java.util.List;
 
-public class NodeLoader {
+public class NodeInit {
 
     public static List<JsonObject> allNodes;
 
