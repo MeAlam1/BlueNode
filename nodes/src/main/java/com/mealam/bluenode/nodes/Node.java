@@ -1,7 +1,6 @@
 package com.mealam.bluenode.nodes;
 
 import com.mealam.bluenode.interfaces.nodes.NodeComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 
