@@ -8,42 +8,51 @@ import java.util.List;
 
 public class Metadata {
 
-    private String createdBy;
-    private String createdAt;
-    private String updatedAt;
-    private List<String> tags;
+    private final MetadataProperties properties;
+
+    public Metadata() {
+        properties = new MetadataProperties();
+    }
 
     public static Metadata fromJson(JsonObject jsonObject) {
         Metadata metadata = new Metadata();
-        metadata.createdBy = jsonObject.has("createdBy") ? jsonObject.get("createdBy").getAsString() : null;
-        metadata.createdAt = jsonObject.has("createdAt") ? jsonObject.get("createdAt").getAsString() : null;
-        metadata.updatedAt = jsonObject.has("updatedAt") ? jsonObject.get("updatedAt").getAsString() : null;
-
+        
         JsonArray tagsJsonArray = jsonObject.getAsJsonArray("tags");
-        metadata.tags = new ArrayList<>();
+        metadata.properties.tags = new ArrayList<>();
         if (tagsJsonArray != null) {
             for (JsonElement tag : tagsJsonArray) {
-                metadata.tags.add(tag.getAsString());
+                metadata.properties.tags.add(tag.getAsString());
             }
         }
 
         return metadata;
     }
 
-    // Getter methods
-    public String getCreatedBy() {
-        return createdBy;
+    @Override
+    public String toString() {
+        return properties.toString();
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public MetadataProperties getProperties() {
+        return properties;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
+    public static class MetadataProperties {
+        private List<String> tags;
 
-    public List<String> getTags() {
-        return tags;
+        public List<String> getTags() {
+            return tags;
+        }
+
+        public void setTags(List<String> tags) {
+            this.tags = tags;
+        }
+
+        @Override
+        public String toString() {
+            return  "{\n" +
+                    "    \"tags\": " + tags + "\n" +
+                    "  }";
+        }
     }
 }

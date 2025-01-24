@@ -3,23 +3,22 @@ package com.mealam.bluenode.nodes.components.input;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mealam.bluenode.interfaces.nodes.NodeComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Input implements NodeComponent {
+public class Input {
+    private final InputProperties properties;
 
-    private String id;
-    private String name;
-    private String type;
-    private int defaultValue;
+    public Input() {
+        properties = new InputProperties();
+    }
 
     public static Input fromJson(JsonObject jsonObject) {
         Input input = new Input();
-        input.id = jsonObject.get("id").getAsString();
-        input.name = jsonObject.get("name").getAsString();
-        input.type = jsonObject.get("type").getAsString();
-        input.defaultValue = jsonObject.has("defaultValue") ? jsonObject.get("defaultValue").getAsInt() : 0;
+        input.properties.id = jsonObject.get("id").getAsString();
+        input.properties.name = jsonObject.get("name").getAsString();
+        input.properties.type = jsonObject.get("type").getAsString();
+        input.properties.defaultValue = jsonObject.has("defaultValue") ? jsonObject.get("defaultValue").getAsInt() : 0;
         return input;
     }
 
@@ -31,21 +30,61 @@ public class Input implements NodeComponent {
         return inputs;
     }
 
-    // Getter methods
-    public String getId() {
-        return id;
-    }
-
     @Override
-    public String getName() {
-        return name;
+    public String toString() {
+        return properties.toString();
     }
 
-    public String getType() {
-        return type;
+    public InputProperties getProperties() {
+        return properties;
     }
 
-    public int getDefaultValue() {
-        return defaultValue;
+    public static class InputProperties {
+        private String id;
+        private String name;
+        private String type;
+        private int defaultValue;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public int getDefaultValue() {
+            return defaultValue;
+        }
+
+        public void setDefaultValue(int defaultValue) {
+            this.defaultValue = defaultValue;
+        }
+
+        @Override
+        public String toString() {
+            return  "\n    {\n" +
+                    "      \"id\": \"" + id + "\",\n" +
+                    "      \"name\": \"" + name + "\",\n" +
+                    "      \"type\": \"" + type + "\",\n" +
+                    "      \"defaultValue\": " + defaultValue + "\n" +
+                    "    }\n  ";
+        }
     }
 }

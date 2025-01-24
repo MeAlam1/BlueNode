@@ -7,14 +7,11 @@ import com.mealam.bluenode.nodes.category.NodeCategoryData;
 import com.mealam.bluenode.nodes.category.NodeCategoryManager;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
-import com.mealam.bluenode.utils.logging.BaseLogLevel;
-import com.mealam.bluenode.utils.logging.BaseLogger;
 import org.checkerframework.checker.index.qual.NonNegative;
 
 import java.util.List;
 
 public class Node {
-
     private final NodeProperties properties;
 
     public Node(double pX, double pY) {
@@ -43,18 +40,13 @@ public class Node {
         NodeCategoryData categoryData = NodeCategoryManager.getCategoryData(node.properties.getCategory());
         node.properties.setColor(categoryData.color());
 
-        BaseLogger.log(BaseLogLevel.INFO, "All Data from Node: " +
-                node.properties.getTitle() + " " +
-                node.properties.getDescription() + " " +
-                node.properties.getCategory());
-
         JsonArray inputsJsonArray = jsonObject.getAsJsonArray("inputs");
-        // node.properties.setInputs(Input.fromJsonArray(inputsJsonArray));
+        node.properties.setInputs(Input.fromJsonArray(inputsJsonArray));
 
         JsonArray outputsJsonArray = jsonObject.getAsJsonArray("outputs");
-        // node.properties.setOutputs(Output.fromJsonArray(outputsJsonArray));
+        node.properties.setOutputs(Output.fromJsonArray(outputsJsonArray));
 
-        // node.properties.setMetadata(Metadata.fromJson(jsonObject.getAsJsonObject("metadata")));
+        node.properties.setMetadata(Metadata.fromJson(jsonObject.getAsJsonObject("metadata")));
 
         return node;
     }
@@ -180,7 +172,7 @@ public class Node {
 
         @Override
         public String toString() {
-            return "Node Properties: \n{\n" +
+            return  "Node Properties: \n{\n" +
                     "  \"id\": \"" + id + "\",\n" +
                     "  \"x\": " + x + ",\n" +
                     "  \"y\": " + y + ",\n" +

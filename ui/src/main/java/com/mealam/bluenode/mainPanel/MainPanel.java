@@ -112,18 +112,4 @@ public class MainPanel extends BorderPane {
             BaseLogger.log(BaseLogLevel.WARNING, "No suitable position found for new node.");
         }
     }
-
-    public static boolean isOverlapping(Node pNode1, Node pNode2) {
-        boolean overlapping = pNode1.getProperties().getX() < pNode2.getProperties().getX() + pNode2.getProperties().getWidth() &&
-                pNode1.getProperties().getX() + pNode1.getProperties().getWidth() > pNode2.getProperties().getX() &&
-                pNode1.getProperties().getY() < pNode2.getProperties().getY() + pNode2.getProperties().getHeight() &&
-                pNode1.getProperties().getY() + pNode1.getProperties().getHeight() > pNode2.getProperties().getY();
-
-        if (overlapping) {
-            BaseLogger.log(BaseLogLevel.WARNING, "Nodes are overlapping with positions: \n" +
-                    "(Node1)(X: " + pNode1.getProperties().getX() + ", Y: " + pNode1.getProperties().getY() + ") \n" +
-                    "(Node2)(X: " + pNode2.getProperties().getX() + ", Y: " + pNode2.getProperties().getY() + ")");
-        }
-        return overlapping;
-    }
 }

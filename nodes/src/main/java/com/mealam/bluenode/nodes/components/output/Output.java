@@ -3,21 +3,22 @@ package com.mealam.bluenode.nodes.components.output;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mealam.bluenode.interfaces.nodes.NodeComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Output implements NodeComponent {
+public class Output {
 
-    private String id;
-    private String name;
-    private String type;
+    private final OutputProperties properties;
+
+    public Output() {
+        properties = new OutputProperties();
+    }
 
     public static Output fromJson(JsonObject jsonObject) {
         Output output = new Output();
-        output.id = jsonObject.get("id").getAsString();
-        output.name = jsonObject.get("name").getAsString();
-        output.type = jsonObject.get("type").getAsString();
+        output.properties.id = jsonObject.get("id").getAsString();
+        output.properties.name = jsonObject.get("name").getAsString();
+        output.properties.type = jsonObject.get("type").getAsString();
         return output;
     }
 
@@ -29,17 +30,51 @@ public class Output implements NodeComponent {
         return outputs;
     }
 
-    // Getter methods
-    public String getId() {
-        return id;
-    }
-
     @Override
-    public String getName() {
-        return name;
+    public String toString() {
+        return properties.toString();
     }
 
-    public String getType() {
-        return type;
+    public OutputProperties getProperties() {
+        return properties;
+    }
+
+    public static class OutputProperties {
+        private String id;
+        private String name;
+        private String type;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        @Override
+        public String toString() {
+            return  "\n    {\n" +
+                    "      \"id\": \"" + id + "\",\n" +
+                    "      \"name\": \"" + name + "\",\n" +
+                    "      \"type\": " + type + "\n" +
+                    "    }\n  ";
+        }
     }
 }
