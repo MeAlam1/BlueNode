@@ -4,18 +4,16 @@ import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeRenderer;
-import com.mealam.bluenode.nodes.categories.MathNode;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainPanel extends BorderPane {
 
@@ -53,7 +51,7 @@ public class MainPanel extends BorderPane {
                 double snappedY = GridDrawer.snapToGrid(centerY - CanvasDragHandler.getTranslateY());
 
                 //NOTE: This is where the node is Drawn!!!!
-                Node newNode = new MathNode(snappedX, snappedY);
+                Node newNode = new Node(snappedX, snappedY);
                 Node getNode = getNewNode(newNode);
                 placeNode(getNode);
             }

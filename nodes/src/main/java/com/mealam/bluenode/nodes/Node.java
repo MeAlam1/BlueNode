@@ -3,19 +3,22 @@ package com.mealam.bluenode.nodes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mealam.bluenode.nodes.category.CategoryData;
+import com.mealam.bluenode.nodes.category.CategoryManager;
 import com.mealam.bluenode.nodes.components.Input;
 import com.mealam.bluenode.nodes.components.Output;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.util.List;
 
 public class Node {
+
     private String id;
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
     private double width;
     private double height;
+    private String color;
     private String title;
     private String description;
     private String category;
@@ -44,6 +47,8 @@ public class Node {
         node.title = jsonObject.get("title").getAsString();
         node.description = jsonObject.get("description").getAsString();
         node.category = jsonObject.get("category").getAsString();
+        CategoryData categoryData = CategoryManager.getCategoryData(node.category);
+        node.color = categoryData.color();
         BaseLogger.log(BaseLogLevel.INFO, "All Data from Node: " + node.title + " " + node.description + " " + node.category);
 
         JsonArray inputsJsonArray = jsonObject.getAsJsonArray("inputs");
@@ -56,7 +61,6 @@ public class Node {
 
         return node;
     }
-
 
     public String getId() {
         return id;
@@ -99,7 +103,7 @@ public class Node {
     }
 
     public String getColor() {
-        return "#FFFFFF";
+        return color;
     }
 
     public String getCategory() {

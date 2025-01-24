@@ -7,8 +7,8 @@ import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-
 public class NodeLoaderUtils {
+
     public static Node getNodeByKey(@NonNull String pKey, double pX, double pY) {
         for (JsonObject nodeJson : NodeLoader.allNodes) {
             for (String key : nodeJson.keySet()) {

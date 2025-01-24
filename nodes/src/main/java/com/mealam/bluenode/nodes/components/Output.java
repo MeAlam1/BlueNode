@@ -4,11 +4,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.interfaces.nodes.NodeComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Output implements NodeComponent {
+
     private String id;
     private String name;
     private String type;
@@ -30,9 +30,16 @@ public class Output implements NodeComponent {
     }
 
     // Getter methods
-    public String getId() { return id; }
-    @Override
-    public String getName() { return name; }
-    public String getType() { return type; }
-}
+    public String getId() {
+        return id;
+    }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+}
