@@ -59,7 +59,7 @@ public class JSONParser {
                         try {
                             JSONMerger.addJsonFromJarEntry(zipFile, entry, jsonObjects);
                         } catch (IOException e) {
-                            BaseLogger.log(BaseLogLevel.ERROR, "Error reading entry from JAR: " + entry.getName(), e);
+                            BaseLogger.log(BaseLogLevel.ERROR, "[Jar] Error reading entry: " + entry.getName(), e);
                         }
                     });
         }

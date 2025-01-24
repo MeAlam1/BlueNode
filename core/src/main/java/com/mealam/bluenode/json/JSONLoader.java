@@ -30,16 +30,18 @@ public class JSONLoader {
                 return loadJsonFromFile(new File(resourceUrl.toURI()));
             }
         } catch (IOException exception) {
-            BaseLogger.log(BaseLogLevel.ERROR, "Failed to load JSON file: " + filePath, exception);
+            BaseLogger.log(BaseLogLevel.ERROR, "Failed to load JSON resource: " + filePath, exception);
             throw new RuntimeException("Failed to load JSON resource: " + filePath, exception);
         } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+            BaseLogger.log(BaseLogLevel.ERROR, "Invalid resource path: " + filePath, e);
+            throw new RuntimeException("Invalid resource path: " + filePath, e);
         }
     }
 
     private static JsonObject loadJsonFromFile(File file) throws IOException {
         if (!file.exists() || !file.canRead()) {
-            BaseLogger.log(BaseLogLevel.ERROR, "File not found or not readable: " + file);
+            BaseLogger.log(BaseLogLevel.ERROR,
+                    !file.exists() ? "File not found: " + file : "File not readable: " + file);
             return new JsonObject();
         }
 
@@ -54,7 +56,7 @@ public class JSONLoader {
         try (ZipFile zipFile = new ZipFile(new File(jarFilePath))) {
             ZipEntry entry = zipFile.getEntry(resourcePath);
             if (entry == null) {
-                BaseLogger.log(BaseLogLevel.ERROR, "Resource not found inside the JAR: " + resourcePath);
+                BaseLogger.log(BaseLogLevel.ERROR, "[Jar] Resource not found: " + resourcePath);
                 return new JsonObject();
             }
 

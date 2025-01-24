@@ -16,9 +16,9 @@ public class JSONMerger {
         JsonObject jsonObject = JSONLoader.loadJson(file.getAbsolutePath());
         if (jsonObject != null) {
             jsonObjects.add(jsonObject);
-            BaseLogger.log(BaseLogLevel.SUCCESS, "Successfully loaded JSON from: " + file.getPath());
+            BaseLogger.log(BaseLogLevel.SUCCESS, "[File] Successfully loaded JSON: " + file.getPath());
         } else {
-            BaseLogger.log(BaseLogLevel.WARNING, "Failed to load JSON from: " + file.getPath());
+            BaseLogger.log(BaseLogLevel.WARNING, "[File] Failed to load JSON: " + file.getPath());
         }
     }
 
@@ -27,9 +27,9 @@ public class JSONMerger {
             JsonObject jsonObject = JSONLoader.loadJsonFromReader(reader);
             if (jsonObject != null) {
                 jsonObjects.add(jsonObject);
-                BaseLogger.log(BaseLogLevel.SUCCESS, "Successfully loaded JSON from JAR entry: " + entry.getName());
+                BaseLogger.log(BaseLogLevel.SUCCESS, "[Jar] Successfully loaded JSON: " + entry.getName());
             } else {
-                BaseLogger.log(BaseLogLevel.WARNING, "Failed to load JSON from JAR entry: " + entry.getName());
+                BaseLogger.log(BaseLogLevel.WARNING, "[Jar] Failed to load JSON: " + entry.getName());
             }
         }
     }
