@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
+
     private final InputProperties properties;
 
     public Input() {
@@ -40,6 +41,7 @@ public class Input {
     }
 
     public static class InputProperties {
+
         private String id;
         private String name;
         private String type;
@@ -79,7 +81,7 @@ public class Input {
 
         @Override
         public String toString() {
-            return  "\n    {\n" +
+            return "\n    {\n" +
                     "      \"id\": \"" + id + "\",\n" +
                     "      \"name\": \"" + name + "\",\n" +
                     "      \"type\": \"" + type + "\",\n" +

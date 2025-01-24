@@ -7,11 +7,11 @@ import com.mealam.bluenode.nodes.category.NodeCategoryData;
 import com.mealam.bluenode.nodes.category.NodeCategoryManager;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
+import java.util.List;
 import org.checkerframework.checker.index.qual.NonNegative;
 
-import java.util.List;
-
 public class Node {
+
     private final NodeProperties properties;
 
     public Node(double pX, double pY) {
@@ -61,6 +61,7 @@ public class Node {
     }
 
     public static class NodeProperties {
+
         private String id;
         private double x;
         private double y;
@@ -172,7 +173,7 @@ public class Node {
 
         @Override
         public String toString() {
-            return  "Node Properties: \n{\n" +
+            return "Node Properties: \n{\n" +
                     "  \"id\": \"" + id + "\",\n" +
                     "  \"x\": " + x + ",\n" +
                     "  \"y\": " + y + ",\n" +
@@ -187,6 +188,5 @@ public class Node {
                     "  \"metadata\": " + metadata + "\n" +
                     "}";
         }
-
     }
 }

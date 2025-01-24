@@ -1,7 +1,6 @@
 package com.mealam.bluenode.utils.logging;
 
 import com.mealam.bluenode.Constants;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,8 +34,7 @@ public class BaseLogger {
      *
      * @since 1.0.0
      */
-    private BaseLogger() {
-    }
+    private BaseLogger() {}
 
     /**
      * Checks if general logging is enabled.

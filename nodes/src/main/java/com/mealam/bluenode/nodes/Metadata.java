@@ -16,7 +16,7 @@ public class Metadata {
 
     public static Metadata fromJson(JsonObject jsonObject) {
         Metadata metadata = new Metadata();
-        
+
         JsonArray tagsJsonArray = jsonObject.getAsJsonArray("tags");
         metadata.properties.tags = new ArrayList<>();
         if (tagsJsonArray != null) {
@@ -38,6 +38,7 @@ public class Metadata {
     }
 
     public static class MetadataProperties {
+
         private List<String> tags;
 
         public List<String> getTags() {
@@ -50,7 +51,7 @@ public class Metadata {
 
         @Override
         public String toString() {
-            return  "{\n" +
+            return "{\n" +
                     "    \"tags\": " + tags + "\n" +
                     "  }";
         }

@@ -40,6 +40,7 @@ public class Output {
     }
 
     public static class OutputProperties {
+
         private String id;
         private String name;
         private String type;
@@ -70,7 +71,7 @@ public class Output {
 
         @Override
         public String toString() {
-            return  "\n    {\n" +
+            return "\n    {\n" +
                     "      \"id\": \"" + id + "\",\n" +
                     "      \"name\": \"" + name + "\",\n" +
                     "      \"type\": " + type + "\n" +
