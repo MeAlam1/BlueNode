@@ -1,6 +1,10 @@
 package com.mealam.bluenode.nodes;
 
+import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
+import com.mealam.bluenode.nodes.input.CustomTextField;
+import com.mealam.bluenode.utils.logging.BaseLogLevel;
+import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
@@ -17,14 +21,19 @@ public class InputRenderer {
      * @param height the height of the TextField
      */
     public static void render(Pane parent, Input input, double x, double y, double width, double height) {
-        TextField textField = new TextField();
-        textField.setLayoutX(x + 5);
-        textField.setLayoutY(y + (height / 2) - 10);
-        textField.setPrefWidth(width - 15);
-        textField.setPrefHeight(20);
+        CustomTextField textField = new CustomTextField();
+        textField.setText(input.getProperties().getDefaultValue());
+        textField.setPromptText(input.getProperties().getName());
+        textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
+        textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
+        textField.setPrefWidth(width - 10);
 
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            input.getProperties().setDefaultValue(newValue);
+        textField.setOnAction(e -> parent.getChildren().remove(textField));
+        textField.focusedProperty().addListener((obs, oldFocused, newFocused) -> {
+            if (!newFocused) {
+                parent.getChildren().remove(textField);
+                input.getProperties().setDefaultValue(textField.getText());
+            }
         });
 
         parent.getChildren().add(textField);

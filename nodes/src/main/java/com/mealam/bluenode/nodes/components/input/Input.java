@@ -24,7 +24,7 @@ public class Input {
         InputCategoryData categoryData = InputCategoryManager.getCategoryData(input.properties.getType());
         input.properties.setColor(categoryData.color());
 
-        input.properties.defaultValue = jsonObject.has("defaultValue") ? jsonObject.get("defaultValue").getAsInt() : 0;
+        input.properties.defaultValue = jsonObject.has("defaultValue") ? jsonObject.get("defaultValue").getAsString() : "";
         return input;
     }
 
@@ -51,7 +51,7 @@ public class Input {
         private String name;
         private String type;
         private String color;
-        private Object defaultValue;
+        private String defaultValue;
 
         public String getId() {
             return id;
@@ -85,11 +85,11 @@ public class Input {
             this.color = color;
         }
 
-        public Object getDefaultValue() {
+        public String getDefaultValue() {
             return defaultValue;
         }
 
-        public void setDefaultValue(Object defaultValue) {
+        public void setDefaultValue(String defaultValue) {
             this.defaultValue = defaultValue;
         }
 

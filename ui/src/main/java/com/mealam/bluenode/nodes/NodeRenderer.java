@@ -1,11 +1,13 @@
 package com.mealam.bluenode.nodes;
 
+import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 public class NodeRenderer {
 
-    public static void render(GraphicsContext pGraphicsContext, Node pNode, double pTranslateX, double pTranslateY) {
+    public static void render(GraphicsContext pGraphicsContext, Pane pPane, Node pNode, double pTranslateX, double pTranslateY) {
         double x = pNode.getProperties().getX() + pTranslateX;
         double y = pNode.getProperties().getY() + pTranslateY;
         double width = pNode.getProperties().getWidth();
@@ -26,9 +28,8 @@ public class NodeRenderer {
         pGraphicsContext.setFill(Color.BLACK);
         pGraphicsContext.fillText(pNode.getProperties().getTitle(), x + 5, y + 20);
 
-        /* Inputs
         for (Input input : pNode.getProperties().getInputs()) {
-            //InputRenderer.render(pGraphicsContext, input, x, y, width, height);
-        }*/
+            InputRenderer.render(pPane, input, x + 5, y + (height / 2), width, height);
+        }
     }
 }

@@ -112,7 +112,7 @@ public class MainPanel extends BorderPane {
             BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());
 
             for (Node node : nodes) {
-                NodeRenderer.render(graphicsContext, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
+                NodeRenderer.render(graphicsContext, overlayPane, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
             }
 
             BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + NodeIDGenerator.decryptID(pNode.getProperties().getId()));
