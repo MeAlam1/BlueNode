@@ -1,21 +1,16 @@
 package com.mealam.bluenode.nodes.input;
 
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Popup;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 
-/* OPTIMIZE: CustomTextField is not done, this is a test class and it works.
-  * This class needs a lot more buttons like copy, paste, cut, etc.
-  * This class needs another Color and some other details
- */
-public class CustomTextField extends TextField {
+public class FloatField extends TextField {
 
-    public CustomTextField() {
+    public FloatField() {
         this.setContextMenu(new ContextMenu());
         this.setOnMousePressed(event -> {
             if (event.getButton() == MouseButton.SECONDARY) { // Right-click
@@ -24,22 +19,39 @@ public class CustomTextField extends TextField {
         });
     }
 
+    @Override
+    public void replaceText(int start, int end, String text) {
+        if (validate(text)) {
+            super.replaceText(start, end, text);
+        }
+    }
+
+    @Override
+    public void replaceSelection(String text) {
+        if (validate(text)) {
+            super.replaceSelection(text);
+        }
+    }
+
+    private boolean validate(String text) {
+        return text.matches("[0-9]*\\.?[0-9]*");
+    }
+
     private void showCustomMenu(MouseEvent event) {
         Popup popup = new Popup();
 
         VBox menuBox = new VBox();
-        menuBox.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-padding: 10;");
         menuBox.setSpacing(5);
 
         Text undoOption = new Text("Undo");
         undoOption.setOnMouseClicked(e -> {
-            System.out.println("Undo clicked");
+            undo();
             popup.hide();
         });
 
-        Text customOption = new Text("Custom Action");
+        Text customOption = new Text("Random Action");
         customOption.setOnMouseClicked(e -> {
-            System.out.println("Custom action clicked");
+            System.out.println("Random action Clicked");
             popup.hide();
         });
 
