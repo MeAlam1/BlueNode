@@ -32,7 +32,7 @@ public class GridDrawer {
             }
         }
 
-        // Cause it's called every time you drag the canvas
+        //NOTE: Cause it's called every time you drag the canvas
         //BaseLogger.log(BaseLogLevel.INFO, "Grid drawn");
     }
 

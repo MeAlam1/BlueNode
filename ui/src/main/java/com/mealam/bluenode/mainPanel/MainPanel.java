@@ -8,6 +8,8 @@ import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -15,13 +17,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainPanel extends BorderPane {
 
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
+    private final Pane overlayPane;
     public static List<Node> nodes;
 
     public MainPanel() {
@@ -29,19 +29,19 @@ public class MainPanel extends BorderPane {
         gridDrawer = new GridDrawer();
         nodes = new ArrayList<>();
 
-        Pane overlayPane = new Pane();
+        overlayPane = new Pane();
         overlayPane.setPickOnBounds(false);
 
         StackPane stackPane = new StackPane(UIConstants.MAIN_CANVAS, overlayPane);
         setCenter(stackPane);
 
-        UIConstants.MAIN_CANVAS.widthProperty().bind(stackPane.widthProperty());
-        UIConstants.MAIN_CANVAS.heightProperty().bind(stackPane.heightProperty());
+        UIConstants.MAIN_CANVAS.widthProperty().bind(widthProperty());
+        UIConstants.MAIN_CANVAS.heightProperty().bind(heightProperty());
 
         widthProperty().addListener((observable, oldValue, newValue) -> drawGrid());
         heightProperty().addListener((observable, oldValue, newValue) -> drawGrid());
 
-        new CanvasDragHandler(UIConstants.MAIN_CANVAS, graphicsContext, gridDrawer, nodes);
+        new CanvasDragHandler(UIConstants.MAIN_CANVAS, graphicsContext, gridDrawer, nodes, overlayPane);
 
         UIConstants.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.SECONDARY) { // Right-click
@@ -57,7 +57,6 @@ public class MainPanel extends BorderPane {
                 double snappedX = GridDrawer.snapToGrid(centerX - CanvasDragHandler.getTranslateX());
                 double snappedY = GridDrawer.snapToGrid(centerY - CanvasDragHandler.getTranslateY());
 
-                //NOTE: This is where the node is Drawn!!!!
                 Node newNode = new Node(snappedX, snappedY);
                 Node getNode = getNewNode(newNode);
                 placeNode(getNode);
@@ -87,8 +86,7 @@ public class MainPanel extends BorderPane {
         graphicsContext.translate(CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
 
         gridDrawer.drawGrid(graphicsContext, width, height, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
-
-        graphicsContext.restore();
+        gridDrawer.redraw(graphicsContext, width, height, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
     }
 
     public boolean isNodeAtLocation(double pX, double pY, double width, double height) {

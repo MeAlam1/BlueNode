@@ -5,7 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.nodes.components.input.category.InputCategoryData;
 import com.mealam.bluenode.nodes.components.input.category.InputCategoryManager;
-
 import java.util.ArrayList;
 import java.util.List;
 

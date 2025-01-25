@@ -1,6 +1,5 @@
 package com.mealam.bluenode.nodes;
 
-import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -27,9 +26,9 @@ public class NodeRenderer {
         pGraphicsContext.setFill(Color.BLACK);
         pGraphicsContext.fillText(pNode.getProperties().getTitle(), x + 5, y + 20);
 
-        // Inputs
+        /* Inputs
         for (Input input : pNode.getProperties().getInputs()) {
             //InputRenderer.render(pGraphicsContext, input, x, y, width, height);
-        }
+        }*/
     }
 }

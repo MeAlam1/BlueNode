@@ -1,6 +1,5 @@
 package com.mealam.bluenode.nodes;
 
-import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -30,23 +29,4 @@ public class InputRenderer {
 
         parent.getChildren().add(textField);
     }
-
-    /*NOTE: TestFieldTest Code
-    private void addTextFieldToOverlay(double x, double y, double width, double height) {
-        TextField textField = new TextField();
-        textField.setPromptText("Enter text...");
-        textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
-        textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
-        textField.setPrefWidth(width - 10);
-
-        // Remove TextField when losing focus or pressing Enter
-        textField.setOnAction(e -> overlayPane.getChildren().remove(textField));
-        textField.focusedProperty().addListener((obs, oldFocused, newFocused) -> {
-            if (!newFocused) {
-                overlayPane.getChildren().remove(textField);
-            }
-        });
-
-        overlayPane.getChildren().add(textField);
-    }*/
 }

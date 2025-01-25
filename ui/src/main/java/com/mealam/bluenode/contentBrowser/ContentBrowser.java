@@ -1,7 +1,6 @@
 package com.mealam.bluenode.contentBrowser;
 
 import com.mealam.bluenode.UIConstants;
-import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.utils.contentBrowser.TreeNode;
 import java.io.File;
 import javafx.scene.control.TreeItem;

@@ -7,23 +7,26 @@ import java.util.List;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class CanvasDragHandler {
 
     private final Canvas canvas;
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
+    private final Pane overlayPane;
     private static double translateX;
     private static double translateY;
     private final List<Node> nodes;
     private double lastX;
     private double lastY;
 
-    public CanvasDragHandler(Canvas pCanvas, GraphicsContext pGraphicsContext, GridDrawer pGridDrawer, List<Node> pNodes) {
+    public CanvasDragHandler(Canvas pCanvas, GraphicsContext pGraphicsContext, GridDrawer pGridDrawer, List<Node> pNodes, Pane pOverlayPane) {
         this.canvas = pCanvas;
         this.graphicsContext = pGraphicsContext;
         this.gridDrawer = pGridDrawer;
         this.nodes = pNodes;
+        this.overlayPane = pOverlayPane;
         initDragHandler();
     }
 
@@ -46,6 +49,9 @@ public class CanvasDragHandler {
 
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gridDrawer.redraw(graphicsContext, canvas.getWidth(), canvas.getHeight(), -translateX, -translateY);
+
+        overlayPane.setTranslateX(translateX);
+        overlayPane.setTranslateY(translateY);
 
         for (Node node : nodes) {
             NodeRenderer.render(graphicsContext, node, translateX, translateY);

@@ -2,7 +2,6 @@ package com.mealam.bluenode.configs;
 
 import com.mealam.bluenode.Constants;
 import com.mealam.bluenode.UIConstants;
-import com.mealam.bluenode.UIController;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.stage.Stage;

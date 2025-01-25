@@ -1,7 +1,6 @@
 package com.mealam.bluenode;
 
 import com.mealam.bluenode.configs.StageConfigurer;
-import com.mealam.bluenode.contentBrowser.ContentBrowser;
 import com.mealam.bluenode.handlers.WindowInteractionHandler;
 import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.titleBar.TitleBar;
@@ -9,9 +8,6 @@ import com.mealam.bluenode.utils.conversion.ColorUtils;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class UIController extends Application {
