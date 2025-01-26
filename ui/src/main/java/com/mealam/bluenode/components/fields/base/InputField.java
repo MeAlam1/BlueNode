@@ -1,4 +1,4 @@
-package com.mealam.bluenode.nodes.input.components;
+package com.mealam.bluenode.components.fields.base;
 
 import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.control.ContextMenu;

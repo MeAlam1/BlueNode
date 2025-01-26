@@ -1,7 +1,7 @@
-package com.mealam.bluenode.nodes.input;
+package com.mealam.bluenode.components.fields;
 
 import com.mealam.bluenode.nodes.components.input.Input;
-import com.mealam.bluenode.nodes.input.components.InputField;
+import com.mealam.bluenode.components.fields.base.InputField;
 
 public class IntField extends InputField {
     public IntField(Input pInput) {

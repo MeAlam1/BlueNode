@@ -1,4 +1,4 @@
-package com.mealam.bluenode.nodes.input.components;
+package com.mealam.bluenode.components.fields.base;
 
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;

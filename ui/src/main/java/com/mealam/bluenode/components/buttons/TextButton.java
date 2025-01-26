@@ -1,4 +1,4 @@
-package com.mealam.bluenode.components;
+package com.mealam.bluenode.components.buttons;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

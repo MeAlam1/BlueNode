@@ -2,7 +2,7 @@ package com.mealam.bluenode.nodes;
 
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
-import com.mealam.bluenode.nodes.input.FloatField;
+import com.mealam.bluenode.components.fields.FloatField;
 import javafx.scene.layout.Pane;
 
 public class InputRenderer {

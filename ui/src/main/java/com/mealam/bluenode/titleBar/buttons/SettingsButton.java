@@ -1,7 +1,7 @@
 package com.mealam.bluenode.titleBar.buttons;
 
 import com.mealam.bluenode.ColorConstants;
-import com.mealam.bluenode.components.TextButton;
+import com.mealam.bluenode.components.buttons.TextButton;
 import com.mealam.bluenode.titleBar.buttons.actions.settingsButton.SettingsWindow;
 import com.mealam.bluenode.utils.converter.UIColorConverter;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;

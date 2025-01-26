@@ -1,7 +1,7 @@
 package com.mealam.bluenode.titleBar.buttons;
 
 import com.mealam.bluenode.ColorConstants;
-import com.mealam.bluenode.components.TextButton;
+import com.mealam.bluenode.components.buttons.TextButton;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.NewAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.OpenAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAction;
