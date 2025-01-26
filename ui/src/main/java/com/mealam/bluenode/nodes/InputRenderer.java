@@ -21,7 +21,8 @@ public class InputRenderer {
         FloatField textField = new FloatField(input);
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
-        textField.setPrefWidth(width - 10);
+        textField.setPrefWidth(40);
+        textField.setPrefHeight(20);
 
         parent.getChildren().add(textField);
     }
