@@ -21,7 +21,28 @@ body:
       label: Add a description
       description: |
         Please describe the issue in as much detail as possible.
+        Copy:
+
+        ### **Description**
+        Please provide a brief overview of the issue you're facing.
+
+        ### **Tasks**
+        1.  
+        2.  
+        3.  
+
+        ### **Acceptance Criteria**
+        -  
+        -  
+        -  
+
+        ### **Impact**
+        -  
+        -  
+        -
       placeholder: |
+        Suggested Template – While not required, issues submitted using this template will receive priority.
+        
         ### **Description**
         Please provide a brief overview of the issue you're facing.
 
