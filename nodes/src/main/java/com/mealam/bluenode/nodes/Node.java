@@ -60,6 +60,20 @@ public class Node {
         return properties;
     }
 
+    public void updateSize() {
+        double maxWidth = 0;
+
+        for (Input input : this.getProperties().getInputs()) {
+            double inputWidth = input.getProperties().getWidth();
+            if (inputWidth > maxWidth) {
+                maxWidth = inputWidth;
+            }
+        }
+
+        double minNodeWidth = 150;
+        this.getProperties().setWidth(Math.max(minNodeWidth, minNodeWidth + maxWidth + 20));
+    }
+
     public static class NodeProperties {
 
         private String id;

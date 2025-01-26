@@ -1,24 +1,25 @@
 package com.mealam.bluenode.components.fields.base;
 
+import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
+import com.mealam.bluenode.nodes.Node;
+import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.nodes.components.input.Input;
-import com.mealam.bluenode.utils.logging.BaseLogLevel;
-import com.mealam.bluenode.utils.logging.BaseLogger;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import static com.sun.javafx.scene.control.skin.Utils.computeTextWidth;
-
 public abstract class InputField extends TextField {
+
     private final Input input;
 
-    public InputField(Input pInput) {
+    public InputField(GraphicsContext pGraphicsContext, Pane pPane, Input pInput, Node pNode) {
         this.input = pInput;
 
         this.setContextMenu(new ContextMenu());
         configureField();
-        addEventListeners();
+        addEventListeners(pGraphicsContext, pPane, pNode);
     }
 
     private void configureField() {
@@ -27,7 +28,7 @@ public abstract class InputField extends TextField {
         this.getStyleClass().add("input-field");
     }
 
-    private void addEventListeners() {
+    private void addEventListeners(GraphicsContext pGraphicsContext, Pane pPane, Node pNode) {
         this.setOnMousePressed(pEvent -> InputFieldContextMenu.handleRightClick(this, pEvent));
         this.setOnAction(pEvent -> saveValue());
         this.focusedProperty().addListener((pObservableValue, pOldFocused, pNewFocused) -> {
@@ -39,8 +40,16 @@ public abstract class InputField extends TextField {
             text.setFont(this.getFont());
             double textWidth = text.getLayoutBounds().getWidth();
             double padding = this.getInsets().getLeft() + this.getInsets().getRight();
-            setPrefWidth(Math.max(40, textWidth + padding));
-            input.getProperties().setWidth(textWidth + padding);
+            double newWidth = Math.max(40, textWidth + padding);
+
+            pNode.updateSize();
+            pGraphicsContext.clearRect(pNode.getProperties().getX() + CanvasDragHandler.getTranslateX(),
+                    pNode.getProperties().getY() + CanvasDragHandler.getTranslateY(),
+                    pNode.getProperties().getWidth(),
+                    pNode.getProperties().getHeight());
+            NodeRenderer.render(pGraphicsContext, pPane, pNode, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
+            setPrefWidth(newWidth);
+            input.getProperties().setWidth(newWidth);
         });
     }
 

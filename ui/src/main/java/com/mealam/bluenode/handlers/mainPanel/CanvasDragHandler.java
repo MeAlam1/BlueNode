@@ -11,22 +11,22 @@ import javafx.scene.layout.Pane;
 
 public class CanvasDragHandler {
 
-    private final Canvas canvas;
-    private final GraphicsContext graphicsContext;
-    private final GridDrawer gridDrawer;
-    private final Pane overlayPane;
+    private static Canvas canvas;
+    private static GraphicsContext graphicsContext;
+    private static GridDrawer gridDrawer;
+    private static Pane overlayPane;
     private static double translateX;
     private static double translateY;
-    private final List<Node> nodes;
+    private static List<Node> nodes;
     private double lastX;
     private double lastY;
 
     public CanvasDragHandler(Canvas pCanvas, GraphicsContext pGraphicsContext, GridDrawer pGridDrawer, List<Node> pNodes, Pane pOverlayPane) {
-        this.canvas = pCanvas;
-        this.graphicsContext = pGraphicsContext;
-        this.gridDrawer = pGridDrawer;
-        this.nodes = pNodes;
-        this.overlayPane = pOverlayPane;
+        canvas = pCanvas;
+        graphicsContext = pGraphicsContext;
+        gridDrawer = pGridDrawer;
+        nodes = pNodes;
+        overlayPane = pOverlayPane;
         initDragHandler();
     }
 

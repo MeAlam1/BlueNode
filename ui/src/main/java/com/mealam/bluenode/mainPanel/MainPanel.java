@@ -1,6 +1,5 @@
 package com.mealam.bluenode.mainPanel;
 
-import com.mealam.bluenode.JunkDrawer;
 import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;

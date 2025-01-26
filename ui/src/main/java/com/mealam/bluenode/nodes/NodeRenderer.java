@@ -29,7 +29,7 @@ public class NodeRenderer {
         pGraphicsContext.fillText(pNode.getProperties().getTitle(), x + 5, y + 20);
 
         for (Input input : pNode.getProperties().getInputs()) {
-            InputRenderer.render(pPane, input, x + 5, y + (height / 2), width, height);
+            InputRenderer.render(pGraphicsContext, pPane, input, pNode, x + 5, y + (height / 2), width, height);
         }
     }
 }

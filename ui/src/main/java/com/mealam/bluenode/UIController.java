@@ -11,8 +11,6 @@ import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 public class UIController extends Application {
 
     @Override

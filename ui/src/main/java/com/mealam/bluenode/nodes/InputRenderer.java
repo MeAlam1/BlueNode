@@ -1,11 +1,10 @@
 package com.mealam.bluenode.nodes;
 
+import com.mealam.bluenode.components.fields.FloatField;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
-import com.mealam.bluenode.components.fields.FloatField;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
-
-import java.util.Objects;
 
 public class InputRenderer {
 
@@ -19,8 +18,8 @@ public class InputRenderer {
      * @param width  the width of the TextField
      * @param height the height of the TextField
      */
-    public static void render(Pane parent, Input input, double x, double y, double width, double height) {
-        FloatField textField = new FloatField(input);
+    public static void render(GraphicsContext pGraphicsContext, Pane parent, Input input, Node pNode, double x, double y, double width, double height) {
+        FloatField textField = new FloatField(pGraphicsContext, parent, input, pNode);
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
         textField.setMaxWidth(width - 10);

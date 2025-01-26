@@ -3,7 +3,6 @@ package com.mealam.bluenode.styles;
 import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
