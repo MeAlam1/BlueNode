@@ -1,0 +1,71 @@
+name: General Issue
+description: Create a general issue
+title: "[-]: "
+labels: ["Enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for creating an issue! Please fill in the [-] in the title with the appropriate category for your issue.
+  - type: checkboxes
+    attributes:
+      label: Rule checks (please read carefully)
+      options:
+        - label: "I have checked that my issue <a href='https://github.com/MeAlam1/BlueNode/issues' target='_blank'>is not already reported</a>"
+          required: true
+        - label: "I have checked that my issue <a href='https://github.com/MeAlam1/BlueNode/discussions/8' target='_blank'>is not a known bug</a>"
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Add a description
+      description: |
+        Please describe the issue in as much detail as possible.
+        
+        Suggested Template – While not required, issues submitted using this template will receive priority.
+        ```
+        ### **Description**
+        Please provide a brief overview of the issue you're facing.
+
+        ### **Tasks**
+        1.  
+        2.  
+        3.  
+
+        ### **Acceptance Criteria**
+        -  
+        -  
+        -  
+
+        ### **Impact**
+        -  
+        -  
+        -
+        ```
+      placeholder: |
+        ### **Description**
+        Please provide a brief overview of the issue you're facing.
+
+        ### **Tasks**
+        1.  
+        2.  
+        3.  
+
+        ### **Acceptance Criteria**
+        -  
+        -  
+        -  
+
+        ### **Impact**
+        -  
+        -  
+        -
+    validations:
+      required: true
+  - type: textarea
+    id: more-information
+    attributes:
+      label: More information
+      description: Provide any additional information that might be relevant to the issue.
+      placeholder: |
+        Any extra details you want to include (optional).
