@@ -12,6 +12,8 @@ public abstract class InputField extends TextField {
         this.input = pInput;
 
         this.setContextMenu(new ContextMenu());
+        this.getStyleClass().add("input-field");
+
         this.setOnMousePressed(event -> {
             if (event.getButton() == MouseButton.SECONDARY) {
                 InputFieldContextMenu.showContextMenu(this, event);
