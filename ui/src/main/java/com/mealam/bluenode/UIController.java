@@ -35,8 +35,8 @@ public class UIController extends Application {
         MainPanel mainPanel = new MainPanel();
         WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, UIConstants.MAIN_ROOT);
 
-        UIConstants.MAIN_ROOT.setTop(titleBar);
         UIConstants.MAIN_ROOT.setCenter(mainPanel);
+        UIConstants.MAIN_ROOT.setTop(titleBar);
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "Components initialized successfully.");
     }
