@@ -21,9 +21,9 @@ body:
       label: Add a description
       description: |
         Please describe the issue in as much detail as possible.
-      placeholder: |
+      value: |
         ### **Description**  
-        
+
         Please provide a brief overview of the issue you're facing.
 
         ### **Tasks**  
@@ -47,5 +47,5 @@ body:
     attributes:
       label: More information
       description: Provide any additional information that might be relevant to the issue.
-      placeholder: |
+      value: |
         Any extra details you want to include (optional).
