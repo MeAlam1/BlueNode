@@ -21,6 +21,7 @@ public class Input {
         input.properties.setId(jsonObject.get("id").getAsString());
         input.properties.setName(jsonObject.get("name").getAsString());
         input.properties.setType(jsonObject.get("type").getAsString());
+        input.properties.setWidth(20);
         InputCategoryData categoryData = InputCategoryManager.getCategoryData(input.properties.getType());
         input.properties.setColor(categoryData.color());
 

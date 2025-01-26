@@ -24,12 +24,7 @@ public class InputRenderer {
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
         textField.setMaxWidth(width - 10);
-        textField.setPrefWidth(
-                Objects.requireNonNullElse(
-                        (Number) input.getProperties().getWidth(),
-                        20
-                ).doubleValue()
-        );
+        textField.setPrefWidth(input.getProperties().getWidth());
         textField.setPrefHeight(20);
 
         parent.getChildren().add(textField);
