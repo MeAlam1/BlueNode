@@ -1,18 +1,18 @@
 .input-field {
-    -fx-background-color: #2b2b2b;  /* Dark background */
-    -fx-text-fill: #ffffff;         /* White text */
-    -fx-font-size: 14px;           /* Default font size */
-    -fx-border-color: #5e5e5e;     /* Border color */
-    -fx-border-radius: 5px;        /* Rounded corners */
-    -fx-padding: 5px;              /* Padding inside the text field */
+    -fx-background-color: #2b2b2b;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-border-color: #5e5e5e;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
 }
 
 .input-field:focused {
-    -fx-border-color: #4caf50;     /* Green border when focused */
-    -fx-background-color: #1e1e1e; /* Slightly darker when focused */
+    -fx-border-color: #4caf50;
+    -fx-background-color: #1e1e1e;
 }
 
 .input-field.error {
-    -fx-border-color: #ff5252;     /* Red border for validation error */
-    -fx-background-color: #3c1e1e; /* Slightly red background */
+    -fx-border-color: #ff5252;
+    -fx-background-color: #3c1e1e;
 }

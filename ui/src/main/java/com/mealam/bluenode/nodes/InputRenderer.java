@@ -19,8 +19,6 @@ public class InputRenderer {
      */
     public static void render(Pane parent, Input input, double x, double y, double width, double height) {
         FloatField textField = new FloatField(input);
-        textField.setText(input.getProperties().getDefaultValue());
-        textField.setPromptText(input.getProperties().getName());
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
         textField.setPrefWidth(width - 10);

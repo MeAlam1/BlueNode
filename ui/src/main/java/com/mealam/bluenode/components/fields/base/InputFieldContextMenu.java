@@ -1,12 +1,19 @@
 package com.mealam.bluenode.components.fields.base;
 
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
 public class InputFieldContextMenu {
+
+    public static void handleRightClick(InputField field, MouseEvent event) {
+        if (event.getButton() == MouseButton.SECONDARY) {
+            showContextMenu(field, event);
+        }
+    }
 
     public static void showContextMenu(TextField textField, MouseEvent event) {
         Popup popup = new Popup();

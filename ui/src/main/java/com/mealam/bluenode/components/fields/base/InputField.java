@@ -3,7 +3,6 @@ package com.mealam.bluenode.components.fields.base;
 import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseButton;
 
 public abstract class InputField extends TextField {
     private final Input input;
@@ -12,39 +11,45 @@ public abstract class InputField extends TextField {
         this.input = pInput;
 
         this.setContextMenu(new ContextMenu());
+
+        configureField();
+        addEventListeners();
+    }
+
+    private void configureField() {
+        this.setText(input.getProperties().getDefaultValue());
+        this.setPromptText(input.getProperties().getName());
         this.getStyleClass().add("input-field");
+    }
 
-        this.setOnMousePressed(event -> {
-            if (event.getButton() == MouseButton.SECONDARY) {
-                InputFieldContextMenu.showContextMenu(this, event);
-            }
-        });
-
-        this.setOnAction(e -> {
-            this.getParent().requestFocus();
-            pInput.getProperties().setDefaultValue(this.getText());
-        });
-
-        this.focusedProperty().addListener((obs, oldFocused, newFocused) -> {
-            if (!newFocused) {
-                pInput.getProperties().setDefaultValue(this.getText());
-            }
+    private void addEventListeners() {
+        this.setOnMousePressed(pEvent -> InputFieldContextMenu.handleRightClick(this, pEvent));
+        this.setOnAction(pEvent -> saveValue());
+        this.focusedProperty().addListener((pObservableValue, pOldFocused, pNewFocused) -> {
+            if (!pNewFocused) saveValue();
         });
     }
 
-    protected abstract boolean validate(String text);
+    private void saveValue() {
+        input.getProperties().setDefaultValue(this.getText());
+        if (this.getParent() != null) {
+            this.getParent().requestFocus();
+        }
+    }
+
+    protected abstract boolean validate(String pText);
 
     @Override
-    public void replaceText(int start, int end, String text) {
-        if (validate(text)) {
-            super.replaceText(start, end, text);
+    public void replaceText(int pStart, int pEnd, String pText) {
+        if (validate(pText)) {
+            super.replaceText(pStart, pEnd, pText);
         }
     }
 
     @Override
-    public void replaceSelection(String text) {
-        if (validate(text)) {
-            super.replaceSelection(text);
+    public void replaceSelection(String pText) {
+        if (validate(pText)) {
+            super.replaceSelection(pText);
         }
     }
 }
