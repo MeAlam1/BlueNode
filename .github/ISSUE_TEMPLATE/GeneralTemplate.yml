@@ -13,7 +13,7 @@ body:
       options:
         - label: "I have checked that my issue <a href='https://github.com/MeAlam1/BlueNode/issues' target='_blank'>is not already reported</a>"
           required: true
-        - label: "I have checked that my issue <a href='https://github.com/MeAlam1/BlueNode/discussions/9' target='_blank'>is not a known bug</a>"
+        - label: "I have checked that my issue <a href='https://github.com/MeAlam1/BlueNode/discussions/8' target='_blank'>is not a known bug</a>"
           required: true
   - type: textarea
     id: description
