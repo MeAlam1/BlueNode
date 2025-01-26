@@ -44,16 +44,15 @@ public class CanvasDragHandler {
         double deltaX = pEvent.getX() - lastX;
         double deltaY = pEvent.getY() - lastY;
 
-        translateX += deltaX;
-        translateY += deltaY;
+        for (Node node : nodes) {
+            node.getProperties().setX(node.getProperties().getX() + deltaX);
+            node.getProperties().setY(node.getProperties().getY() + deltaY);
+        }
 
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gridDrawer.redraw(graphicsContext, canvas.getWidth(), canvas.getHeight(), -translateX, -translateY);
 
         overlayPane.getChildren().clear();
-
-        overlayPane.setTranslateX(-translateX);
-        overlayPane.setTranslateY(-translateY);
 
         for (Node node : nodes) {
             NodeRenderer.render(graphicsContext, overlayPane, node, translateX, translateY);
