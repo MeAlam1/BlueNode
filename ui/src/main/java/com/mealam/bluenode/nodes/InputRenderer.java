@@ -5,6 +5,8 @@ import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.components.fields.FloatField;
 import javafx.scene.layout.Pane;
 
+import java.util.Objects;
+
 public class InputRenderer {
 
     /**
@@ -21,7 +23,13 @@ public class InputRenderer {
         FloatField textField = new FloatField(input);
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
-        textField.setPrefWidth(40);
+        textField.setMaxWidth(width - 10);
+        textField.setPrefWidth(
+                Objects.requireNonNullElse(
+                        (Number) input.getProperties().getWidth(),
+                        20
+                ).doubleValue()
+        );
         textField.setPrefHeight(20);
 
         parent.getChildren().add(textField);

@@ -48,6 +48,8 @@ public class Input {
     public static class InputProperties {
 
         private String id;
+        private double width;
+        private double height;
         private String name;
         private String type;
         private String color;
@@ -59,6 +61,22 @@ public class Input {
 
         public void setId(String id) {
             this.id = id;
+        }
+
+        public double getWidth() {
+            return width;
+        }
+
+        public void setWidth(double width) {
+            this.width = width;
+        }
+
+        public double getHeight() {
+            return height;
+        }
+
+        public void setHeight(double height) {
+            this.height = height;
         }
 
         public String getName() {
@@ -97,6 +115,8 @@ public class Input {
         public String toString() {
             return "\n    {\n" +
                     "      \"id\": \"" + id + "\",\n" +
+                    "      \"width\": " + width + ",\n" +
+                    "      \"height\": " + height + ",\n" +
                     "      \"name\": \"" + name + "\",\n" +
                     "      \"type\": \"" + type + "\",\n" +
                     "      \"color\": \"" + color + "\",\n" +

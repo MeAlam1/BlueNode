@@ -1,8 +1,14 @@
 package com.mealam.bluenode.components.fields.base;
 
 import com.mealam.bluenode.nodes.components.input.Input;
+import com.mealam.bluenode.utils.logging.BaseLogLevel;
+import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+
+import static com.sun.javafx.scene.control.skin.Utils.computeTextWidth;
 
 public abstract class InputField extends TextField {
     private final Input input;
@@ -11,7 +17,6 @@ public abstract class InputField extends TextField {
         this.input = pInput;
 
         this.setContextMenu(new ContextMenu());
-
         configureField();
         addEventListeners();
     }
@@ -27,6 +32,15 @@ public abstract class InputField extends TextField {
         this.setOnAction(pEvent -> saveValue());
         this.focusedProperty().addListener((pObservableValue, pOldFocused, pNewFocused) -> {
             if (!pNewFocused) saveValue();
+        });
+
+        textProperty().addListener((observable, oldValue, newValue) -> {
+            Text text = new Text(newValue);
+            text.setFont(this.getFont());
+            double textWidth = text.getLayoutBounds().getWidth();
+            double padding = this.getInsets().getLeft() + this.getInsets().getRight();
+            setPrefWidth(Math.max(40, textWidth + padding));
+            input.getProperties().setWidth(textWidth + padding);
         });
     }
 
