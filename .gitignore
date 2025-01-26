@@ -139,3 +139,4 @@ MANIFEST.MF
 
 # BlueNode Specific
 src/main/resources/assets/images/**
+log.txt
