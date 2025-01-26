@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-            Thank you for creating an issue! Please fill in the [-] in the title with the appropriate category for your issue.
+        Thank you for creating an issue! Please fill in the [-] in the title with the appropriate category for your issue.
   - type: checkboxes
     attributes:
       label: Rule checks (please read carefully)
@@ -22,27 +22,24 @@ body:
       description: |
         Please describe the issue in as much detail as possible.
       placeholder: |
----
+        ### **Description**  
+        
+        Please provide a brief overview of the issue you're facing.
 
-### **Description**  
+        ### **Tasks**  
+        1.  
+        2.  
+        3.  
 
+        ### **Acceptance Criteria**  
+        -  
+        -  
+        -  
 
-### **Tasks**  
-1. 
-2.  
-3. 
-
-### **Acceptance Criteria**  
-- 
-- 
-- 
-
-### **Impact**  
-- 
-- 
-- 
-
----
+        ### **Impact**  
+        -  
+        -  
+        -  
     validations:
       required: true
   - type: textarea
@@ -50,3 +47,5 @@ body:
     attributes:
       label: More information
       description: Provide any additional information that might be relevant to the issue.
+      placeholder: |
+        Any extra details you want to include (optional).
