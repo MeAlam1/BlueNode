@@ -21,7 +21,7 @@ body:
       label: Add a description
       description: |
         Please describe the issue in as much detail as possible.
-      value: |
+      placeholder: |
         ### **Description**
         Please provide a brief overview of the issue you're facing.
 
