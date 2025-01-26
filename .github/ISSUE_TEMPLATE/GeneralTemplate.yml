@@ -21,7 +21,8 @@ body:
       label: Add a description
       description: |
         Please describe the issue in as much detail as possible.
-        Copy:
+        
+        Suggested Template – While not required, issues submitted using this template will receive priority.
         ```
         ### **Description**
         Please provide a brief overview of the issue you're facing.
@@ -42,8 +43,6 @@ body:
         -
         ```
       placeholder: |
-        Suggested Template – While not required, issues submitted using this template will receive priority.
-        
         ### **Description**
         Please provide a brief overview of the issue you're facing.
 
