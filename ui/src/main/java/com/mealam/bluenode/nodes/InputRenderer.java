@@ -18,23 +18,12 @@ public class InputRenderer {
      * @param height the height of the TextField
      */
     public static void render(Pane parent, Input input, double x, double y, double width, double height) {
-        FloatField textField = new FloatField();
+        FloatField textField = new FloatField(input);
         textField.setText(input.getProperties().getDefaultValue());
         textField.setPromptText(input.getProperties().getName());
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
         textField.setPrefWidth(width - 10);
-
-        textField.setOnAction(e -> {
-            textField.getParent().requestFocus();
-            input.getProperties().setDefaultValue(textField.getText());
-        });
-        textField.focusedProperty().addListener((obs, oldFocused, newFocused) -> {
-            if (!newFocused) {
-                //parent.getChildren().remove(textField);
-                input.getProperties().setDefaultValue(textField.getText());
-            }
-        });
 
         parent.getChildren().add(textField);
     }

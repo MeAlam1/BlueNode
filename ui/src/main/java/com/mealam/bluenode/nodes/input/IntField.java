@@ -3,13 +3,13 @@ package com.mealam.bluenode.nodes.input;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.input.components.InputField;
 
-public class FloatField extends InputField {
-    public FloatField(Input input) {
-        super(input);
+public class IntField extends InputField {
+    public IntField(Input pInput) {
+        super(pInput);
     }
 
     @Override
     protected boolean validate(String text) {
-        return text.matches("[0-9]*\\.?[0-9]*");
+        return text.matches("[0-9]*");
     }
 }
