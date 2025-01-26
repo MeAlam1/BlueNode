@@ -22,23 +22,23 @@ body:
       description: |
         Please describe the issue in as much detail as possible.
       value: |
-      ### **Description**
-        Please provide a brief overview of the issue you're facing.
+       ### **Description**
+       Please provide a brief overview of the issue you're facing.
 
-      ### **Tasks**  
+       ### **Tasks**  
         1.  
         2.  
         3.
 
-      ### **Acceptance Criteria**
-      -
-      -
-      -
+       ### **Acceptance Criteria**
+       -
+       -
+       -
 
-      ### **Impact**
-      -
-      -
-      -
+       ### **Impact**
+       -
+       -
+       -
     validations:
       required: true
   - type: textarea
