@@ -7,6 +7,9 @@ import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NodeLoaderUtils {
 
     public static Node getNodeByKey(@NonNull String pKey, double pX, double pY) {
@@ -25,5 +28,15 @@ public class NodeLoaderUtils {
          */
         BaseLogger.log(BaseLogLevel.ERROR, "Node with key " + pKey + " not found");
         return null;
+    }
+
+    public static List<Node> getAllNodes() {
+        List<Node> nodes = new ArrayList<>();
+        for (JsonObject nodeJson : NodeInit.allNodes) {
+            for (String key : nodeJson.keySet()) {
+                nodes.add(Node.fromJson(nodeJson.getAsJsonArray(key), 0, 0));
+            }
+        }
+        return nodes;
     }
 }

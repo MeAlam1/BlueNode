@@ -4,6 +4,7 @@ import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeRenderer;
+import com.mealam.bluenode.nodes.library.NodeLibrary;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
@@ -16,15 +17,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 public class MainPanel extends BorderPane {
 
     private final GraphicsContext graphicsContext;
+    private final Stage primaryStage;
     private final GridDrawer gridDrawer;
     private final Pane overlayPane;
     public static List<Node> nodes;
 
-    public MainPanel() {
+    public MainPanel(Stage pPrimaryStage) {
+        primaryStage = pPrimaryStage;
         graphicsContext = UIConstants.MAIN_CANVAS.getGraphicsContext2D();
         gridDrawer = new GridDrawer();
         nodes = new ArrayList<>();
@@ -59,9 +63,11 @@ public class MainPanel extends BorderPane {
                 double snappedX = GridDrawer.snapToGrid(centerX - CanvasDragHandler.getTranslateX());
                 double snappedY = GridDrawer.snapToGrid(centerY - CanvasDragHandler.getTranslateY());
 
-                Node newNode = new Node(snappedX, snappedY);
-                Node getNode = getNewNode(newNode);
-                placeNode(getNode);
+                NodeLibrary.createPopup(pPrimaryStage, NodeLoaderUtils.getAllNodes(), mouseX, mouseY);
+
+                //Node newNode = new Node(snappedX, snappedY);
+                //Node getNode = getNewNode(newNode);
+                //placeNode(getNode);
             }
         });
 

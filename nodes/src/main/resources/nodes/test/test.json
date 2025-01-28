@@ -1,7 +1,28 @@
 {
-  "test": [
+  "testNode2": [
     {
-      "test2": "test3"
+      "title": "Test Title2",
+      "description": "Testing the Description.2",
+      "category": "testCategory2",
+      "inputs": [
+        {
+          "id": "inputTest2",
+          "name": "Input Test Name2",
+          "type": "float",
+          "defaultValue": 0
+        }
+      ],
+      "outputs": [
+        {
+          "id": "outputTest2",
+          "name": "Output Test Name2",
+          "type": "float"
+        }
+      ],
+      "metadata": {
+        "tags": ["example", "test", "testing"]
+      }
     }
+
   ]
 }

@@ -38,7 +38,7 @@ public class UIController extends Application {
         UIConstants.MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.BACKGROUND_COLOR));
 
         TitleBar titleBar = new TitleBar(pPrimaryStage);
-        MainPanel mainPanel = new MainPanel();
+        MainPanel mainPanel = new MainPanel(pPrimaryStage);
         WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, UIConstants.MAIN_ROOT);
 
         UIConstants.MAIN_ROOT.setCenter(mainPanel);
