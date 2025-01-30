@@ -5,10 +5,9 @@ import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeInit;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-import org.checkerframework.checker.nullness.qual.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class NodeLoaderUtils {
 
