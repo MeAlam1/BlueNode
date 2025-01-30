@@ -1,0 +1,23 @@
+.node-library-popup {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-spacing: 5;
+}
+
+.node-library-popup .node-library-popup-button {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-font-size: 14px;
+    -fx-padding: 5;
+}
+
+.node-library-popup .node-library-popup-button:hover {
+    -fx-background-color: #d0d0d0;
+}
+
+.node-library-popup .node-library-popup-button:pressed {
+    -fx-background-color: #a0a0a0;
+}

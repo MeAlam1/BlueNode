@@ -21,10 +21,10 @@ import javafx.stage.Stage;
 
 public class MainPanel extends BorderPane {
 
-    private final GraphicsContext graphicsContext;
-    private final Stage primaryStage;
-    private final GridDrawer gridDrawer;
-    private final Pane overlayPane;
+    private static GraphicsContext graphicsContext;
+    private static Stage primaryStage;
+    private static GridDrawer gridDrawer;
+    private static Pane overlayPane;
     public static List<Node> nodes;
 
     public MainPanel(Stage pPrimaryStage) {
@@ -51,30 +51,14 @@ public class MainPanel extends BorderPane {
 
         UIConstants.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.SECONDARY) { // Right-click
-                double mouseX = pEvent.getX();
-                double mouseY = pEvent.getY();
-
-                double nodeWidth = 150;
-                double nodeHeight = 100;
-
-                double centerX = mouseX - (nodeWidth / 2);
-                double centerY = mouseY - (nodeHeight / 2);
-
-                double snappedX = GridDrawer.snapToGrid(centerX - CanvasDragHandler.getTranslateX());
-                double snappedY = GridDrawer.snapToGrid(centerY - CanvasDragHandler.getTranslateY());
-
-                NodeLibrary.createPopup(pPrimaryStage, NodeLoaderUtils.getAllNodes(), mouseX, mouseY);
-
-                //Node newNode = new Node(snappedX, snappedY);
-                //Node getNode = getNewNode(newNode);
-                //placeNode(getNode);
+                NodeLibrary.createPopup(pPrimaryStage, NodeLoaderUtils.getAllNodes(), pEvent);
             }
         });
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "MainPanel initialized with infinite scrolling and zoom");
     }
 
-    private Node getNewNode(Node newNode) {
+    public static Node getNewNode(Node newNode) {
         Node getNode = NodeLoaderUtils.getNodeByKey("testNode", newNode.getProperties().getX(), newNode.getProperties().getY());
         if (getNode == null) {
             throw new NullPointerException("Node not found in Library");
@@ -97,7 +81,7 @@ public class MainPanel extends BorderPane {
         gridDrawer.redraw(graphicsContext, width, height, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
     }
 
-    public boolean isNodeAtLocation(double pX, double pY, double width, double height) {
+    public static boolean isNodeAtLocation(double pX, double pY, double width, double height) {
         for (Node node : nodes) {
             double nodeX = node.getProperties().getX();
             double nodeY = node.getProperties().getY();
@@ -111,7 +95,7 @@ public class MainPanel extends BorderPane {
         return false;
     }
 
-    public void placeNode(Node pNode) {
+    public static void placeNode(Node pNode) {
         if (!isNodeAtLocation(pNode.getProperties().getX(), pNode.getProperties().getY(), pNode.getProperties().getWidth(), pNode.getProperties().getHeight())) {
             nodes.add(pNode);
             BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());
@@ -124,5 +108,11 @@ public class MainPanel extends BorderPane {
         } else {
             BaseLogger.log(BaseLogLevel.WARNING, "No suitable position found for new node.");
         }
+    }
+
+    public static void placeNode(Node pNode, double x, double y) {
+        pNode.getProperties().setX(x);
+        pNode.getProperties().setY(y);
+        placeNode(pNode);
     }
 }
