@@ -3,12 +3,12 @@ package com.mealam.bluenode.nodes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mealam.bluenode.nodes.category.NodeCategoryData;
-import com.mealam.bluenode.nodes.category.NodeCategoryManager;
+import com.mealam.bluenode.nodes.category.NodeCategoryHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
-import java.util.List;
 import org.checkerframework.checker.index.qual.NonNegative;
+
+import java.util.List;
 
 public class Node {
 
@@ -37,8 +37,7 @@ public class Node {
         node.properties.setDescription(jsonObject.get("description").getAsString());
         node.properties.setCategory(jsonObject.get("category").getAsString());
 
-        NodeCategoryData categoryData = NodeCategoryManager.getCategoryData(node.properties.getCategory());
-        node.properties.setColor(categoryData.color());
+        NodeCategoryHandler.applyCategoryStyle(node);
 
         JsonArray inputsJsonArray = jsonObject.getAsJsonArray("inputs");
         node.properties.setInputs(Input.fromJsonArray(inputsJsonArray));

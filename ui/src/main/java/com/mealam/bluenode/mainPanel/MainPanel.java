@@ -9,8 +9,6 @@ import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +16,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainPanel extends BorderPane {
 
@@ -59,14 +60,13 @@ public class MainPanel extends BorderPane {
     }
 
     public static Node getNewNode(Node newNode) {
-        Node getNode = NodeLoaderUtils.getNodeByKey("testNode", newNode.getProperties().getX(), newNode.getProperties().getY());
-        if (getNode == null) {
+        if (newNode == null) {
             throw new NullPointerException("Node not found in Library");
         }
-        getNode.getProperties().setId(NodeIDGenerator.generateID(getNode.getProperties().getTitle()));
-        getNode.getProperties().setWidth(150);
-        getNode.getProperties().setHeight(100);
-        return getNode;
+        newNode.getProperties().setId(NodeIDGenerator.generateID(newNode.getProperties().getTitle()));
+        newNode.getProperties().setWidth(150);
+        newNode.getProperties().setHeight(100);
+        return newNode;
     }
 
     private void drawGrid() {

@@ -8,7 +8,8 @@ public class NodeCategoryManager {
     private static final Map<String, NodeCategoryData> CATEGORY_DATA_MAP = new HashMap<>();
 
     public static void initCategoryData() {
-        CATEGORY_DATA_MAP.putIfAbsent("testCategory", new NodeCategoryData("#FF5733"));
+        CATEGORY_DATA_MAP.putIfAbsent("utility", new NodeCategoryData("#57FF33"));
+        CATEGORY_DATA_MAP.putIfAbsent("operator", new NodeCategoryData("#FF5733"));
     }
 
     public static NodeCategoryData getCategoryData(String category) {

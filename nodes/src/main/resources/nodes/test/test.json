@@ -3,7 +3,7 @@
     {
       "title": "Test Title2",
       "description": "Testing the Description.2",
-      "category": "testCategory2",
+      "category": "utility/logic",
       "inputs": [
         {
           "id": "inputTest2",
