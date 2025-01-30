@@ -20,7 +20,7 @@
         }
       ],
       "metadata": {
-        "tags": ["example", "test", "testing"]
+        "aliases": ["example", "test", "testing"]
       }
     }
 

@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Metadata {
@@ -17,11 +18,13 @@ public class Metadata {
     public static Metadata fromJson(JsonObject jsonObject) {
         Metadata metadata = new Metadata();
 
-        JsonArray tagsJsonArray = jsonObject.getAsJsonArray("tags");
-        metadata.properties.tags = new ArrayList<>();
+        metadata.properties.createdAt = new Date(System.currentTimeMillis());
+        metadata.properties.updatedAt = new Date(System.currentTimeMillis());
+        JsonArray tagsJsonArray = jsonObject.getAsJsonArray("aliases");
+        metadata.properties.aliases = new ArrayList<>();
         if (tagsJsonArray != null) {
             for (JsonElement tag : tagsJsonArray) {
-                metadata.properties.tags.add(tag.getAsString());
+                metadata.properties.aliases.add(tag.getAsString());
             }
         }
 
@@ -39,20 +42,40 @@ public class Metadata {
 
     public static class MetadataProperties {
 
-        private List<String> tags;
+        private Date createdAt;
+        private Date updatedAt;
+        private List<String> aliases;
 
-        public List<String> getTags() {
-            return tags;
+        public Date getCreatedAt() {
+            return createdAt;
         }
 
-        public void setTags(List<String> tags) {
-            this.tags = tags;
+        public void setCreatedAt(Date createdAt) {
+            this.createdAt = createdAt;
+        }
+
+        public Date getUpdatedAt() {
+            return updatedAt;
+        }
+
+        public void setUpdatedAt(Date updatedAt) {
+            this.updatedAt = updatedAt;
+        }
+
+        public List<String> getAliases() {
+            return aliases;
+        }
+
+        public void setAliases(List<String> aliases) {
+            this.aliases = aliases;
         }
 
         @Override
         public String toString() {
             return "{\n" +
-                    "    \"tags\": " + tags + "\n" +
+                    "    \"createdAt\": " + createdAt + ",\n" +
+                    "    \"updatedAt\": " + updatedAt + ",\n" +
+                    "    \"aliases\": " + aliases + "\n" +
                     "  }";
         }
     }

@@ -19,7 +19,6 @@ public class NodeCategoryHandler {
 
     public static void applyCategoryStyle(Node node) {
         List<String> categories = getCategories(node.getProperties().getCategory());
-        BaseLogger.log(BaseLogLevel.INFO, "Applying category style to node with categories: " + categories);
         NodeCategoryData latestValidCategory = null;
 
         for (String category : categories) {

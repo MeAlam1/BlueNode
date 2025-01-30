@@ -1,8 +1,8 @@
 {
-  "testNode": [
+  "add": [
     {
-      "title": "Test Title",
-      "description": "Testing the Description.",
+      "title": "Add",
+      "description": "Adds two or more objects together",
       "category": "utility/operator",
       "inputs": [
         {
@@ -20,7 +20,7 @@
         }
       ],
       "metadata": {
-        "aliases": ["example", "test", "testing"]
+        "aliases": ["addition", "sum", "+", "plus"]
       }
     }
 

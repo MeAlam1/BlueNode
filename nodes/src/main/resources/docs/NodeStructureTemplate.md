@@ -8,7 +8,7 @@ A node is an object with the following fields:
 
 ### `uniqueID`
 - **Type:** The JSONArray Title of the node.
-- **Description:** A unique identifier for the node. This is used to reference the node in the editor.
+- **Description:** A unique identifier for the node.
 - **Example:** `"node1"`
 
 ---
@@ -29,10 +29,10 @@ A node is an object with the following fields:
 
 ### `category`
 - **Type:** String
-- **Description:** The category under which the node is classified. This helps organize nodes within the editor.
-- **Options:** `"Math"`, etc.
-- **Example:** `"Math"`
-
+- **Description:** Categories can be combined using `/` to create a hierarchy. The hierarchy handles the sorting of the nodes in the Library.
+- **Options:** `"math"`, `"operator"`, etc.
+- **Example:** `"math/operator"`
+- 
 ---
 
 ### `inputs`
@@ -99,21 +99,10 @@ A node is an object with the following fields:
 
 ### `metadata`
 - **Type:** Object
-- **Description:** Additional information about the node, such as timestamps and tags. It contains the following fields:
-    - **`tags`**: An array of tags associated with the node.
+- **Description:** Additional information about the node, such as aliases. It contains the following fields:
+    - **`aliases`**: An array of aliases associated with the node.
         - **Type:** Array of Strings
         - **Example:** `["example", "node", "editor"]`
-
-  **Example Metadata Structure:**
-  ```json
-  {
-    "createdBy": null,
-    "createdAt": null,
-    "updatedAt": null,
-    "tags": ["example", "node", "editor"]
-  }
-  ```
-
 ---
 
 ### Complete Node Example
@@ -141,7 +130,7 @@ Here’s a complete example of a node following this structure:
         }
       ],
       "metadata": {
-        "tags": ["example", "test", "testing"]
+        "aliases": ["example", "test", "testing"]
       }
     }
 
