@@ -1,70 +1,83 @@
 package com.mealam.bluenode.nodes.library;
 
-import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
-import com.mealam.bluenode.mainPanel.GridDrawer;
 import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.nodes.Node;
-import java.util.List;
-import javafx.scene.control.Button;
+import com.mealam.bluenode.nodes.category.NodeCategoryHandler;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+import java.util.*;
+
 public class NodeLibrary {
 
     public static void createPopup(Stage parent, List<Node> items, MouseEvent event) {
-        VBox vBox = new VBox(5);
-        vBox.getStyleClass().add("node-library-popup");
-
-        double screenX = event.getScreenX();
-        double screenY = event.getScreenY();
-
         Popup popup = new Popup();
+        VBox vBox = new VBox();
+        vBox.setSpacing(5);
+
+        Map<String, TitledPane> categoryMap = new HashMap<>();
 
         for (Node item : items) {
-            Button button = getButtons(event, item, popup);
-            button.getStyleClass().add("node-library-popup-button");
-            vBox.getChildren().add(button);
+            List<String> categories = NodeCategoryHandler.getCategories(item.getProperties().getCategory());
+
+            if (categories.isEmpty()) continue;
+
+            TitledPane currentPane = categoryMap.computeIfAbsent(categories.getFirst(), NodeLibrary::createTitledPane);
+
+            for (int i = 1; i < categories.size(); i++) {
+                String subCategory = categories.get(i);
+                currentPane = getOrCreateSubPane(currentPane, subCategory);
+            }
+
+            Button nodeButton = new Button(item.getProperties().getTitle());
+            nodeButton.setMaxWidth(Double.MAX_VALUE);
+            nodeButton.setOnAction(actionEvent -> {
+                MainPanel.placeNode(MainPanel.getNewNode(item), event.getX(), event.getY());
+                popup.hide();
+            });
+
+            if (currentPane.getContent() instanceof VBox) {
+                ((VBox) currentPane.getContent()).getChildren().add(nodeButton);
+            } else {
+                VBox contentBox = new VBox(nodeButton);
+                currentPane.setContent(contentBox);
+            }
         }
 
+        vBox.getChildren().addAll(categoryMap.values());
+
         popup.getContent().add(vBox);
-        popup.show(parent);
 
-        double popupWidth = vBox.getWidth();
-        double popupHeight = vBox.getHeight();
+        popup.setAutoHide(true);
 
-        popup.hide();
-
-        double centeredX = screenX - (popupWidth / 2);
-        double centeredY = screenY - (popupHeight / 2);
-
-        popup.setX(centeredX);
-        popup.setY(centeredY);
-
-        popup.show(parent);
+        popup.show(parent, event.getScreenX(), event.getScreenY());
     }
 
-    private static Button getButtons(MouseEvent event, Node item, Popup popup) {
-        Button button = new Button(item.getProperties().getTitle());
-        button.setMaxWidth(Double.MAX_VALUE);
-        button.setOnAction(actionEvent -> {
-            System.out.println("Clicked: " + item.getProperties().getTitle());
-            double mouseX = event.getX();
-            double mouseY = event.getY();
+    private static TitledPane createTitledPane(String title) {
+        TitledPane titledPane = new TitledPane(title, new VBox());
+        titledPane.setExpanded(false);
+        return titledPane;
+    }
 
-            double nodeWidth = 150;
-            double nodeHeight = 100;
+    private static TitledPane getOrCreateSubPane(TitledPane parent, String subCategory) {
+        if (parent.getContent() instanceof VBox contentBox) {
+            for (javafx.scene.Node node : contentBox.getChildren()) {
+                if (node instanceof TitledPane subPane && subPane.getText().equals(subCategory)) {
+                    return subPane;
+                }
+            }
+        }
 
-            double centerX = mouseX - (nodeWidth / 2);
-            double centerY = mouseY - (nodeHeight / 2);
-
-            double snappedX = GridDrawer.snapToGrid(centerX - CanvasDragHandler.getTranslateX());
-            double snappedY = GridDrawer.snapToGrid(centerY - CanvasDragHandler.getTranslateY());
-            Node getNode = MainPanel.getNewNode(item);
-            MainPanel.placeNode(getNode, snappedX, snappedY);
-            popup.hide();
-        });
-        return button;
+        TitledPane newSubPane = createTitledPane(subCategory);
+        if (parent.getContent() instanceof VBox) {
+            ((VBox) parent.getContent()).getChildren().add(newSubPane);
+        } else {
+            VBox contentBox = new VBox(newSubPane);
+            parent.setContent(contentBox);
+        }
+        return newSubPane;
     }
 }
