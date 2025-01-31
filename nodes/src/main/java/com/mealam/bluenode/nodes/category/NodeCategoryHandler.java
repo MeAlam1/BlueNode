@@ -1,9 +1,6 @@
 package com.mealam.bluenode.nodes.category;
 
 import com.mealam.bluenode.nodes.Node;
-import com.mealam.bluenode.utils.logging.BaseLogLevel;
-import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +12,6 @@ public class NodeCategoryHandler {
                 .map(String::trim)
                 .toList();
     }
-
 
     public static void applyCategoryStyle(Node node) {
         List<String> categories = getCategories(node.getProperties().getCategory());

@@ -3,13 +3,12 @@ package com.mealam.bluenode.nodes.library;
 import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.category.NodeCategoryHandler;
+import java.util.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-
-import java.util.*;
 
 public class NodeLibrary {
 

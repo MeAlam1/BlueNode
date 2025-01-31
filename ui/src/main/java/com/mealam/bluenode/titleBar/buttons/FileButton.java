@@ -1,15 +1,12 @@
 package com.mealam.bluenode.titleBar.buttons;
 
-import com.mealam.bluenode.ColorConstants;
 import com.mealam.bluenode.components.buttons.TextButton;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.NewAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.OpenAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAsAction;
-import com.mealam.bluenode.utils.converter.UIColorConverter;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-import javafx.geometry.Insets;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
@@ -17,8 +14,7 @@ import javafx.stage.Stage;
 public class FileButton extends TextButton {
 
     public FileButton(Stage pStage) {
-        super("File", UIColorConverter.toJavaFXColor(ColorConstants.NORMAL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.BUTTON_PANEL_HOVER_COLOR), 45, 30);
-        setPadding(new Insets(5, 10, 5, 10));
+        super("File", "file-button", 45, 30);
 
         ContextMenu contextMenu = createContextMenu();
 
@@ -45,7 +41,7 @@ public class FileButton extends TextButton {
 
         contextMenu.getItems().addAll(newItem, openItem, saveItem, saveAsItem);
 
-        BaseLogger.log(BaseLogLevel.INFO, "FileButton context menu created");
+        BaseLogger.log(BaseLogLevel.SUCCESS, "FileButton context menu created");
 
         return contextMenu;
     }

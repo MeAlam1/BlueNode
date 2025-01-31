@@ -6,9 +6,8 @@ import com.google.gson.JsonObject;
 import com.mealam.bluenode.nodes.category.NodeCategoryHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
-import org.checkerframework.checker.index.qual.NonNegative;
-
 import java.util.List;
+import org.checkerframework.checker.index.qual.NonNegative;
 
 public class Node {
 

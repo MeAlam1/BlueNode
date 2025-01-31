@@ -9,6 +9,8 @@ import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -16,9 +18,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainPanel extends BorderPane {
 

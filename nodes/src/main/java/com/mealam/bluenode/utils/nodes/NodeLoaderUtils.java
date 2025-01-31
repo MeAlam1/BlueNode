@@ -3,7 +3,6 @@ package com.mealam.bluenode.utils.nodes;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeInit;
-
 import java.util.ArrayList;
 import java.util.List;
 

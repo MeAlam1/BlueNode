@@ -5,7 +5,6 @@ import com.mealam.bluenode.handlers.WindowInteractionHandler;
 import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.styles.StyleLoader;
 import com.mealam.bluenode.titleBar.TitleBar;
-import com.mealam.bluenode.utils.conversion.ColorUtils;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.application.Application;
@@ -35,8 +34,6 @@ public class UIController extends Application {
     }
 
     private void initializeComponents(Stage pPrimaryStage) {
-        UIConstants.MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.BACKGROUND_COLOR));
-
         TitleBar titleBar = new TitleBar(pPrimaryStage);
         MainPanel mainPanel = new MainPanel(pPrimaryStage);
         WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, UIConstants.MAIN_ROOT);
