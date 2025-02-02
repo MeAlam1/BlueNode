@@ -1,11 +1,9 @@
 package com.mealam.bluenode.titleBar;
 
-import com.mealam.bluenode.ColorConstants;
 import com.mealam.bluenode.components.ImageLoader;
 import com.mealam.bluenode.titleBar.buttons.FileButton;
 import com.mealam.bluenode.titleBar.buttons.SettingsButton;
-import com.mealam.bluenode.titleBar.buttons.controlButtons.ButtonPanel;
-import com.mealam.bluenode.utils.conversion.ColorUtils;
+import com.mealam.bluenode.titleBar.buttons.controlWindow.ButtonPanel;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.geometry.Insets;
@@ -20,13 +18,12 @@ public class TitleBar extends BorderPane {
     private final StackPane stackPane;
 
     public TitleBar(Stage pStage) {
-        setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.NORMAL_COLOR));
+        getStyleClass().add("titlebar");
         setPrefHeight(30);
 
         HBox leftPanel = new HBox();
-        leftPanel.setPadding(new Insets(0, 5, 0, 5));
-        leftPanel.setSpacing(10);
-        leftPanel.setAlignment(Pos.CENTER_LEFT);
+        leftPanel.getStyleClass().add("titlebar-left-panel");
+
         HBox contentContainer = new HBox();
         contentContainer.setAlignment(Pos.CENTER_LEFT);
 
@@ -58,12 +55,12 @@ public class TitleBar extends BorderPane {
     }
 
     /* OPTIMIZE: This Method is really inefficient
-        * 1. This method hardcodes the padding value of 280
+        * 1. This method hardcodes the padding value
         * 2. If the Window Width changes the padding will be incorrect
      */
     private void updatePadding(double pWindowWidth) {
         if (stackPane != null) {
-            double leftPadding = Math.max(0, pWindowWidth - 280);
+            double leftPadding = Math.max(0, pWindowWidth - 290);
             stackPane.setPadding(new Insets(0, 0, 0, leftPadding));
         }
     }

@@ -8,11 +8,18 @@ import javafx.stage.Stage;
 
 public class SettingsButton extends TextButton {
 
+    private final SettingsWindow settingsWindow;
+
     public SettingsButton(Stage pStage) {
-        super("Settings", "settings-button", 70, 30);
+        super("Settings", "settings-button", 80, 30, null);
+        settingsWindow = new SettingsWindow(pStage);
 
-        setOnAction(event -> new SettingsWindow(pStage));
+        setOnAction(event -> {
+            double x = localToScreen(getBoundsInLocal()).getMinX();
+            double y = localToScreen(getBoundsInLocal()).getMaxY();
+            settingsWindow.show(pStage, x, y);
+        });
 
-        BaseLogger.log(BaseLogLevel.SUCCESS, "Settings button created");
+        BaseLogger.log(BaseLogLevel.SUCCESS, "SettingsButton created");
     }
 }

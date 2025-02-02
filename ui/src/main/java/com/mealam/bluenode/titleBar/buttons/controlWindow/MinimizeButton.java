@@ -1,4 +1,4 @@
-package com.mealam.bluenode.titleBar.buttons.controlButtons;
+package com.mealam.bluenode.titleBar.buttons.controlWindow;
 
 import com.mealam.bluenode.components.buttons.TextButton;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
@@ -8,10 +8,11 @@ import javafx.stage.Stage;
 public class MinimizeButton extends TextButton {
 
     public MinimizeButton(Stage pStage) {
-        super("-", "minimize-button", 40, 30);
-
-        setOnAction(event -> pStage.setIconified(true));
-
+        super("-",
+                "minimize-button",
+                40,
+                30,
+                event -> pStage.setIconified(true));
         BaseLogger.log(BaseLogLevel.SUCCESS, "Minimize button created");
     }
 }

@@ -1,0 +1,19 @@
+.settings-button-action {
+    -fx-background-color: rgb(60, 60, 60);
+    -fx-padding: 10;
+    -fx-border-color: white;
+    -fx-border-radius: 5;
+}
+
+.settings-button-action .menu-item {
+    -fx-text-fill: white;
+}
+
+.settings-button-action .custom-menu-item {
+    -fx-padding: 5;
+}
+
+.settings-button-action .check-box {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}

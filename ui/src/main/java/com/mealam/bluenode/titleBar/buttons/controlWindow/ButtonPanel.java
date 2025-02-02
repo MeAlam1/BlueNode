@@ -1,4 +1,4 @@
-package com.mealam.bluenode.titleBar.buttons.controlButtons;
+package com.mealam.bluenode.titleBar.buttons.controlWindow;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;

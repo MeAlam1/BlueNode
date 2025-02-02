@@ -7,24 +7,26 @@ import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAsAction;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
+import javafx.event.ActionEvent;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class FileButton extends TextButton {
 
+    private final ContextMenu contextMenu;
+
     public FileButton(Stage pStage) {
-        super("File", "file-button", 45, 30);
-
-        ContextMenu contextMenu = createContextMenu();
-
-        setOnAction(event -> {
-            double x = localToScreen(getBoundsInLocal()).getMinX();
-            double y = localToScreen(getBoundsInLocal()).getMaxY();
-            contextMenu.show(FileButton.this, x, y);
-        });
-
+        super("File", "file-button", 45, 30, null);
+        this.contextMenu = createContextMenu();
+        setOnAction(this::handleClick);
         BaseLogger.log(BaseLogLevel.SUCCESS, "FileButton created");
+    }
+
+    private void handleClick(ActionEvent pEvent) {
+        double x = localToScreen(getBoundsInLocal()).getMinX();
+        double y = localToScreen(getBoundsInLocal()).getMaxY();
+        contextMenu.show(this, x, y);
     }
 
     private ContextMenu createContextMenu() {

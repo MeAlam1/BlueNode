@@ -1,0 +1,10 @@
+.titlebar {
+    -fx-background-color: rgb(45, 45, 45);
+    -fx-pref-height: 30px;
+}
+
+.titlebar-left-panel {
+    -fx-padding: 0 5px 0 5px;
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
