@@ -58,16 +58,6 @@ public class MainPanel extends BorderPane {
         BaseLogger.log(BaseLogLevel.SUCCESS, "MainPanel initialized with infinite scrolling and zoom");
     }
 
-    public static Node getNewNode(Node newNode) {
-        if (newNode == null) {
-            throw new NullPointerException("Node not found in Library");
-        }
-        newNode.getProperties().setId(NodeIDGenerator.generateID(newNode.getProperties().getTitle()));
-        newNode.getProperties().setWidth(150);
-        newNode.getProperties().setHeight(100);
-        return newNode;
-    }
-
     private void drawGrid() {
         double width = UIConstants.MAIN_CANVAS.getWidth();
         double height = UIConstants.MAIN_CANVAS.getHeight();

@@ -2,6 +2,7 @@ package com.mealam.bluenode.nodes.library;
 
 import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.nodes.Node;
+import com.mealam.bluenode.nodes.NodeFactory;
 import com.mealam.bluenode.nodes.category.NodeCategoryHandler;
 import java.util.*;
 import javafx.scene.control.*;
@@ -15,7 +16,6 @@ public class NodeLibrary {
     public static void createPopup(Stage parent, List<Node> items, MouseEvent event) {
         Popup popup = new Popup();
         VBox vBox = new VBox();
-        vBox.setSpacing(5);
 
         Map<String, TitledPane> categoryMap = new HashMap<>();
 
@@ -34,7 +34,7 @@ public class NodeLibrary {
             Button nodeButton = new Button(item.getProperties().getTitle());
             nodeButton.setMaxWidth(Double.MAX_VALUE);
             nodeButton.setOnAction(actionEvent -> {
-                MainPanel.placeNode(MainPanel.getNewNode(item), event.getX(), event.getY());
+                MainPanel.placeNode(NodeFactory.createNode(item), event.getX(), event.getY());
                 popup.hide();
             });
 

@@ -3,14 +3,10 @@ package com.mealam.bluenode.mainPanel;
 import com.mealam.bluenode.ColorConstants;
 import com.mealam.bluenode.utils.converter.UIColorConverter;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 public class GridDrawer {
 
     private static final int GRID_SIZE = 10;
-
-    // Maybe Move this to ColorConstants????
-    private static final Color GRID_COLOR = Color.rgb(75, 75, 75);
 
     public void redraw(GraphicsContext pGraphics, double pWidth, double pHeight, double pTranslateX, double pTranslateY) {
         drawGrid(pGraphics, pWidth, pHeight, pTranslateX, pTranslateY);
@@ -20,7 +16,7 @@ public class GridDrawer {
         pGraphics.setFill(UIColorConverter.toJavaFXColor(ColorConstants.BACKGROUND_COLOR));
         pGraphics.fillRect(0, 0, pWidth, pHeight);
 
-        pGraphics.setStroke(GRID_COLOR);
+        pGraphics.setStroke(UIColorConverter.toJavaFXColor(ColorConstants.GRID_COLOR));
         pGraphics.setLineWidth(1);
 
         double startX = -((pTranslateX) % GRID_SIZE);

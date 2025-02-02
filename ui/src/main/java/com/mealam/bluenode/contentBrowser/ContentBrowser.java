@@ -13,11 +13,11 @@ public class ContentBrowser extends VBox {
 
     public ContentBrowser() {
         treeView = new TreeView<>();
-        treeView.setStyle("-fx-background: #2e2e2e; -fx-control-inner-background: #2e2e2e;");
+        treeView.getStyleClass().add("content-tree");
         treeView.setCellFactory(new TreeCellFactory());
 
+        getStyleClass().add("content-browser");
         getChildren().add(treeView);
-        setStyle("-fx-background-color: #2e2e2e;");
     }
 
     public void updateContent(File pFolder) {

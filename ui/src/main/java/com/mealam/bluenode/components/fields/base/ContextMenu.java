@@ -7,36 +7,31 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
-public class InputFieldContextMenu {
-
-    public static void handleRightClick(InputField field, MouseEvent event) {
-        if (event.getButton() == MouseButton.SECONDARY) {
-            showContextMenu(field, event);
-        }
-    }
+public class ContextMenu {
 
     public static void showContextMenu(TextField textField, MouseEvent event) {
         Popup popup = new Popup();
 
         VBox menuBox = new VBox();
-        menuBox.setSpacing(5);
+        menuBox.getStyleClass().add("context-menu");
 
-        Text undoOption = new Text("Undo");
-        undoOption.setOnMouseClicked(e -> {
-            textField.undo();
-            popup.hide();
-        });
-
-        Text customOption = new Text("Random Action");
-        customOption.setOnMouseClicked(e -> {
+        Text undoOption = createMenuItem("Undo", textField::undo);
+        Text customOption = createMenuItem("Random Action", () -> {
             System.out.println("Random action Clicked");
-            popup.hide();
         });
 
         menuBox.getChildren().addAll(undoOption, customOption);
-
         popup.getContent().add(menuBox);
         popup.setAutoHide(true);
         popup.show(textField, event.getScreenX(), event.getScreenY());
+    }
+
+    private static Text createMenuItem(String text, Runnable action) {
+        Text menuItem = new Text(text);
+        menuItem.getStyleClass().add("menu-item");
+        menuItem.setOnMouseClicked(e -> {
+            action.run();
+        });
+        return menuItem;
     }
 }
