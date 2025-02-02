@@ -17,6 +17,7 @@ public class NewAction {
             try {
                 Stage stage = new Stage();
                 showFolderSelectionPopup(stage);
+                BaseLogger.log(BaseLogLevel.SUCCESS, "Opened the NewAction popup");
             } catch (Exception pException) {
                 BaseLogger.log(BaseLogLevel.ERROR, "Error while trying to open the NewAction popup", pException);
             }
