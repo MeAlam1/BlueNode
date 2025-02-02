@@ -51,7 +51,9 @@ public class MainPanel extends BorderPane {
 
         UIConstants.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
             if (pEvent.getButton() == MouseButton.SECONDARY) { // Right-click
-                NodeLibrary.createPopup(pPrimaryStage, NodeLoaderUtils.getAllNodes(), pEvent);
+                if (!isNodeAtLocation(pEvent.getX(), pEvent.getY(), 150, 100)) {
+                    NodeLibrary.createPopup(pPrimaryStage, NodeLoaderUtils.getAllNodes(), pEvent);
+                }
             }
         });
 
