@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.nodes.components.input.category.InputCategoryData;
 import com.mealam.bluenode.nodes.components.input.category.InputCategoryManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class Input {
         input.properties.setType(jsonObject.get("type").getAsString());
         input.properties.setWidth(20);
         InputCategoryData categoryData = InputCategoryManager.getCategoryData(input.properties.getType());
-        input.properties.setColor(categoryData.color());
+        input.properties.setCss(categoryData.cssName());
 
         input.properties.defaultValue = jsonObject.has("defaultValue") ? jsonObject.get("defaultValue").getAsString() : "";
         return input;
@@ -53,7 +54,7 @@ public class Input {
         private double height;
         private String name;
         private String type;
-        private String color;
+        private String cssName;
         private String defaultValue;
 
         public String getId() {
@@ -96,12 +97,12 @@ public class Input {
             this.type = type;
         }
 
-        public String getColor() {
-            return color;
+        public String getCss() {
+            return cssName;
         }
 
-        public void setColor(String color) {
-            this.color = color;
+        public void setCss(String cssName) {
+            this.cssName = cssName;
         }
 
         public String getDefaultValue() {
@@ -120,7 +121,7 @@ public class Input {
                     "      \"height\": " + height + ",\n" +
                     "      \"name\": \"" + name + "\",\n" +
                     "      \"type\": \"" + type + "\",\n" +
-                    "      \"color\": \"" + color + "\",\n" +
+                    "      \"CSS\": \"" + cssName + "\",\n" +
                     "      \"defaultValue\": " + defaultValue + "\n" +
                     "    }\n  ";
         }

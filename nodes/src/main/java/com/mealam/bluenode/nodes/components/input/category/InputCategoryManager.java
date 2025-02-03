@@ -8,10 +8,10 @@ public class InputCategoryManager {
     private static final Map<String, InputCategoryData> CATEGORY_DATA_MAP = new HashMap<>();
 
     public static void initCategoryData() {
-        CATEGORY_DATA_MAP.putIfAbsent("float", new InputCategoryData("#00FF00"));
+        CATEGORY_DATA_MAP.putIfAbsent("float", new InputCategoryData("float-input"));
     }
 
     public static InputCategoryData getCategoryData(String category) {
-        return CATEGORY_DATA_MAP.getOrDefault(category, new InputCategoryData("#FFFFFF"));
+        return CATEGORY_DATA_MAP.getOrDefault(category, new InputCategoryData("input"));
     }
 }
