@@ -16,6 +16,7 @@ public class NodeLibrary {
     public static void createPopup(Stage parent, List<Node> items, MouseEvent event) {
         Popup popup = new Popup();
         VBox vBox = new VBox();
+        vBox.getStyleClass().add("node-library-popup");
 
         Map<String, TitledPane> categoryMap = new HashMap<>();
 
@@ -33,6 +34,7 @@ public class NodeLibrary {
 
             Button nodeButton = new Button(item.getProperties().getTitle());
             nodeButton.setMaxWidth(Double.MAX_VALUE);
+            nodeButton.getStyleClass().add("node-library-popup-button");
             nodeButton.setOnAction(actionEvent -> {
                 MainPanel.placeNode(NodeFactory.createNode(item), event.getX(), event.getY());
                 popup.hide();
@@ -58,6 +60,7 @@ public class NodeLibrary {
     private static TitledPane createTitledPane(String title) {
         TitledPane titledPane = new TitledPane(title, new VBox());
         titledPane.setExpanded(false);
+        titledPane.getStyleClass().add("node-library-popup-category");
         return titledPane;
     }
 
