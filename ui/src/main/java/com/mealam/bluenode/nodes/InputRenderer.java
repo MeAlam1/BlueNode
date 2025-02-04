@@ -1,6 +1,8 @@
 package com.mealam.bluenode.nodes;
 
 import com.mealam.bluenode.components.fields.FloatField;
+import com.mealam.bluenode.components.fields.base.FieldFactory;
+import com.mealam.bluenode.components.fields.base.InputField;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.canvas.GraphicsContext;
@@ -19,7 +21,8 @@ public class InputRenderer {
      * @param height the height of the TextField
      */
     public static void render(GraphicsContext pGraphicsContext, Pane parent, Input input, Node pNode, double x, double y, double width, double height) {
-        FloatField textField = new FloatField(pGraphicsContext, parent, input, pNode);
+        String type = input.getProperties().getType();
+        InputField textField = FieldFactory.createField(type, pGraphicsContext, parent, input, pNode);
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
         textField.setMaxWidth(width - 10);
