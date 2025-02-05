@@ -19,7 +19,7 @@ public class UIController extends Application {
                 *  [AI] - Load styles in a separate thread to prevent UI from freezing.
                 *  [MeAlam] - Refactor all Styling across the UI into the new Styling system.
              */
-            StyleLoader.loadAllStyles();
+            StyleLoader.loadAllStyles(StyleLoader.class.getClassLoader().getResource("styles"));
             StageConfigurer.configureStage(pPrimaryStage);
 
             initializeComponents(pPrimaryStage);

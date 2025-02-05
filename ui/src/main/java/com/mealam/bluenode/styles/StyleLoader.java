@@ -3,6 +3,7 @@ package com.mealam.bluenode.styles;
 import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -10,9 +11,8 @@ import java.util.zip.ZipFile;
 
 public class StyleLoader {
 
-    public static void loadAllStyles() {
+    public static void loadAllStyles(URL stylesFolderUrl) {
         try {
-            URL stylesFolderUrl = StyleLoader.class.getClassLoader().getResource("styles");
             if (stylesFolderUrl == null) {
                 BaseLogger.log(BaseLogLevel.ERROR, "Styles folder not found in resources.");
                 return;
