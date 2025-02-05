@@ -1,0 +1,19 @@
+.node-pane {
+    -fx-background-color: rgb(100, 100, 100);
+    -fx-background-radius: 10px;
+    -fx-padding: 20px 5px 5px 5px;
+}
+
+
+.node-title-bar {
+    -fx-background-color: #FF5733;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-text-fill: black;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+
+.node-content-area {
+    -fx-background-color: gray;
+    -fx-background-radius: 0 0 10px 10px;
+}

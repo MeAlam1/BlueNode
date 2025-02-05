@@ -9,8 +9,6 @@ import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +16,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainPanel extends BorderPane {
 
@@ -92,7 +93,7 @@ public class MainPanel extends BorderPane {
             BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());
 
             for (Node node : nodes) {
-                NodeRenderer.render(graphicsContext, overlayPane, node, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
+                NodeRenderer.render(overlayPane, node);
             }
 
             BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + NodeIDGenerator.decryptID(pNode.getProperties().getId()));

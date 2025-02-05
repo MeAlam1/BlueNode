@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.mealam.bluenode.json.JSONParser;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
+
 import java.util.List;
 
 public class NodeInit {
@@ -12,6 +13,6 @@ public class NodeInit {
 
     public static void loadNodes(String pFolderPath) {
         allNodes = JSONParser.parseJsonFiles(pFolderPath);
-        BaseLogger.log(BaseLogLevel.INFO, "All data: " + allNodes);
+        BaseLogger.log(BaseLogLevel.INFO, "All Nodes: " + allNodes);
     }
 }

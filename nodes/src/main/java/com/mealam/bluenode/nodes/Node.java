@@ -3,11 +3,12 @@ package com.mealam.bluenode.nodes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mealam.bluenode.nodes.category.NodeCategoryHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
-import java.util.List;
+import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
 import org.checkerframework.checker.index.qual.NonNegative;
+
+import java.util.List;
 
 public class Node {
 
@@ -36,7 +37,10 @@ public class Node {
         node.properties.setDescription(jsonObject.get("description").getAsString());
         node.properties.setCategory(jsonObject.get("category").getAsString());
 
-        NodeCategoryHandler.applyCategoryStyle(node);
+        List<String> categories = NodeCategoryUtils.getCategories(node.getProperties().getCategory());
+        for (String category : categories) {
+            node.getProperties().setCSS(NodeCategoryUtils.getCategoryData(category, "cssName"));
+        }
 
         JsonArray inputsJsonArray = jsonObject.getAsJsonArray("inputs");
         node.properties.setInputs(Input.fromJsonArray(inputsJsonArray));
@@ -79,7 +83,7 @@ public class Node {
         private double y;
         private double width;
         private double height;
-        private String color;
+        private String CSS;
         private String title;
         private String description;
         private String category;
@@ -127,12 +131,12 @@ public class Node {
             this.height = height;
         }
 
-        public String getColor() {
-            return color;
+        public String getCSS() {
+            return CSS;
         }
 
-        public void setColor(String color) {
-            this.color = color;
+        public void setCSS(String CSS) {
+            this.CSS = CSS;
         }
 
         public String getTitle() {
@@ -191,7 +195,7 @@ public class Node {
                     "  \"y\": " + y + ",\n" +
                     "  \"width\": " + width + ",\n" +
                     "  \"height\": " + height + ",\n" +
-                    "  \"color\": \"" + color + "\",\n" +
+                    "  \"CSS\": \"" + CSS + "\",\n" +
                     "  \"title\": \"" + title + "\",\n" +
                     "  \"description\": \"" + description + "\",\n" +
                     "  \"category\": \"" + category + "\",\n" +

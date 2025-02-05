@@ -1,12 +1,8 @@
 package com.mealam.bluenode.nodes;
 
-import com.mealam.bluenode.components.fields.FloatField;
-import com.mealam.bluenode.components.fields.base.FieldFactory;
-import com.mealam.bluenode.components.fields.base.InputField;
+import com.mealam.bluenode.components.fields.InputField;
 import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.Pane;
 
 public class InputRenderer {
 
@@ -20,9 +16,8 @@ public class InputRenderer {
      * @param width  the width of the TextField
      * @param height the height of the TextField
      */
-    public static void render(GraphicsContext pGraphicsContext, Pane parent, Input input, Node pNode, double x, double y, double width, double height) {
-        String type = input.getProperties().getType();
-        InputField textField = FieldFactory.createField(type, pGraphicsContext, parent, input, pNode);
+    public static void render(NodePane parent, Input input, Node pNode, double x, double y, double width, double height) {
+        InputField textField = new InputField(parent, input, pNode);
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
         textField.setMaxWidth(width - 10);
@@ -31,4 +26,5 @@ public class InputRenderer {
 
         parent.getChildren().add(textField);
     }
+
 }
