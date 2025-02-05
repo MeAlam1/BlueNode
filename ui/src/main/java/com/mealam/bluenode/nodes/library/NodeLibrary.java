@@ -3,13 +3,17 @@ package com.mealam.bluenode.nodes.library;
 import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeFactory;
-import com.mealam.bluenode.nodes.category.NodeCategoryHandler;
-import java.util.*;
-import javafx.scene.control.*;
+import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
+import javafx.scene.control.Button;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class NodeLibrary {
 
@@ -21,7 +25,7 @@ public class NodeLibrary {
         Map<String, TitledPane> categoryMap = new HashMap<>();
 
         for (Node item : items) {
-            List<String> categories = NodeCategoryHandler.getCategories(item.getProperties().getCategory());
+            List<String> categories = NodeCategoryUtils.getCategories(item.getProperties().getCategory());
 
             if (categories.isEmpty()) continue;
 

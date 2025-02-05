@@ -6,14 +6,9 @@
 
 
 .node-title-bar {
-    -fx-background-color: #FF5733;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 10px 10px 0 0;
     -fx-text-fill: black;
     -fx-padding: 5px;
     -fx-font-size: 14px;
-}
-
-.node-content-area {
-    -fx-background-color: gray;
-    -fx-background-radius: 0 0 10px 10px;
 }

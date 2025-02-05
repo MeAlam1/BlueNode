@@ -27,16 +27,16 @@ public class NodePane extends Pane {
 
         Pane titleBar = new Pane();
         titleBar.getStyleClass().add("node-title-bar");
+        for (String css : nodeData.getProperties().getCSS()) {
+            titleBar.getStyleClass().add(css);
+        }
         titleBar.setPrefSize(width, titleBarHeight);
         Text title = new Text(nodeData.getProperties().getTitle());
         title.setTranslateY(20);
         title.setTranslateX(5);
         titleBar.getChildren().add(title);
 
-        Pane contentArea = new Pane();
-        contentArea.getStyleClass().add("node-content-area");
-
-        this.getChildren().addAll(titleBar, contentArea);
+        this.getChildren().addAll(titleBar);
         createInputs(width, height);
     }
 

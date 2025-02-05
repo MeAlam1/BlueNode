@@ -16,15 +16,14 @@ public class UIController extends Application {
     public void start(Stage pPrimaryStage) {
         try {
             /* OPTIMIZE:
-                *  [AI] - Load styles in a separate thread to prevent UI from freezing.
-                *  [MeAlam] - Refactor all Styling across the UI into the new Styling system.
+             *  [AI] - Load styles in a separate thread to prevent UI from freezing.
+             *  [MeAlam] - Refactor all Styling across the UI into the new Styling system.
              */
             StyleLoader.loadAllStyles(StyleLoader.class.getClassLoader().getResource("styles"));
             StageConfigurer.configureStage(pPrimaryStage);
 
             initializeComponents(pPrimaryStage);
             CoreController.initializeCore();
-            NodeController.initializeNodes();
 
             pPrimaryStage.show();
             BaseLogger.log(BaseLogLevel.SUCCESS, "BlueNode application started successfully.");

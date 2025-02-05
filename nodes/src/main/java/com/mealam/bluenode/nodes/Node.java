@@ -8,6 +8,7 @@ import com.mealam.bluenode.nodes.components.output.Output;
 import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
 import org.checkerframework.checker.index.qual.NonNegative;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
@@ -38,9 +39,11 @@ public class Node {
         node.properties.setCategory(jsonObject.get("category").getAsString());
 
         List<String> categories = NodeCategoryUtils.getCategories(node.getProperties().getCategory());
+        List<String> css = new ArrayList<>();
         for (String category : categories) {
-            node.getProperties().setCSS(NodeCategoryUtils.getCategoryData(category, "cssName"));
+            css.add(NodeCategoryUtils.getCategoryData(category, "cssName"));
         }
+        node.getProperties().setCSS(css);
 
         JsonArray inputsJsonArray = jsonObject.getAsJsonArray("inputs");
         node.properties.setInputs(Input.fromJsonArray(inputsJsonArray));
@@ -83,7 +86,7 @@ public class Node {
         private double y;
         private double width;
         private double height;
-        private String CSS;
+        private List<String> CSS;
         private String title;
         private String description;
         private String category;
@@ -131,11 +134,11 @@ public class Node {
             this.height = height;
         }
 
-        public String getCSS() {
+        public List<String> getCSS() {
             return CSS;
         }
 
-        public void setCSS(String CSS) {
+        public void setCSS(List<String> CSS) {
             this.CSS = CSS;
         }
 
