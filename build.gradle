@@ -1,17 +1,47 @@
 plugins {
     id 'application'
     id 'java'
-    id 'org.openjfx.javafxplugin' version "${javafx_plugins_version}"
     id 'com.diffplug.spotless' version '7.0.2' apply false
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 application {
-    mainClass = "${group_id}.${start_class}"
+    mainClass = "${group_id}.${start_class}".toString()
 }
 
 dependencies {
     implementation project(':ui')
 }
+
+shadowJar {
+    archiveBaseName = project_name.toString()
+    archiveVersion = version.toString()
+    archiveClassifier = ''
+    manifest {
+        attributes 'Main-Class': "${group_id}.${start_class}".toString()
+    }
+    mergeServiceFiles()
+    dependencies {
+        include(project(':ui'))
+        include(project(':core'))
+        include(project(':nodes'))
+        include(dependency("org.openjfx:javafx-controls:${javafx_dependency_version}"))
+        include(dependency("org.openjfx:javafx-fxml:${javafx_dependency_version}"))
+        include(dependency("org.openjfx:javafx-media:${javafx_dependency_version}"))
+        include(dependency("org.openjfx:javafx-web:${javafx_dependency_version}"))
+        include(dependency("org.openjfx:javafx-swing:${javafx_dependency_version}"))
+        include(dependency("org.controlsfx:controlsfx:${controlsfx_version}"))
+        include(dependency("com.google.code.gson:gson:${gson_version}"))
+        include(dependency("com.google.guava:guava:${guava_version}"))
+        include(dependency("commons-io:commons-io:${commons_io_version}"))
+        include(dependency("org.apache.commons:commons-lang3:${commons_lang3_version}"))
+        include(dependency("org.apache.httpcomponents.client5:httpclient5:${httpclient5_version}"))
+        include(dependency("org.slf4j:slf4j-api:${slf4j_version}"))
+        include(dependency("ch.qos.logback:logback-classic:${logback_version}"))
+    }
+}
+
+tasks.build.dependsOn tasks.shadowJar
 
 apply from: 'gradle/allProjects.gradle'
 apply from: 'gradle/tasks.gradle'
