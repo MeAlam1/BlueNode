@@ -50,6 +50,13 @@ public class CanvasDragHandler {
             node.getProperties().setY(node.getProperties().getY() + deltaY);
         }
 
+        redraw();
+
+        lastX = pEvent.getX();
+        lastY = pEvent.getY();
+    }
+
+    public static void redraw() {
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gridDrawer.redraw(graphicsContext, canvas.getWidth(), canvas.getHeight(), -translateX, -translateY);
 
@@ -57,10 +64,8 @@ public class CanvasDragHandler {
 
         for (Node node : nodes) {
             NodeRenderer.render(overlayPane, node);
+            //BaseLogger.log(BaseLogLevel.INFO, "Node: " + node.toString());
         }
-
-        lastX = pEvent.getX();
-        lastY = pEvent.getY();
     }
 
     public static double getTranslateX() {

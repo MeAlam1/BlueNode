@@ -1,5 +1,6 @@
 package com.mealam.bluenode.components.fields;
 
+import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.control.TextField;
@@ -31,8 +32,11 @@ public class InputField extends TextField {
         });
 
         this.setOnAction(event -> saveValue());
+
         this.focusedProperty().addListener((observable, oldFocused, newFocused) -> {
-            if (!newFocused) saveValue();
+            if (!newFocused) {
+                saveValue();
+            }
         });
     }
 
@@ -42,11 +46,11 @@ public class InputField extends TextField {
         double textWidth = text.getLayoutBounds().getWidth();
         double padding = this.getInsets().getLeft() + this.getInsets().getRight();
         double newWidth = Math.max(40, textWidth + padding);
-
         pNode.updateSize();
-
         this.setPrefWidth(newWidth);
         input.getProperties().setWidth(newWidth);
+        input.getProperties().setValue(newValue);
+        CanvasDragHandler.redraw();
     }
 
     private void saveValue() {
