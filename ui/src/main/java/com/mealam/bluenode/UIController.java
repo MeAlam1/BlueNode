@@ -3,6 +3,7 @@ package com.mealam.bluenode;
 import com.mealam.bluenode.configs.StageConfigurer;
 import com.mealam.bluenode.handlers.WindowInteractionHandler;
 import com.mealam.bluenode.mainPanel.MainPanel;
+import com.mealam.bluenode.styles.AsyncStyleLoader;
 import com.mealam.bluenode.styles.StyleLoader;
 import com.mealam.bluenode.titleBar.TitleBar;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
@@ -15,11 +16,7 @@ public class UIController extends Application {
     @Override
     public void start(Stage pPrimaryStage) {
         try {
-            /* OPTIMIZE:
-             *  [AI] - Load styles in a separate thread to prevent UI from freezing.
-             *  [MeAlam] - Refactor all Styling across the UI into the new Styling system.
-             */
-            StyleLoader.loadAllStyles(StyleLoader.class.getClassLoader().getResource("styles"));
+            AsyncStyleLoader.loadAllStyles(StyleLoader.class.getClassLoader().getResource("styles"));
             StageConfigurer.configureStage(pPrimaryStage);
 
             initializeComponents(pPrimaryStage);
