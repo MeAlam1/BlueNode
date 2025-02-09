@@ -4,6 +4,8 @@ import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -17,6 +19,7 @@ public class InputField extends TextField {
         configureField();
 
         addEventListeners(pPane, pNode);
+        addFocusListeners();
     }
 
     private void configureField() {
@@ -30,17 +33,10 @@ public class InputField extends TextField {
         textProperty().addListener((observable, oldValue, newValue) -> {
             updateFieldSize(pNode, newValue);
         });
-
-        this.setOnAction(event -> saveValue());
-
-        this.focusedProperty().addListener((observable, oldFocused, newFocused) -> {
-            if (!newFocused) {
-                saveValue();
-            }
-        });
     }
 
     private void updateFieldSize(Node pNode, String newValue) {
+        input.getProperties().setValue(newValue);
         Text text = new Text(newValue);
         text.setFont(this.getFont());
         double textWidth = text.getLayoutBounds().getWidth();
@@ -53,11 +49,12 @@ public class InputField extends TextField {
         CanvasDragHandler.redraw();
     }
 
-    private void saveValue() {
-        input.getProperties().setValue(this.getText());
-        if (this.getParent() != null) {
-            this.getParent().requestFocus();
-        }
+    private void addFocusListeners() {
+        this.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.ESCAPE) {
+                this.getParent().requestFocus();
+            }
+        });
     }
 
     protected boolean validate(String pText) {
