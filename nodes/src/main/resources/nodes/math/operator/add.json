@@ -20,9 +20,13 @@
         }
       ],
       "metadata": {
-        "aliases": ["addition", "sum", "+", "plus"]
+        "aliases": [
+          "addition",
+          "sum",
+          "+",
+          "plus"
+        ]
       }
     }
-
   ]
 }

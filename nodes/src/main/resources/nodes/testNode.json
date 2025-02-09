@@ -20,9 +20,12 @@
         }
       ],
       "metadata": {
-        "aliases": ["example", "test", "testing"]
+        "aliases": [
+          "example",
+          "test",
+          "testing"
+        ]
       }
     }
-
   ]
 }
