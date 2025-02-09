@@ -6,19 +6,18 @@ import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class InputField extends TextField {
 
     private final Input input;
 
-    public InputField(Pane pPane, Input pInput, Node pNode) {
+    public InputField(Input pInput, Node pNode) {
         this.input = pInput;
 
         configureField();
 
-        addEventListeners(pPane, pNode);
+        addEventListeners(pNode);
         addFocusListeners();
     }
 
@@ -29,7 +28,7 @@ public class InputField extends TextField {
         this.getStyleClass().add(input.getProperties().getCss());
     }
 
-    private void addEventListeners(Pane pPane, Node pNode) {
+    private void addEventListeners(Node pNode) {
         textProperty().addListener((observable, oldValue, newValue) -> {
             updateFieldSize(pNode, newValue);
         });

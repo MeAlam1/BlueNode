@@ -17,7 +17,7 @@ public class InputRenderer {
      * @param height the height of the TextField
      */
     public static void render(NodePane parent, Input input, Node pNode, double x, double y, double width, double height) {
-        InputField textField = new InputField(parent, input, pNode);
+        InputField textField = new InputField(input, pNode);
         textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
         textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
         textField.setMaxWidth(width - 10);
