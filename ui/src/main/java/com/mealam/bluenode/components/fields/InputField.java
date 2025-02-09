@@ -19,6 +19,7 @@ public class InputField extends TextField {
 
         addEventListeners(pNode, nodePane);
         addFocusListeners();
+        ContextMenu.addContextMenuListener(this);
     }
 
     private void configureField() {
@@ -34,6 +35,9 @@ public class InputField extends TextField {
         });
     }
 
+    /*OPTIMIZE:
+     * Extract the newWidth to a seperate method
+     */
     private void updateFieldSize(Node pNode, NodePane nodePane, String newValue) {
         input.getProperties().setValue(newValue);
         Text text = new Text(newValue);
@@ -46,7 +50,6 @@ public class InputField extends TextField {
         input.getProperties().setWidth(newWidth);
         input.getProperties().setValue(newValue);
         nodePane.updateSize();
-
     }
 
     private void addFocusListeners() {

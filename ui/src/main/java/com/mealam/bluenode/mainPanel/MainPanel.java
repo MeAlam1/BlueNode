@@ -20,6 +20,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
+/*OPTIMIZE:
+ * 1. Extract code from MainPanel to separate classes, Utils, Handlers, Helpers, etc.
+ */
 public class MainPanel extends BorderPane {
 
     private static GraphicsContext graphicsContext;

@@ -65,6 +65,12 @@ public class Node {
         return properties;
     }
 
+    /*OPTIMIZE:
+        Multiple things,
+        1. It hardcodes the minimum width of the node to 150, this should be modular.
+        2. It hardcodes the increase in width to 20, should be a Parameter
+        3. The name suggests an update of the size, but it only updates the width.
+     */
     public void updateSize() {
         double maxWidth = 0;
 
