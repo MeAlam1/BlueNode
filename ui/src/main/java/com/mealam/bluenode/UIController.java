@@ -1,7 +1,7 @@
 package com.mealam.bluenode;
 
 import com.mealam.bluenode.configs.StageConfigurer;
-import com.mealam.bluenode.handlers.WindowInteractionHandler;
+import com.mealam.bluenode.events.window.WindowInteractionHandler;
 import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.styles.AsyncStyleLoader;
 import com.mealam.bluenode.styles.StyleLoader;

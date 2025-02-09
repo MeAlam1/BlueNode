@@ -1,4 +1,4 @@
-package com.mealam.bluenode.handlers.mainPanel;
+package com.mealam.bluenode.events.mainPanel;
 
 import com.mealam.bluenode.mainPanel.GridDrawer;
 import com.mealam.bluenode.nodes.Node;

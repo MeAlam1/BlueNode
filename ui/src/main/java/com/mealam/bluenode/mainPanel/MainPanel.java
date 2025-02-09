@@ -1,7 +1,7 @@
 package com.mealam.bluenode.mainPanel;
 
 import com.mealam.bluenode.UIConstants;
-import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
+import com.mealam.bluenode.events.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.nodes.library.NodeLibrary;

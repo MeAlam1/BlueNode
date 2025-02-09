@@ -1,4 +1,4 @@
-package com.mealam.bluenode.events;
+package com.mealam.bluenode.events.window;
 
 import com.mealam.bluenode.titleBar.TitleBar;
 import javafx.stage.Stage;

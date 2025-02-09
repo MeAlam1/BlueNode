@@ -1,6 +1,6 @@
 package com.mealam.bluenode.nodes;
 
-import com.mealam.bluenode.handlers.mainPanel.CanvasDragHandler;
+import com.mealam.bluenode.events.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
