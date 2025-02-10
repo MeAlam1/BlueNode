@@ -4,16 +4,15 @@ import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeFactory;
 import com.mealam.bluenode.nodes.NodeManager;
 import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class NodeLibrary {
 

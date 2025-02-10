@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.utils.nodes.input.InputCategoryUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 

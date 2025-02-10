@@ -29,8 +29,7 @@ public class CaseUtils {
     /**
      * Private constructor to prevent instantiation.
      */
-    private CaseUtils() {
-    }
+    private CaseUtils() {}
 
     /**
      * Common method to handle null or empty input.

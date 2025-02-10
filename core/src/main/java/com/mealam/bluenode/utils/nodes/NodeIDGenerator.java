@@ -1,12 +1,11 @@
 package com.mealam.bluenode.utils.nodes;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class NodeIDGenerator {
 

@@ -3,10 +3,9 @@ package com.mealam.bluenode.nodes;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
-import javafx.scene.layout.Pane;
-
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.layout.Pane;
 
 public class NodeManager {
 

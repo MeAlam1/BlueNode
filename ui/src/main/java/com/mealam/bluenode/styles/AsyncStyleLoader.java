@@ -2,10 +2,9 @@ package com.mealam.bluenode.styles;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-import javafx.application.Platform;
-
 import java.net.URL;
 import java.util.concurrent.CompletableFuture;
+import javafx.application.Platform;
 
 public class AsyncStyleLoader {
 

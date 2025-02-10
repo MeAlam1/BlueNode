@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -46,7 +45,7 @@ public class JSONLoader {
         }
 
         try (InputStream inputStream = new FileInputStream(pFile);
-             InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+                InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
             return loadJsonFromReader(reader);
         } catch (Exception pException) {
             BaseLogger.log(BaseLogLevel.ERROR, "Failed to load JSON file: " + pFile, pException);
@@ -64,7 +63,7 @@ public class JSONLoader {
             }
 
             try (InputStream inputStream = zipFile.getInputStream(entry);
-                 InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+                    InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
                 return loadJsonFromReader(reader);
             } catch (Exception pException) {
                 BaseLogger.log(BaseLogLevel.ERROR, "(0)[Jar] Failed to load JSON resource: " + pResourcePath, pException);
