@@ -2,113 +2,43 @@ package com.mealam.bluenode.mainPanel;
 
 import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.events.mainPanel.CanvasDragHandler;
-import com.mealam.bluenode.nodes.Node;
-import com.mealam.bluenode.nodes.NodePane;
-import com.mealam.bluenode.nodes.library.NodeLibrary;
+import com.mealam.bluenode.events.mainPanel.CanvasInteractionHandler;
+import com.mealam.bluenode.mainPanel.grid.GridManager;
+import com.mealam.bluenode.nodes.NodeManager;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
-import com.mealam.bluenode.utils.nodes.NodeLoaderUtils;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/*OPTIMIZE:
- * 1. Extract code from MainPanel to separate classes, Utils, Handlers, Helpers, etc.
- */
 public class MainPanel extends BorderPane {
 
-    private final GraphicsContext graphicsContext;
-    private final Stage primaryStage;
-    private final GridDrawer gridDrawer;
-    private static Pane overlayPane;
-    private static List<Node> nodes;
+    private final GridManager gridManager;
 
-    public MainPanel(Stage pPrimaryStage) {
-        primaryStage = pPrimaryStage;
-        graphicsContext = UIConstants.MAIN_CANVAS.getGraphicsContext2D();
-        gridDrawer = new GridDrawer();
-        nodes = new ArrayList<>();
-
-        overlayPane = new Pane();
+    public MainPanel(Stage primaryStage) {
+        GraphicsContext graphicsContext = UIConstants.MAIN_CANVAS.getGraphicsContext2D();
+        Pane overlayPane = new Pane();
         overlayPane.setPickOnBounds(false);
+        NodeManager.setOverlayPane(overlayPane);
 
         StackPane stackPane = new StackPane(UIConstants.MAIN_CANVAS, overlayPane);
         setCenter(stackPane);
+
+        gridManager = new GridManager(graphicsContext);
+        new CanvasInteractionHandler(primaryStage);
 
         UIConstants.MAIN_CANVAS.widthProperty().bind(widthProperty());
         UIConstants.MAIN_CANVAS.heightProperty().bind(heightProperty());
         overlayPane.prefWidthProperty().bind(UIConstants.MAIN_CANVAS.widthProperty());
         overlayPane.prefHeightProperty().bind(UIConstants.MAIN_CANVAS.heightProperty());
 
-        widthProperty().addListener((observable, oldValue, newValue) -> drawGrid());
-        heightProperty().addListener((observable, oldValue, newValue) -> drawGrid());
+        new CanvasDragHandler(UIConstants.MAIN_CANVAS, graphicsContext, gridManager.getGridDrawer(), NodeManager.getNodes(), overlayPane);
 
-        new CanvasDragHandler(UIConstants.MAIN_CANVAS, graphicsContext, gridDrawer, nodes, overlayPane);
-
-        UIConstants.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, pEvent -> {
-            if (pEvent.getButton() == MouseButton.SECONDARY) { // Right-click
-                if (!isNodeAtLocation(pEvent.getX(), pEvent.getY(), 150, 100)) {
-                    NodeLibrary.createPopup(pPrimaryStage, NodeLoaderUtils.getAllNodes(), pEvent);
-                }
-            }
-        });
+        widthProperty().addListener((observable, oldValue, newValue) -> gridManager.drawGrid());
+        heightProperty().addListener((observable, oldValue, newValue) -> gridManager.drawGrid());
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "MainPanel initialized with infinite scrolling and zoom");
-    }
-
-    private void drawGrid() {
-        double width = UIConstants.MAIN_CANVAS.getWidth();
-        double height = UIConstants.MAIN_CANVAS.getHeight();
-
-        graphicsContext.save();
-        graphicsContext.clearRect(0, 0, width, height);
-        graphicsContext.translate(CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
-
-        gridDrawer.drawGrid(graphicsContext, width, height, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
-        gridDrawer.redraw(graphicsContext, width, height, CanvasDragHandler.getTranslateX(), CanvasDragHandler.getTranslateY());
-    }
-
-    public static boolean isNodeAtLocation(double pX, double pY, double width, double height) {
-        for (Node node : nodes) {
-            double nodeX = node.getProperties().getX();
-            double nodeY = node.getProperties().getY();
-            double nodeWidth = node.getProperties().getWidth();
-            double nodeHeight = node.getProperties().getHeight();
-
-            if (pX < nodeX + nodeWidth && pX + width > nodeX && pY < nodeY + nodeHeight && pY + height > nodeY) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static void placeNode(Node pNode) {
-        if (!isNodeAtLocation(pNode.getProperties().getX(), pNode.getProperties().getY(), pNode.getProperties().getWidth(), pNode.getProperties().getHeight())) {
-            nodes.add(pNode);
-            BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());
-
-            for (Node node : nodes) {
-                NodePane nodePane = new NodePane(node);
-                overlayPane.getChildren().add(nodePane);
-            }
-
-            BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + NodeIDGenerator.decryptID(pNode.getProperties().getId()));
-        } else {
-            BaseLogger.log(BaseLogLevel.WARNING, "No suitable position found for new node.");
-        }
-    }
-
-    public static void placeNode(Node pNode, double x, double y) {
-        pNode.getProperties().setX(x);
-        pNode.getProperties().setY(y);
-        placeNode(pNode);
     }
 }

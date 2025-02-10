@@ -1,4 +1,4 @@
-package com.mealam.bluenode.mainPanel;
+package com.mealam.bluenode.mainPanel.grid;
 
 import com.mealam.bluenode.ColorConstants;
 import com.mealam.bluenode.utils.converter.UIColorConverter;

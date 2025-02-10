@@ -1,6 +1,6 @@
 package com.mealam.bluenode.events.mainPanel;
 
-import com.mealam.bluenode.mainPanel.GridDrawer;
+import com.mealam.bluenode.mainPanel.grid.GridDrawer;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodePane;
 import javafx.scene.canvas.Canvas;

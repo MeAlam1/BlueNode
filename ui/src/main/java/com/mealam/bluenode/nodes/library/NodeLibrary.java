@@ -1,8 +1,8 @@
 package com.mealam.bluenode.nodes.library;
 
-import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeFactory;
+import com.mealam.bluenode.nodes.NodeManager;
 import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
@@ -40,7 +40,7 @@ public class NodeLibrary {
             nodeButton.setMaxWidth(Double.MAX_VALUE);
             nodeButton.getStyleClass().add("node-library-popup-button");
             nodeButton.setOnAction(actionEvent -> {
-                MainPanel.placeNode(NodeFactory.createNode(item), event.getX(), event.getY());
+                NodeManager.placeNode(NodeFactory.createNode(item), event.getX(), event.getY());
                 popup.hide();
             });
 
