@@ -42,8 +42,13 @@ shadowJar {
     }
 }
 
+tasks.named('distZip').configure { enabled = false }
+tasks.named('distTar').configure { enabled = false }
+
 tasks.withType(AbstractArchiveTask).configureEach {
-    dependsOn shadowJar
+    if (it != tasks.shadowJar) {
+        dependsOn shadowJar
+    }
 }
 
 apply from: 'gradle/allProjects.gradle'
