@@ -44,6 +44,10 @@ shadowJar {
 
 tasks.build.dependsOn tasks.shadowJar
 
+distZip {
+    dependsOn shadowJar
+}
+
 apply from: 'gradle/allProjects.gradle'
 apply from: 'gradle/tasks.gradle'
 
