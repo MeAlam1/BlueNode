@@ -1,0 +1,17 @@
+.maximize-button {
+    -fx-font-size: 14px;
+    -fx-background-color: rgb(60, 60, 60);
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+}
+
+.maximize-button:hover {
+    -fx-opacity: 0.8;
+    -fx-background-color: rgb(80, 80, 80);
+}
+
+.maximize-button:pressed {
+    -fx-opacity: 0.7;
+}

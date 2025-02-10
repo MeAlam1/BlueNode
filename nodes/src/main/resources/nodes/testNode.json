@@ -1,0 +1,31 @@
+{
+  "testNode": [
+    {
+      "title": "Test Title",
+      "description": "Testing the Description.",
+      "category": "utility/operator",
+      "inputs": [
+        {
+          "id": "inputTest",
+          "name": "Input Test Name",
+          "type": "float",
+          "defaultValue": 0
+        }
+      ],
+      "outputs": [
+        {
+          "id": "outputTest",
+          "name": "Output Test Name",
+          "type": "float"
+        }
+      ],
+      "metadata": {
+        "aliases": [
+          "example",
+          "test",
+          "testing"
+        ]
+      }
+    }
+  ]
+}

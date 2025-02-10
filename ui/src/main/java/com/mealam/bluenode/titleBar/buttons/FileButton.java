@@ -1,34 +1,32 @@
 package com.mealam.bluenode.titleBar.buttons;
 
-import com.mealam.bluenode.ColorConstants;
-import com.mealam.bluenode.components.TextButton;
+import com.mealam.bluenode.components.buttons.TextButton;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.NewAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.OpenAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAction;
 import com.mealam.bluenode.titleBar.buttons.actions.fileButton.SaveAsAction;
-import com.mealam.bluenode.utils.converter.UIColorConverter;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-import javafx.geometry.Insets;
+import javafx.event.ActionEvent;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class FileButton extends TextButton {
 
+    private final ContextMenu contextMenu;
+
     public FileButton(Stage pStage) {
-        super("File", UIColorConverter.toJavaFXColor(ColorConstants.NORMAL_COLOR), UIColorConverter.toJavaFXColor(ColorConstants.HOVER_COLOR), 45, 30);
-        setPadding(new Insets(5, 10, 5, 10));
-
-        ContextMenu contextMenu = createContextMenu();
-
-        setOnAction(event -> {
-            double x = localToScreen(getBoundsInLocal()).getMinX();
-            double y = localToScreen(getBoundsInLocal()).getMaxY();
-            contextMenu.show(FileButton.this, x, y);
-        });
-
+        super("File", "file-button", 45, 30, null);
+        this.contextMenu = createContextMenu();
+        setOnAction(this::handleClick);
         BaseLogger.log(BaseLogLevel.SUCCESS, "FileButton created");
+    }
+
+    private void handleClick(ActionEvent pEvent) {
+        double x = localToScreen(getBoundsInLocal()).getMinX();
+        double y = localToScreen(getBoundsInLocal()).getMaxY();
+        contextMenu.show(this, x, y);
     }
 
     private ContextMenu createContextMenu() {
@@ -45,7 +43,7 @@ public class FileButton extends TextButton {
 
         contextMenu.getItems().addAll(newItem, openItem, saveItem, saveAsItem);
 
-        BaseLogger.log(BaseLogLevel.INFO, "FileButton context menu created");
+        BaseLogger.log(BaseLogLevel.SUCCESS, "FileButton context menu created");
 
         return contextMenu;
     }

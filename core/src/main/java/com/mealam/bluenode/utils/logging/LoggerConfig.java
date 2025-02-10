@@ -3,10 +3,7 @@ package com.mealam.bluenode.utils.logging;
 import com.mealam.bluenode.interfaces.logging.ILogColorProvider;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
 
 /**
  * A {@code public abstract class} responsible for configuring logging settings,
@@ -68,14 +65,25 @@ public abstract class LoggerConfig {
      * @since 1.0.0
      */
     public static void configureLogger(Logger pLogger, ILogColorProvider pColorProvider) {
-        ConsoleHandler handler = new ConsoleHandler();
-        handler.setFormatter(new SimpleFormatter() {
+        pLogger.getHandlers();
+        for (Handler handler : pLogger.getHandlers()) {
+            pLogger.removeHandler(handler);
+        }
+
+        ConsoleHandler consoleHandler = getConsoleHandler(pColorProvider);
+        pLogger.setUseParentHandlers(false);
+        pLogger.addHandler(consoleHandler);
+    }
+
+    private static ConsoleHandler getConsoleHandler(ILogColorProvider pColorProvider) {
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setFormatter(new SimpleFormatter() {
 
             @Override
             public synchronized String format(LogRecord pRecord) {
                 String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
                 StringBuilder coloredMessage = new StringBuilder(pColorProvider.getColor(pRecord.getLevel()) +
-                        "[" + timestamp + "]" + " [" + pRecord.getLevel() + "]: " + pRecord.getMessage());
+                        "[" + timestamp + "] [" + pRecord.getLevel() + "]: " + pRecord.getMessage());
 
                 if (pRecord.getThrown() != null) {
                     coloredMessage.append("\nException: ").append(pRecord.getThrown().getMessage());
@@ -97,8 +105,6 @@ public abstract class LoggerConfig {
                 return coloredMessage + "\n";
             }
         });
-
-        pLogger.setUseParentHandlers(false);
-        pLogger.addHandler(handler);
+        return consoleHandler;
     }
 }

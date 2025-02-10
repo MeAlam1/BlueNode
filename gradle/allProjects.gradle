@@ -1,6 +1,6 @@
 allprojects {
-    apply plugin: 'java'
-    apply plugin: 'com.diffplug.spotless'
+    apply plugin: "java"
+    apply plugin: "com.diffplug.spotless"
 
     group = "${group_id}"
     version = "${version}"
@@ -12,6 +12,13 @@ allprojects {
     dependencies {
         testImplementation "org.junit.jupiter:junit-jupiter:${junit_jupiter_version}"
         testRuntimeOnly "org.junit.platform:junit-platform-launcher:${junit_platform_version}"
+        implementation "com.google.code.gson:gson:${gson_version}"
+        implementation "com.google.guava:guava:${guava_version}"
+        implementation "commons-io:commons-io:${commons_io_version}"
+        implementation "org.apache.commons:commons-lang3:${commons_lang3_version}"
+        implementation "org.apache.httpcomponents.client5:httpclient5:${httpclient5_version}"
+        implementation "org.slf4j:slf4j-api:${slf4j_version}"
+        implementation "ch.qos.logback:logback-classic:${logback_version}"
     }
 
     tasks.withType(Test).configureEach {
@@ -27,7 +34,7 @@ allprojects {
     sourceSets {
         test {
             java {
-                srcDirs = ['src/test/java']
+                srcDirs = ["src/test/java"]
             }
         }
     }
@@ -38,11 +45,11 @@ allprojects {
             leadingTabsToSpaces()
             removeUnusedImports()
             toggleOffOn()
-            eclipse('4.31').configFile rootProject.file('codeformat/formatter-config.xml')
+            eclipse("4.31").configFile rootProject.file("codeformat/formatter-config.xml")
             importOrder()
 
-            custom 'jetbrainsNullable', { String fileContents ->
-                fileContents.replace('javax.annotation.Nullable', 'org.jetbrains.annotations.Nullable')
+            custom "jetbrainsNullable", { String fileContents ->
+                fileContents.replace("javax.annotation.Nullable", "org.jetbrains.annotations.Nullable")
             }
 
             bumpThisNumberIfACustomStepChanges(2)

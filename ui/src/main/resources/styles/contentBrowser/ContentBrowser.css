@@ -1,0 +1,8 @@
+.content-browser {
+    -fx-background-color: #2e2e2e;
+}
+
+.content-browser .content-tree {
+    -fx-background-color: #2e2e2e;
+    -fx-control-inner-background: #2e2e2e;
+}

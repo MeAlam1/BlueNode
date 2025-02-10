@@ -2,19 +2,18 @@ package com.mealam.bluenode.titleBar.buttons.actions.settingsButton;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.CustomMenuItem;
 import javafx.stage.Stage;
 
 public class SettingsWindow {
 
+    private final ContextMenu settingsMenu;
+
     public SettingsWindow(Stage pParentStage) {
-        Stage settingsStage = new Stage();
-        settingsStage.initModality(Modality.APPLICATION_MODAL);
-        settingsStage.initOwner(pParentStage);
-        settingsStage.setTitle("Settings");
+        settingsMenu = new ContextMenu();
+        settingsMenu.getStyleClass().add("settings-button-action");
 
         CheckBox loggingCheckBox = new CheckBox("Logging");
         loggingCheckBox.setSelected(true);
@@ -22,13 +21,13 @@ public class SettingsWindow {
             BaseLogger.setLoggingEnabled(pNewValue);
         });
 
-        VBox layout = new VBox(10);
-        layout.getChildren().add(loggingCheckBox);
+        CustomMenuItem loggingItem = new CustomMenuItem(loggingCheckBox, false);
+        settingsMenu.getItems().add(loggingItem);
 
-        Scene scene = new Scene(layout, 200, 100);
-        settingsStage.setScene(scene);
-        settingsStage.showAndWait();
+        BaseLogger.log(BaseLogLevel.SUCCESS, "Settings menu created");
+    }
 
-        BaseLogger.log(BaseLogLevel.SUCCESS, "Settings window opened");
+    public void show(Stage owner, double x, double y) {
+        settingsMenu.show(owner, x, y);
     }
 }

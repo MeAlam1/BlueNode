@@ -1,0 +1,8 @@
+.image-loader {
+    -fx-spacing: 5;
+    -fx-alignment: center;
+}
+
+.image-loader .image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 5, 0, 0, 2);
+}

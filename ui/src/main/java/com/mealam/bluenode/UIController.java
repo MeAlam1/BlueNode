@@ -1,33 +1,26 @@
 package com.mealam.bluenode;
 
 import com.mealam.bluenode.configs.StageConfigurer;
-import com.mealam.bluenode.contentBrowser.ContentBrowser;
-import com.mealam.bluenode.handlers.WindowInteractionHandler;
+import com.mealam.bluenode.events.window.WindowInteractionHandler;
 import com.mealam.bluenode.mainPanel.MainPanel;
+import com.mealam.bluenode.styles.AsyncStyleLoader;
+import com.mealam.bluenode.styles.StyleLoader;
 import com.mealam.bluenode.titleBar.TitleBar;
-import com.mealam.bluenode.utils.conversion.ColorUtils;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class UIController extends Application {
 
-    public static final BorderPane MAIN_ROOT = new BorderPane();
-    public static final Canvas MAIN_CANVAS = new Canvas();
-    public static final Scene MAIN_SCENE = new Scene(MAIN_ROOT);
-
-    public static final ContentBrowser CONTENT_BROWSER = new ContentBrowser();
-
     @Override
     public void start(Stage pPrimaryStage) {
         try {
+            AsyncStyleLoader.loadAllStyles(StyleLoader.class.getClassLoader().getResource("styles"));
             StageConfigurer.configureStage(pPrimaryStage);
 
             initializeComponents(pPrimaryStage);
+            CoreController.initializeCore();
 
             pPrimaryStage.show();
             BaseLogger.log(BaseLogLevel.SUCCESS, "BlueNode application started successfully.");
@@ -37,14 +30,12 @@ public class UIController extends Application {
     }
 
     private void initializeComponents(Stage pPrimaryStage) {
-        MAIN_ROOT.setStyle("-fx-background-color: " + ColorUtils.colorToString(ColorConstants.BACKGROUND_COLOR));
-
         TitleBar titleBar = new TitleBar(pPrimaryStage);
-        MainPanel mainPanel = new MainPanel();
-        WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, MAIN_ROOT);
+        MainPanel mainPanel = new MainPanel(pPrimaryStage);
+        WindowInteractionHandler.setupWindowInteractions(pPrimaryStage, titleBar, UIConstants.MAIN_ROOT);
 
-        MAIN_ROOT.setTop(titleBar);
-        MAIN_ROOT.setCenter(mainPanel);
+        UIConstants.MAIN_ROOT.setCenter(mainPanel);
+        UIConstants.MAIN_ROOT.setTop(titleBar);
 
         BaseLogger.log(BaseLogLevel.SUCCESS, "Components initialized successfully.");
     }
