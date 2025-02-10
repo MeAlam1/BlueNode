@@ -6,8 +6,8 @@ public class ValidationHandler {
 
     private final Input input;
 
-    public ValidationHandler(Input input) {
-        this.input = input;
+    public ValidationHandler(Input pInput) {
+        this.input = pInput;
     }
 
     public boolean validate(String pText) {

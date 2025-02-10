@@ -1,11 +1,12 @@
 package com.mealam.bluenode.utils.nodes;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class NodeIDGenerator {
 
@@ -28,11 +29,11 @@ public class NodeIDGenerator {
     /**
      * Decrypts the Base64 encoded node ID back to the original format.
      *
-     * @param encodedID The Base64 encoded ID.
+     * @param pEncodedID The Base64 encoded ID.
      * @return The original node ID string.
      */
-    public static String decryptID(String encodedID) {
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedID);
+    public static String decryptID(String pEncodedID) {
+        byte[] decodedBytes = Base64.getDecoder().decode(pEncodedID);
         return new String(decodedBytes);
     }
 }

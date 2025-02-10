@@ -10,11 +10,11 @@ import javafx.stage.Stage;
 
 public class CanvasInteractionHandler {
 
-    public CanvasInteractionHandler(Stage primaryStage) {
+    public CanvasInteractionHandler(Stage pPrimaryStage) {
         UIConstants.MAIN_CANVAS.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
             if (event.getButton() == MouseButton.SECONDARY) {
                 if (!NodeManager.isNodeAtLocation(event.getX(), event.getY(), 150, 100)) {
-                    NodeLibrary.createPopup(primaryStage, NodeLoaderUtils.getAllNodes(), event);
+                    NodeLibrary.createPopup(pPrimaryStage, NodeLoaderUtils.getAllNodes(), event);
                 }
             }
         });

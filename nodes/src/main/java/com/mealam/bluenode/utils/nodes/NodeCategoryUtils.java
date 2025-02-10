@@ -20,8 +20,8 @@ public class NodeCategoryUtils {
         return "";
     }
 
-    public static List<String> getCategories(String categoryString) {
-        return Arrays.stream(categoryString.split("/"))
+    public static List<String> getCategories(String pCategory) {
+        return Arrays.stream(pCategory.split("/"))
                 .map(String::trim)
                 .toList();
     }

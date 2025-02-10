@@ -77,11 +77,11 @@ public class CanvasDragHandler {
         return translateY;
     }
 
-    public static void setTranslateX(double translateX) {
-        CanvasDragHandler.translateX = translateX;
+    public static void setTranslateX(double pTranslateX) {
+        translateX = pTranslateX;
     }
 
-    public static void setTranslateY(double translateY) {
-        CanvasDragHandler.translateY = translateY;
+    public static void setTranslateY(double pTranslateY) {
+        translateY = pTranslateY;
     }
 }

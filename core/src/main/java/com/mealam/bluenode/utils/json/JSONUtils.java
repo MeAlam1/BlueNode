@@ -6,21 +6,21 @@ import com.google.gson.JsonObject;
 
 public class JSONUtils {
 
-    public static String extractDataFromElement(JsonElement element, String key) {
-        if (element.isJsonObject()) {
-            JsonObject jsonObject = element.getAsJsonObject();
-            if (jsonObject.has(key)) {
-                return jsonObject.get(key).getAsString();
+    public static String extractDataFromElement(JsonElement pElement, String pKey) {
+        if (pElement.isJsonObject()) {
+            JsonObject jsonObject = pElement.getAsJsonObject();
+            if (jsonObject.has(pKey)) {
+                return jsonObject.get(pKey).getAsString();
             }
             for (String innerKey : jsonObject.keySet()) {
                 JsonElement innerElement = jsonObject.get(innerKey);
-                String result = extractDataFromElement(innerElement, key);
+                String result = extractDataFromElement(innerElement, pKey);
                 if (result != null) return result;
             }
-        } else if (element.isJsonArray()) {
-            JsonArray jsonArray = element.getAsJsonArray();
+        } else if (pElement.isJsonArray()) {
+            JsonArray jsonArray = pElement.getAsJsonArray();
             for (JsonElement arrayElement : jsonArray) {
-                String result = extractDataFromElement(arrayElement, key);
+                String result = extractDataFromElement(arrayElement, pKey);
                 if (result != null) return result;
             }
         }

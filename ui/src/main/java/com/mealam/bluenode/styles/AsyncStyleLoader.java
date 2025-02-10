@@ -9,9 +9,9 @@ import java.util.concurrent.CompletableFuture;
 
 public class AsyncStyleLoader {
 
-    public static void loadAllStyles(URL stylesFolderUrl) {
+    public static void loadAllStyles(URL pStylesFolderUrl) {
         CompletableFuture.runAsync(() -> {
-            StyleLoader.loadAllStyles(stylesFolderUrl);
+            StyleLoader.loadAllStyles(pStylesFolderUrl);
         }).whenComplete((result, exception) -> {
             if (exception != null) {
                 BaseLogger.log(BaseLogLevel.ERROR, "Failed to load styles asynchronously.", exception);

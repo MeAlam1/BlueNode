@@ -7,20 +7,20 @@ import javafx.scene.text.Text;
 
 public class NodePane extends Pane {
 
-    private final Node nodeData;
+    private final Node node;
     private Pane titleBar;
     private Text title;
 
-    public NodePane(Node nodeData) {
-        this.nodeData = nodeData;
+    public NodePane(Node pNode) {
+        this.node = pNode;
         initializeNode();
     }
 
     private void initializeNode() {
-        double x = nodeData.getProperties().getX() + CanvasDragHandler.getTranslateX();
-        double y = nodeData.getProperties().getY() + CanvasDragHandler.getTranslateY();
-        double width = nodeData.getProperties().getWidth();
-        double height = nodeData.getProperties().getHeight();
+        double x = node.getProperties().getX() + CanvasDragHandler.getTranslateX();
+        double y = node.getProperties().getY() + CanvasDragHandler.getTranslateY();
+        double width = node.getProperties().getWidth();
+        double height = node.getProperties().getHeight();
         double titleBarHeight = height - 70;
         this.setPrefSize(width, height);
         this.setLayoutX(x);
@@ -29,11 +29,11 @@ public class NodePane extends Pane {
 
         titleBar = new Pane();
         titleBar.getStyleClass().add("node-title-bar");
-        for (String css : nodeData.getProperties().getCSS()) {
+        for (String css : node.getProperties().getCSS()) {
             titleBar.getStyleClass().add(css);
         }
         titleBar.setPrefSize(width, titleBarHeight);
-        title = new Text(nodeData.getProperties().getTitle());
+        title = new Text(node.getProperties().getTitle());
         title.setTranslateY(20);
         title.setTranslateX(5);
         titleBar.getChildren().add(title);
@@ -42,29 +42,29 @@ public class NodePane extends Pane {
         createInputs(width, height);
     }
 
-    private void createInputs(double width, double height) {
-        for (Input input : nodeData.getProperties().getInputs()) {
+    private void createInputs(double pWidth, double pHeight) {
+        for (Input input : node.getProperties().getInputs()) {
             InputRenderer.render(this,
                     input,
-                    nodeData,
+                    node,
                     this,
                     5,
-                    (height / 2),
-                    width,
-                    height);
+                    (pHeight / 2),
+                    pWidth,
+                    pHeight);
         }
     }
 
     public void updateSize() {
-        double width = nodeData.getProperties().getWidth();
-        double height = nodeData.getProperties().getHeight();
+        double width = node.getProperties().getWidth();
+        double height = node.getProperties().getHeight();
         double titleBarHeight = height - 70;
         this.setPrefSize(width, height);
         titleBar.setPrefSize(width, titleBarHeight);
-        title.setText(nodeData.getProperties().getTitle());
+        title.setText(node.getProperties().getTitle());
     }
 
-    public Node getNodeData() {
-        return nodeData;
+    public Node getNode() {
+        return node;
     }
 }

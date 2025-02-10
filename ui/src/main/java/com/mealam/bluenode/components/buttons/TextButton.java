@@ -8,11 +8,11 @@ public class TextButton extends Button {
 
     private static final String DEFAULT_CSS_CLASS = "text-button";
 
-    public TextButton(String pText, String cssClass, double pWidth, double pHeight, EventHandler<MouseEvent> action) {
+    public TextButton(String pText, String pCSSClass, double pWidth, double pHeight, EventHandler<MouseEvent> pAction) {
         super(pText);
         setPrefSize(pWidth, pHeight);
         getStyleClass().add(DEFAULT_CSS_CLASS);
-        getStyleClass().add(cssClass);
-        setOnMouseClicked(action);
+        getStyleClass().add(pCSSClass);
+        setOnMouseClicked(pAction);
     }
 }

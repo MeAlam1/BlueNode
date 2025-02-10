@@ -11,17 +11,17 @@ import java.util.zip.ZipFile;
 
 public class StyleLoader {
 
-    public static void loadAllStyles(URL stylesFolderUrl) {
+    public static void loadAllStyles(URL pStylesFolderUrl) {
         try {
-            if (stylesFolderUrl == null) {
+            if (pStylesFolderUrl == null) {
                 BaseLogger.log(BaseLogLevel.ERROR, "Styles folder not found in resources.");
                 return;
             }
 
-            if ("jar".equals(stylesFolderUrl.getProtocol())) {
-                processJarDirectory(stylesFolderUrl);
+            if ("jar".equals(pStylesFolderUrl.getProtocol())) {
+                processJarDirectory(pStylesFolderUrl);
             } else {
-                File stylesFolder = new File(stylesFolderUrl.toURI());
+                File stylesFolder = new File(pStylesFolderUrl.toURI());
                 if (stylesFolder.exists() && stylesFolder.isDirectory()) {
                     processDirectory(stylesFolder);
                 } else {
@@ -33,8 +33,8 @@ public class StyleLoader {
         }
     }
 
-    private static void processDirectory(File directory) {
-        File[] files = directory.listFiles();
+    private static void processDirectory(File pDirectory) {
+        File[] files = pDirectory.listFiles();
         if (files != null) {
             for (File file : files) {
                 if (file.isDirectory()) {
@@ -52,8 +52,8 @@ public class StyleLoader {
         }
     }
 
-    private static void processJarDirectory(URL jarUrl) throws IOException {
-        String jarFilePath = jarUrl.getPath().substring(5, jarUrl.getPath().indexOf("!"));
+    private static void processJarDirectory(URL pJarUrl) throws IOException {
+        String jarFilePath = pJarUrl.getPath().substring(5, pJarUrl.getPath().indexOf("!"));
         try (ZipFile zipFile = new ZipFile(new File(jarFilePath))) {
             zipFile.stream()
                     .filter(entry -> entry.getName().startsWith("styles") && entry.getName().endsWith(".css"))

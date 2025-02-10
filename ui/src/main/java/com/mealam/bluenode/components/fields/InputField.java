@@ -14,12 +14,12 @@ public class InputField extends TextField {
     private final Input input;
     private final ValidationHandler validationHandler;
 
-    public InputField(Input pInput, Node pNode, NodePane nodePane) {
+    public InputField(Input pInput, Node pNode, NodePane pNodePane) {
         this.input = pInput;
         this.validationHandler = new ValidationHandler(pInput);
 
         configureField();
-        new TextFieldSizeUpdateListener(textProperty(), pNode, nodePane, this, input);
+        new TextFieldSizeUpdateListener(textProperty(), pNode, pNodePane, this, input);
         this.addEventFilter(KeyEvent.KEY_PRESSED, new KeyEventListener(this));
         ContextMenu.addContextMenuListener(this);
     }

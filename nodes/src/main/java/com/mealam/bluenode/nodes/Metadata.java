@@ -3,6 +3,7 @@ package com.mealam.bluenode.nodes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,12 +16,12 @@ public class Metadata {
         properties = new MetadataProperties();
     }
 
-    public static Metadata fromJson(JsonObject jsonObject) {
+    public static Metadata fromJson(JsonObject pJsonObject) {
         Metadata metadata = new Metadata();
 
         metadata.properties.createdAt = new Date(System.currentTimeMillis());
         metadata.properties.updatedAt = new Date(System.currentTimeMillis());
-        JsonArray tagsJsonArray = jsonObject.getAsJsonArray("aliases");
+        JsonArray tagsJsonArray = pJsonObject.getAsJsonArray("aliases");
         metadata.properties.aliases = new ArrayList<>();
         if (tagsJsonArray != null) {
             for (JsonElement tag : tagsJsonArray) {
@@ -50,24 +51,24 @@ public class Metadata {
             return createdAt;
         }
 
-        public void setCreatedAt(Date createdAt) {
-            this.createdAt = createdAt;
+        public void setCreatedAt(Date pCreatedAt) {
+            this.createdAt = pCreatedAt;
         }
 
         public Date getUpdatedAt() {
             return updatedAt;
         }
 
-        public void setUpdatedAt(Date updatedAt) {
-            this.updatedAt = updatedAt;
+        public void setUpdatedAt(Date pUpdatedAt) {
+            this.updatedAt = pUpdatedAt;
         }
 
         public List<String> getAliases() {
             return aliases;
         }
 
-        public void setAliases(List<String> aliases) {
-            this.aliases = aliases;
+        public void setAliases(List<String> pAliases) {
+            this.aliases = pAliases;
         }
 
         @Override

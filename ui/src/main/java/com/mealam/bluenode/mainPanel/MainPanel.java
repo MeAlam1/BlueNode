@@ -17,7 +17,7 @@ public class MainPanel extends BorderPane {
 
     private final GridManager gridManager;
 
-    public MainPanel(Stage primaryStage) {
+    public MainPanel(Stage pPrimaryStage) {
         GraphicsContext graphicsContext = UIConstants.MAIN_CANVAS.getGraphicsContext2D();
         Pane overlayPane = new Pane();
         overlayPane.setPickOnBounds(false);
@@ -27,7 +27,7 @@ public class MainPanel extends BorderPane {
         setCenter(stackPane);
 
         gridManager = new GridManager(graphicsContext);
-        new CanvasInteractionHandler(primaryStage);
+        new CanvasInteractionHandler(pPrimaryStage);
 
         UIConstants.MAIN_CANVAS.widthProperty().bind(widthProperty());
         UIConstants.MAIN_CANVAS.heightProperty().bind(heightProperty());

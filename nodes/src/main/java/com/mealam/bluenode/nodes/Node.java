@@ -21,12 +21,12 @@ public class Node {
         properties.setY(pY);
     }
 
-    public static Node fromJson(JsonArray jsonArray, double pX, double pY) {
-        if (jsonArray == null || jsonArray.isEmpty()) {
+    public static Node fromJson(JsonArray pJsonArray, double pX, double pY) {
+        if (pJsonArray == null || pJsonArray.isEmpty()) {
             throw new IllegalArgumentException("JsonArray is null or empty, cannot create Node.");
         }
 
-        JsonElement firstElement = jsonArray.get(0);
+        JsonElement firstElement = pJsonArray.get(0);
         if (!firstElement.isJsonObject()) {
             throw new IllegalArgumentException("First element in JsonArray is not a JsonObject.");
         }
@@ -86,112 +86,112 @@ public class Node {
             return id;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setId(String pId) {
+            this.id = pId;
         }
 
         public double getX() {
             return x;
         }
 
-        public void setX(double x) {
-            this.x = x;
+        public void setX(double pX) {
+            this.x = pX;
         }
 
         public double getY() {
             return y;
         }
 
-        public void setY(double y) {
-            this.y = y;
+        public void setY(double pY) {
+            this.y = pY;
         }
 
         public double getMinWidth() {
             return minWidth;
         }
 
-        public void setMinWidth(@NonNegative double minWidth) {
-            this.minWidth = minWidth;
+        public void setMinWidth(@NonNegative double pMinWidth) {
+            this.minWidth = pMinWidth;
         }
 
         public double getWidth() {
             return width;
         }
 
-        public void setWidth(@NonNegative double width) {
-            this.width = width;
+        public void setWidth(@NonNegative double pWidth) {
+            this.width = pWidth;
         }
 
         public double getHeight() {
             return height;
         }
 
-        public void setHeight(@NonNegative double height) {
-            this.height = height;
+        public void setHeight(@NonNegative double pHeight) {
+            this.height = pHeight;
         }
 
         public double getMinHeight() {
             return minHeight;
         }
 
-        public void setMinHeight(@NonNegative double minHeight) {
-            this.minHeight = minHeight;
+        public void setMinHeight(@NonNegative double pMinHeight) {
+            this.minHeight = pMinHeight;
         }
 
         public List<String> getCSS() {
             return CSS;
         }
 
-        public void setCSS(List<String> CSS) {
-            this.CSS = CSS;
+        public void setCSS(List<String> pCSS) {
+            this.CSS = pCSS;
         }
 
         public String getTitle() {
             return title;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
+        public void setTitle(String pTitle) {
+            this.title = pTitle;
         }
 
         public String getDescription() {
             return description;
         }
 
-        public void setDescription(String description) {
-            this.description = description;
+        public void setDescription(String pDescription) {
+            this.description = pDescription;
         }
 
         public String getCategory() {
             return category;
         }
 
-        public void setCategory(String category) {
-            this.category = category;
+        public void setCategory(String pCategory) {
+            this.category = pCategory;
         }
 
         public List<Input> getInputs() {
             return inputs;
         }
 
-        public void setInputs(List<Input> inputs) {
-            this.inputs = inputs;
+        public void setInputs(List<Input> pInputs) {
+            this.inputs = pInputs;
         }
 
         public List<Output> getOutputs() {
             return outputs;
         }
 
-        public void setOutputs(List<Output> outputs) {
-            this.outputs = outputs;
+        public void setOutputs(List<Output> pOutputs) {
+            this.outputs = pOutputs;
         }
 
         public Metadata getMetadata() {
             return metadata;
         }
 
-        public void setMetadata(Metadata metadata) {
-            this.metadata = metadata;
+        public void setMetadata(Metadata pMetadata) {
+            this.metadata = pMetadata;
         }
 
         @Override

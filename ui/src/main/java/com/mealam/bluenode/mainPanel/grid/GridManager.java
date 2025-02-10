@@ -8,8 +8,8 @@ public class GridManager {
     private final GraphicsContext graphicsContext;
     private final GridDrawer gridDrawer;
 
-    public GridManager(GraphicsContext graphicsContext) {
-        this.graphicsContext = graphicsContext;
+    public GridManager(GraphicsContext pGraphicsContext) {
+        this.graphicsContext = pGraphicsContext;
         this.gridDrawer = new GridDrawer();
     }
 

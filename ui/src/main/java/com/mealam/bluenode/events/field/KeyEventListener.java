@@ -9,13 +9,13 @@ public class KeyEventListener implements EventHandler<KeyEvent> {
 
     private final InputField inputField;
 
-    public KeyEventListener(InputField inputField) {
-        this.inputField = inputField;
+    public KeyEventListener(InputField pInputField) {
+        this.inputField = pInputField;
     }
 
     @Override
-    public void handle(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.ESCAPE) {
+    public void handle(KeyEvent pEvent) {
+        if (pEvent.getCode() == KeyCode.ENTER || pEvent.getCode() == KeyCode.ESCAPE) {
             inputField.getParent().requestFocus();
         }
     }

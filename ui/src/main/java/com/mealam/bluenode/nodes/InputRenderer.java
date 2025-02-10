@@ -6,14 +6,14 @@ import com.mealam.bluenode.nodes.components.input.Input;
 
 public class InputRenderer {
 
-    public static void render(NodePane parent, Input input, Node pNode, NodePane pNodePane, double x, double y, double width, double height) {
-        InputField textField = new InputField(input, pNode, pNodePane);
-        textField.setLayoutX(x + CanvasDragHandler.getTranslateX());
-        textField.setLayoutY(y + CanvasDragHandler.getTranslateY());
-        textField.setMaxWidth(width - 10);
-        textField.setPrefWidth(input.getProperties().getWidth());
+    public static void render(NodePane pParentNodePane, Input pInput, Node pNode, NodePane pNodePane, double pX, double pY, double pWidth, double pHeight) {
+        InputField textField = new InputField(pInput, pNode, pNodePane);
+        textField.setLayoutX(pX + CanvasDragHandler.getTranslateX());
+        textField.setLayoutY(pY + CanvasDragHandler.getTranslateY());
+        textField.setMaxWidth(pWidth - 10);
+        textField.setPrefWidth(pInput.getProperties().getWidth());
         textField.setPrefHeight(20);
 
-        parent.getChildren().add(textField);
+        pParentNodePane.getChildren().add(textField);
     }
 }

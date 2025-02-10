@@ -29,15 +29,16 @@ public class CaseUtils {
     /**
      * Private constructor to prevent instantiation.
      */
-    private CaseUtils() {}
+    private CaseUtils() {
+    }
 
     /**
      * Common method to handle null or empty input.
      * Logs a warning if input is null or empty.
      */
-    private static String handleNullOrEmptyInput(String pInput, String methodName) {
+    private static String handleNullOrEmptyInput(String pInput, String pMethodName) {
         if (pInput == null || pInput.isEmpty()) {
-            BaseLogger.log(BaseLogLevel.WARNING, methodName + " input is null or empty.");
+            BaseLogger.log(BaseLogLevel.WARNING, pMethodName + " input is null or empty.");
             return pInput;
         }
         return pInput;

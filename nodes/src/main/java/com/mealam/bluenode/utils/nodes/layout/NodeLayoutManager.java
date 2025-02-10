@@ -4,13 +4,13 @@ import com.mealam.bluenode.nodes.Node;
 
 public class NodeLayoutManager {
 
-    public static void updateNodeWidth(Node pNode, double pMinNodeWidth, double pWidthIncrement) {
+    public static void updateNodeWidth(Node pNode, double pMinNodeWidth) {
         double maxWidth = pNode.getProperties().getInputs().stream()
                 .mapToDouble(input -> input.getProperties().getWidth())
                 .max()
                 .orElse(0);
 
-        double calculatedWidth = Math.max(pMinNodeWidth, pMinNodeWidth + maxWidth + pWidthIncrement);
+        double calculatedWidth = Math.max(pMinNodeWidth, pMinNodeWidth + maxWidth);
         pNode.getProperties().setWidth(calculatedWidth);
     }
 }

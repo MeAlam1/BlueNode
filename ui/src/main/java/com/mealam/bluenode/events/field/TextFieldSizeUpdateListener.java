@@ -16,12 +16,12 @@ public class TextFieldSizeUpdateListener {
     InputField inputField;
     Input input;
 
-    public TextFieldSizeUpdateListener(StringProperty stringProperty, Node pNode, NodePane nodePane, InputField inputField, Input input) {
-        this.textProperty = stringProperty;
+    public TextFieldSizeUpdateListener(StringProperty pStringProperty, Node pNode, NodePane pNodePane, InputField pInputField, Input pInput) {
+        this.textProperty = pStringProperty;
         this.pNode = pNode;
-        this.nodePane = nodePane;
-        this.inputField = inputField;
-        this.input = input;
+        this.nodePane = pNodePane;
+        this.inputField = pInputField;
+        this.input = pInput;
         addListeners();
     }
 
@@ -32,21 +32,21 @@ public class TextFieldSizeUpdateListener {
         });
     }
 
-    private void updateFieldSize(Node pNode, NodePane nodePane, String newValue) {
-        input.getProperties().setValue(newValue);
+    private void updateFieldSize(Node pNode, NodePane pNodePane, String pNewValue) {
+        input.getProperties().setValue(pNewValue);
 
-        double newWidth = getNewWidth(newValue);
+        double newWidth = getNewWidth(pNewValue);
         inputField.setPrefWidth(newWidth);
         input.getProperties().setWidth(newWidth);
 
         double minNodeWidth = pNode.getProperties().getMinWidth();
-        NodeLayoutManager.updateNodeWidth(pNode, minNodeWidth, 20);
+        NodeLayoutManager.updateNodeWidth(pNode, minNodeWidth);
 
-        nodePane.updateSize();
+        pNodePane.updateSize();
     }
 
-    private double getNewWidth(String newValue) {
-        Text text = new Text(newValue);
+    private double getNewWidth(String pNewValue) {
+        Text text = new Text(pNewValue);
         text.setFont(inputField.getFont());
         double textWidth = text.getLayoutBounds().getWidth();
         double padding = inputField.getInsets().getLeft() + inputField.getInsets().getRight();

@@ -17,15 +17,15 @@ import java.util.Map;
 
 public class NodeLibrary {
 
-    public static void createPopup(Stage parent, List<Node> items, MouseEvent event) {
+    public static void createPopup(Stage pParentStage, List<Node> pNodes, MouseEvent pEvent) {
         Popup popup = new Popup();
         VBox vBox = new VBox();
         vBox.getStyleClass().add("node-library-popup");
 
         Map<String, TitledPane> categoryMap = new HashMap<>();
 
-        for (Node item : items) {
-            List<String> categories = NodeCategoryUtils.getCategories(item.getProperties().getCategory());
+        for (Node node : pNodes) {
+            List<String> categories = NodeCategoryUtils.getCategories(node.getProperties().getCategory());
 
             if (categories.isEmpty()) continue;
 
@@ -36,11 +36,11 @@ public class NodeLibrary {
                 currentPane = getOrCreateSubPane(currentPane, subCategory);
             }
 
-            Button nodeButton = new Button(item.getProperties().getTitle());
+            Button nodeButton = new Button(node.getProperties().getTitle());
             nodeButton.setMaxWidth(Double.MAX_VALUE);
             nodeButton.getStyleClass().add("node-library-popup-button");
             nodeButton.setOnAction(actionEvent -> {
-                NodeManager.placeNode(NodeFactory.createNode(item), event.getX(), event.getY());
+                NodeManager.placeNode(NodeFactory.createNode(node), pEvent.getX(), pEvent.getY());
                 popup.hide();
             });
 
@@ -58,31 +58,31 @@ public class NodeLibrary {
 
         popup.setAutoHide(true);
 
-        popup.show(parent, event.getScreenX(), event.getScreenY());
+        popup.show(pParentStage, pEvent.getScreenX(), pEvent.getScreenY());
     }
 
-    private static TitledPane createTitledPane(String title) {
-        TitledPane titledPane = new TitledPane(title, new VBox());
+    private static TitledPane createTitledPane(String pTitle) {
+        TitledPane titledPane = new TitledPane(pTitle, new VBox());
         titledPane.setExpanded(false);
         titledPane.getStyleClass().add("node-library-popup-category");
         return titledPane;
     }
 
-    private static TitledPane getOrCreateSubPane(TitledPane parent, String subCategory) {
-        if (parent.getContent() instanceof VBox contentBox) {
+    private static TitledPane getOrCreateSubPane(TitledPane pParentTitledPane, String pSubCategory) {
+        if (pParentTitledPane.getContent() instanceof VBox contentBox) {
             for (javafx.scene.Node node : contentBox.getChildren()) {
-                if (node instanceof TitledPane subPane && subPane.getText().equals(subCategory)) {
+                if (node instanceof TitledPane subPane && subPane.getText().equals(pSubCategory)) {
                     return subPane;
                 }
             }
         }
 
-        TitledPane newSubPane = createTitledPane(subCategory);
-        if (parent.getContent() instanceof VBox) {
-            ((VBox) parent.getContent()).getChildren().add(newSubPane);
+        TitledPane newSubPane = createTitledPane(pSubCategory);
+        if (pParentTitledPane.getContent() instanceof VBox) {
+            ((VBox) pParentTitledPane.getContent()).getChildren().add(newSubPane);
         } else {
             VBox contentBox = new VBox(newSubPane);
-            parent.setContent(contentBox);
+            pParentTitledPane.setContent(contentBox);
         }
         return newSubPane;
     }

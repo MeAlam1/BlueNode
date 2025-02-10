@@ -16,12 +16,12 @@ public class Input {
         properties = new InputProperties();
     }
 
-    public static Input fromJson(JsonObject jsonObject) {
+    public static Input fromJson(JsonObject pJsonObject) {
         Input input = new Input();
 
-        input.properties.setId(jsonObject.get("id").getAsString());
-        input.properties.setName(jsonObject.get("name").getAsString());
-        input.properties.setType(jsonObject.get("type").getAsString());
+        input.properties.setId(pJsonObject.get("id").getAsString());
+        input.properties.setName(pJsonObject.get("name").getAsString());
+        input.properties.setType(pJsonObject.get("type").getAsString());
 
         String categoryType = input.getProperties().getType();
 
@@ -30,13 +30,13 @@ public class Input {
         input.properties.setValidate(InputCategoryUtils.getInputCategoryData(categoryType, "validate"));
         input.properties.setAliases(InputCategoryUtils.getInputCategoryData(categoryType, "aliases"));
 
-        input.properties.value = jsonObject.has("defaultValue") ? jsonObject.get("defaultValue").getAsString() : "";
+        input.properties.value = pJsonObject.has("defaultValue") ? pJsonObject.get("defaultValue").getAsString() : "";
         return input;
     }
 
-    public static List<Input> fromJsonArray(JsonArray jsonArray) {
+    public static List<Input> fromJsonArray(JsonArray pJsonArray) {
         List<Input> inputs = new ArrayList<>();
-        for (JsonElement element : jsonArray) {
+        for (JsonElement element : pJsonArray) {
             inputs.add(Input.fromJson(element.getAsJsonObject()));
         }
         return inputs;
@@ -67,72 +67,72 @@ public class Input {
             return id;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setId(String pId) {
+            this.id = pId;
         }
 
         public double getWidth() {
             return width;
         }
 
-        public void setWidth(double width) {
-            this.width = width;
+        public void setWidth(double pWidth) {
+            this.width = pWidth;
         }
 
         public double getHeight() {
             return height;
         }
 
-        public void setHeight(double height) {
-            this.height = height;
+        public void setHeight(double pHeight) {
+            this.height = pHeight;
         }
 
         public String getName() {
             return name;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setName(String pName) {
+            this.name = pName;
         }
 
         public String getType() {
             return type;
         }
 
-        public void setType(String type) {
-            this.type = type;
+        public void setType(String pType) {
+            this.type = pType;
         }
 
         public String getCss() {
             return cssName;
         }
 
-        public void setCss(String cssName) {
-            this.cssName = cssName;
+        public void setCss(String pCSSName) {
+            this.cssName = pCSSName;
         }
 
         public String getValidate() {
             return validate;
         }
 
-        public void setValidate(String validate) {
-            this.validate = validate;
+        public void setValidate(String pValidate) {
+            this.validate = pValidate;
         }
 
         public String getAliases() {
             return aliases;
         }
 
-        public void setAliases(String aliases) {
-            this.aliases = aliases;
+        public void setAliases(String pAliases) {
+            this.aliases = pAliases;
         }
 
         public String getValue() {
             return value;
         }
 
-        public void setValue(String value) {
-            this.value = value;
+        public void setValue(String pValue) {
+            this.value = pValue;
         }
 
         @Override

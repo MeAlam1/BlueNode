@@ -3,6 +3,7 @@ package com.mealam.bluenode.nodes.components.output;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +15,17 @@ public class Output {
         properties = new OutputProperties();
     }
 
-    public static Output fromJson(JsonObject jsonObject) {
+    public static Output fromJson(JsonObject pJsonObject) {
         Output output = new Output();
-        output.properties.id = jsonObject.get("id").getAsString();
-        output.properties.name = jsonObject.get("name").getAsString();
-        output.properties.type = jsonObject.get("type").getAsString();
+        output.properties.id = pJsonObject.get("id").getAsString();
+        output.properties.name = pJsonObject.get("name").getAsString();
+        output.properties.type = pJsonObject.get("type").getAsString();
         return output;
     }
 
-    public static List<Output> fromJsonArray(JsonArray jsonArray) {
+    public static List<Output> fromJsonArray(JsonArray pJsonArray) {
         List<Output> outputs = new ArrayList<>();
-        for (JsonElement element : jsonArray) {
+        for (JsonElement element : pJsonArray) {
             outputs.add(Output.fromJson(element.getAsJsonObject()));
         }
         return outputs;
@@ -49,24 +50,24 @@ public class Output {
             return id;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setId(String pId) {
+            this.id = pId;
         }
 
         public String getName() {
             return name;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setName(String pName) {
+            this.name = pName;
         }
 
         public String getType() {
             return type;
         }
 
-        public void setType(String type) {
-            this.type = type;
+        public void setType(String pType) {
+            this.type = pType;
         }
 
         @Override
