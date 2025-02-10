@@ -44,7 +44,7 @@ shadowJar {
 
 tasks.build.dependsOn tasks.shadowJar
 
-distZip {
+tasks.withType(AbstractArchiveTask).configureEach {
     dependsOn shadowJar
 }
 
