@@ -27,9 +27,6 @@ public class GridDrawer {
                 pGraphics.strokeRect(x, y, GRID_SIZE, GRID_SIZE);
             }
         }
-
-        //NOTE: Cause it's called every time you drag the canvas
-        //BaseLogger.log(BaseLogLevel.INFO, "Grid drawn");
     }
 
     public static int snapToGrid(double pCoord) {

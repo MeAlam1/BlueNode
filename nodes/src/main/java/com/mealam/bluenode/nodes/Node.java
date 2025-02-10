@@ -65,33 +65,15 @@ public class Node {
         return properties;
     }
 
-    /*OPTIMIZE:
-        Multiple things,
-        1. It hardcodes the minimum width of the node to 150, this should be modular.
-        2. It hardcodes the increase in width to 20, should be a Parameter
-        3. The name suggests an update of the size, but it only updates the width.
-     */
-    public void updateSize() {
-        double maxWidth = 0;
-
-        for (Input input : this.getProperties().getInputs()) {
-            double inputWidth = input.getProperties().getWidth();
-            if (inputWidth > maxWidth) {
-                maxWidth = inputWidth;
-            }
-        }
-
-        double minNodeWidth = 150;
-        this.getProperties().setWidth(Math.max(minNodeWidth, minNodeWidth + maxWidth + 20));
-    }
-
     public static class NodeProperties {
 
         private String id;
         private double x;
         private double y;
-        private double width;
-        private double height;
+        private @NonNegative double minWidth;
+        private @NonNegative double width;
+        private @NonNegative double minHeight;
+        private @NonNegative double height;
         private List<String> CSS;
         private String title;
         private String description;
@@ -124,6 +106,14 @@ public class Node {
             this.y = y;
         }
 
+        public double getMinWidth() {
+            return minWidth;
+        }
+
+        public void setMinWidth(@NonNegative double minWidth) {
+            this.minWidth = minWidth;
+        }
+
         public double getWidth() {
             return width;
         }
@@ -138,6 +128,14 @@ public class Node {
 
         public void setHeight(@NonNegative double height) {
             this.height = height;
+        }
+
+        public double getMinHeight() {
+            return minHeight;
+        }
+
+        public void setMinHeight(@NonNegative double minHeight) {
+            this.minHeight = minHeight;
         }
 
         public List<String> getCSS() {

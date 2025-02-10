@@ -8,8 +8,10 @@ public class NodeFactory {
             throw new NullPointerException("Node not found in Library");
         }
         pNode.getProperties().setId(NodeIDGenerator.generateID(pNode.getProperties().getTitle()));
-        pNode.getProperties().setWidth(150);
-        pNode.getProperties().setHeight(100);
+        pNode.getProperties().setMinWidth(150);
+        pNode.getProperties().setMinHeight(100);
+        pNode.getProperties().setWidth(pNode.getProperties().getMinWidth());
+        pNode.getProperties().setHeight(pNode.getProperties().getMinHeight());
         return pNode;
     }
 }

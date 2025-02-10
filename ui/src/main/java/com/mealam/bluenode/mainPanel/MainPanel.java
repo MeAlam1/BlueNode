@@ -25,11 +25,11 @@ import java.util.List;
  */
 public class MainPanel extends BorderPane {
 
-    private static GraphicsContext graphicsContext;
-    private static Stage primaryStage;
-    private static GridDrawer gridDrawer;
+    private final GraphicsContext graphicsContext;
+    private final Stage primaryStage;
+    private final GridDrawer gridDrawer;
     private static Pane overlayPane;
-    public static List<Node> nodes;
+    private static List<Node> nodes;
 
     public MainPanel(Stage pPrimaryStage) {
         primaryStage = pPrimaryStage;
@@ -90,7 +90,7 @@ public class MainPanel extends BorderPane {
         return false;
     }
 
-    public static void placeNode(Node pNode) {
+    private static void placeNode(Node pNode) {
         if (!isNodeAtLocation(pNode.getProperties().getX(), pNode.getProperties().getY(), pNode.getProperties().getWidth(), pNode.getProperties().getHeight())) {
             nodes.add(pNode);
             BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());

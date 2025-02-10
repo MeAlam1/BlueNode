@@ -4,6 +4,7 @@ import com.mealam.bluenode.components.fields.InputField;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodePane;
 import com.mealam.bluenode.nodes.components.input.Input;
+import com.mealam.bluenode.utils.nodes.layout.NodeLayoutManager;
 import javafx.beans.property.StringProperty;
 import javafx.scene.text.Text;
 
@@ -33,11 +34,14 @@ public class TextFieldSizeUpdateListener {
 
     private void updateFieldSize(Node pNode, NodePane nodePane, String newValue) {
         input.getProperties().setValue(newValue);
+
         double newWidth = getNewWidth(newValue);
-        pNode.updateSize();
         inputField.setPrefWidth(newWidth);
         input.getProperties().setWidth(newWidth);
-        input.getProperties().setValue(newValue);
+
+        double minNodeWidth = pNode.getProperties().getMinWidth();
+        NodeLayoutManager.updateNodeWidth(pNode, minNodeWidth, 20);
+
         nodePane.updateSize();
     }
 
