@@ -3,7 +3,7 @@ package com.mealam.bluenode.mainPanel;
 import com.mealam.bluenode.UIConstants;
 import com.mealam.bluenode.events.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.Node;
-import com.mealam.bluenode.nodes.NodeRenderer;
+import com.mealam.bluenode.nodes.NodePane;
 import com.mealam.bluenode.nodes.library.NodeLibrary;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
@@ -96,7 +96,8 @@ public class MainPanel extends BorderPane {
             BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());
 
             for (Node node : nodes) {
-                NodeRenderer.render(overlayPane, node);
+                NodePane nodePane = new NodePane(node);
+                overlayPane.getChildren().add(nodePane);
             }
 
             BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + NodeIDGenerator.decryptID(pNode.getProperties().getId()));

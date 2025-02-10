@@ -2,7 +2,7 @@ package com.mealam.bluenode.events.mainPanel;
 
 import com.mealam.bluenode.mainPanel.GridDrawer;
 import com.mealam.bluenode.nodes.Node;
-import com.mealam.bluenode.nodes.NodeRenderer;
+import com.mealam.bluenode.nodes.NodePane;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
@@ -12,13 +12,13 @@ import java.util.List;
 
 public class CanvasDragHandler {
 
-    private static Canvas canvas;
-    private static GraphicsContext graphicsContext;
-    private static GridDrawer gridDrawer;
-    private static Pane overlayPane;
+    private final Canvas canvas;
+    private final GraphicsContext graphicsContext;
+    private final GridDrawer gridDrawer;
+    private final Pane overlayPane;
     private static double translateX;
     private static double translateY;
-    private static List<Node> nodes;
+    private final List<Node> nodes;
     private double lastX;
     private double lastY;
 
@@ -56,14 +56,15 @@ public class CanvasDragHandler {
         lastY = pEvent.getY();
     }
 
-    public static void redraw() {
+    public void redraw() {
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gridDrawer.redraw(graphicsContext, canvas.getWidth(), canvas.getHeight(), -translateX, -translateY);
 
         overlayPane.getChildren().clear();
 
         for (Node node : nodes) {
-            NodeRenderer.render(overlayPane, node);
+            NodePane nodePane = new NodePane(node);
+            overlayPane.getChildren().add(nodePane);
             //BaseLogger.log(BaseLogLevel.INFO, "Node: " + node.toString());
         }
     }
@@ -74,5 +75,13 @@ public class CanvasDragHandler {
 
     public static double getTranslateY() {
         return translateY;
+    }
+
+    public static void setTranslateX(double translateX) {
+        CanvasDragHandler.translateX = translateX;
+    }
+
+    public static void setTranslateY(double translateY) {
+        CanvasDragHandler.translateY = translateY;
     }
 }

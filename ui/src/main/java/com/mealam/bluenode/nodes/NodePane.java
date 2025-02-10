@@ -55,9 +55,6 @@ public class NodePane extends Pane {
         }
     }
 
-    /*IDEA:
-     * Maybe also add an Update in Size for the Inputs.
-     */
     public void updateSize() {
         double width = nodeData.getProperties().getWidth();
         double height = nodeData.getProperties().getHeight();
