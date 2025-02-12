@@ -6,9 +6,10 @@ import com.google.gson.JsonObject;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
 import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
+import org.checkerframework.checker.index.qual.NonNegative;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.checkerframework.checker.index.qual.NonNegative;
 
 public class Node {
 
@@ -18,6 +19,56 @@ public class Node {
         properties = new NodeProperties();
         properties.setX(pX);
         properties.setY(pY);
+    }
+
+    public JsonObject toJson() {
+        JsonObject jsonObject = getJsonObject();
+
+        JsonArray cssArray = new JsonArray();
+        if (properties.getCSS() != null) {
+            for (String css : properties.getCSS()) {
+                cssArray.add(css);
+            }
+        }
+        jsonObject.add("css", cssArray);
+
+        JsonArray inputsArray = new JsonArray();
+        if (properties.getInputs() != null) {
+            for (Input input : properties.getInputs()) {
+                inputsArray.add(input.toJson());
+            }
+        }
+        jsonObject.add("inputs", inputsArray);
+
+        JsonArray outputsArray = new JsonArray();
+        if (properties.getOutputs() != null) {
+            for (Output output : properties.getOutputs()) {
+                outputsArray.add(output.toJson());
+            }
+        }
+        jsonObject.add("outputs", outputsArray);
+
+        if (properties.getMetadata() != null) {
+            jsonObject.add("metadata", properties.getMetadata().toJson());
+        }
+
+        return jsonObject;
+    }
+
+    private JsonObject getJsonObject() {
+        JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty("id", properties.getId());
+        jsonObject.addProperty("x", properties.getX());
+        jsonObject.addProperty("y", properties.getY());
+        jsonObject.addProperty("minWidth", properties.getMinWidth());
+        jsonObject.addProperty("width", properties.getWidth());
+        jsonObject.addProperty("minHeight", properties.getMinHeight());
+        jsonObject.addProperty("height", properties.getHeight());
+        jsonObject.addProperty("title", properties.getTitle());
+        jsonObject.addProperty("description", properties.getDescription());
+        jsonObject.addProperty("category", properties.getCategory());
+        return jsonObject;
     }
 
     public static Node fromJson(JsonArray pJsonArray, double pX, double pY) {

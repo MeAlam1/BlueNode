@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.utils.nodes.input.InputCategoryUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,20 @@ public class Input {
 
     public Input() {
         properties = new InputProperties();
+    }
+
+    public JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        json.addProperty("id", properties.getId());
+        json.addProperty("name", properties.getName());
+        json.addProperty("type", properties.getType());
+        json.addProperty("width", properties.getWidth());
+        json.addProperty("height", properties.getHeight());
+        json.addProperty("CSS", properties.getCss());
+        json.addProperty("validate", properties.getValidate());
+        json.addProperty("aliases", properties.getAliases());
+        json.addProperty("value", properties.getValue());
+        return json;
     }
 
     public static Input fromJson(JsonObject pJsonObject) {
