@@ -10,6 +10,7 @@ public class Constants {
     public static final String APP_NAME = "BlueNode";
     public static final String APP_ID = "bluenode";
     public static final String APP_VERSION = "0.0.1-SNAPSHOT";
+    public static final boolean IS_DEVELOPMENT = true;
     public static final int DEFAULT_WIDTH = 1200;
     public static final int DEFAULT_HEIGHT = 800;
     public static final String LOGO_PATH = "/assets/images/logo.png";
@@ -23,7 +24,8 @@ public class Constants {
      * @author MeAlam
      * @since 1.0.0
      */
-    private Constants() {}
+    private Constants() {
+    }
 
     /**
      * A {@code public static} {@link ScheduledExecutorService} used to schedule tasks, such as printing messages after a delay.

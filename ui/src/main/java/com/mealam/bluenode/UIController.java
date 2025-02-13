@@ -22,7 +22,9 @@ public class UIController extends Application {
 
             initializeComponents(pPrimaryStage);
             CoreController.initializeCore();
-            BlueNodeIO.create("test", "test");
+            if (Common.getDevMode()) {
+                BlueNodeIO.create("test", "test");
+            }
             pPrimaryStage.show();
             BaseLogger.log(BaseLogLevel.SUCCESS, "BlueNode application started successfully.");
         } catch (Exception pException) {
