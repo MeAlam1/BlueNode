@@ -10,10 +10,10 @@ public class NodeUtils {
     public static void addNode(String filePath, JsonObject node) {
         try {
             JsonObject mainJson = BlueNodeIO.load(filePath);
-            if (!mainJson.has("Nodes") || !mainJson.get("Nodes").isJsonArray()) {
-                mainJson.add("Nodes", new JsonArray());
+            if (!mainJson.has("nodes") || !mainJson.get("nodes").isJsonArray()) {
+                mainJson.add("nodes", new JsonArray());
             }
-            mainJson.getAsJsonArray("Nodes").add(node);
+            mainJson.getAsJsonArray("nodes").add(node);
             BlueNodeIO.save(mainJson, filePath);
 
             //BaseLogger.log(BaseLogLevel.SUCCESS, "Node added successfully to: " + filePath);
@@ -26,11 +26,11 @@ public class NodeUtils {
         try {
             JsonObject mainJson = BlueNodeIO.load(filePath);
 
-            if (!mainJson.has("Nodes") || !mainJson.get("Nodes").isJsonArray()) {
+            if (!mainJson.has("nodes") || !mainJson.get("nodes").isJsonArray()) {
                 throw new RuntimeException("No nodes found in the file.");
             }
 
-            JsonArray nodes = mainJson.getAsJsonArray("Nodes");
+            JsonArray nodes = mainJson.getAsJsonArray("nodes");
             boolean nodeFound = false;
 
             for (int i = 0; i < nodes.size(); i++) {
