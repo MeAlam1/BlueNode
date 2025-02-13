@@ -1,5 +1,6 @@
 package com.mealam.bluenode.nodes;
 
+import com.mealam.bluenode.utils.io.NodeUtils;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
 import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
@@ -31,6 +32,7 @@ public class NodeManager {
         if (!isNodeAtLocation(pNode.getProperties().getX(), pNode.getProperties().getY(),
                 pNode.getProperties().getWidth(), pNode.getProperties().getHeight())) {
             nodes.add(pNode);
+            NodeUtils.addNode("test", pNode.toJson());
             NodeRenderer.render(pNode, overlayPane);
 
             BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());
