@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
+import com.mealam.bluenode.utils.json.JSONUtils;
 import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
 import org.checkerframework.checker.index.qual.NonNegative;
 
@@ -15,10 +16,8 @@ public class Node {
 
     private final NodeProperties properties;
 
-    public Node(double pX, double pY) {
+    public Node() {
         properties = new NodeProperties();
-        properties.setX(pX);
-        properties.setY(pY);
     }
 
     public JsonObject toJson() {
@@ -55,36 +54,23 @@ public class Node {
         return jsonObject;
     }
 
-    private JsonObject getJsonObject() {
-        JsonObject jsonObject = new JsonObject();
-
-        jsonObject.addProperty("id", properties.getId());
-        jsonObject.addProperty("x", properties.getX());
-        jsonObject.addProperty("y", properties.getY());
-        jsonObject.addProperty("minWidth", properties.getMinWidth());
-        jsonObject.addProperty("width", properties.getWidth());
-        jsonObject.addProperty("minHeight", properties.getMinHeight());
-        jsonObject.addProperty("height", properties.getHeight());
-        jsonObject.addProperty("title", properties.getTitle());
-        jsonObject.addProperty("description", properties.getDescription());
-        jsonObject.addProperty("category", properties.getCategory());
-        return jsonObject;
+    public static Node fromJson(JsonArray pJsonArray) {
+        JsonObject jsonObject = checkJSON(pJsonArray);
+        return fromJson(pJsonArray, Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "x", "0")), Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "y", "0")));
     }
 
     public static Node fromJson(JsonArray pJsonArray, double pX, double pY) {
-        if (pJsonArray == null || pJsonArray.isEmpty()) {
-            throw new IllegalArgumentException("JsonArray is null or empty, cannot create Node.");
-        }
+        JsonObject jsonObject = checkJSON(pJsonArray);
 
-        JsonElement firstElement = pJsonArray.get(0);
-        if (!firstElement.isJsonObject()) {
-            throw new IllegalArgumentException("First element in JsonArray is not a JsonObject.");
-        }
-
-        JsonObject jsonObject = firstElement.getAsJsonObject();
-
-        Node node = new Node(pX, pY);
-        node.properties.setTitle(jsonObject.get("title").getAsString());
+        Node node = new Node();
+        node.properties.setId(JSONUtils.getOrDefault(jsonObject, "id", ""));
+        node.properties.setX(pX);
+        node.properties.setY(pY);
+        node.properties.setMinWidth(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "minWidth", "")));
+        node.properties.setWidth(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "width", "")));
+        node.properties.setMinHeight(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "minHeight", "")));
+        node.properties.setHeight(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "height", "")));
+        node.properties.setTitle(JSONUtils.getOrDefault(jsonObject, "title", ""));
         node.properties.setDescription(jsonObject.get("description").getAsString());
         node.properties.setCategory(jsonObject.get("category").getAsString());
 
@@ -113,6 +99,35 @@ public class Node {
 
     public NodeProperties getProperties() {
         return properties;
+    }
+
+    private JsonObject getJsonObject() {
+        JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty("id", properties.getId());
+        jsonObject.addProperty("x", properties.getX());
+        jsonObject.addProperty("y", properties.getY());
+        jsonObject.addProperty("minWidth", properties.getMinWidth());
+        jsonObject.addProperty("width", properties.getWidth());
+        jsonObject.addProperty("minHeight", properties.getMinHeight());
+        jsonObject.addProperty("height", properties.getHeight());
+        jsonObject.addProperty("title", properties.getTitle());
+        jsonObject.addProperty("description", properties.getDescription());
+        jsonObject.addProperty("category", properties.getCategory());
+        return jsonObject;
+    }
+
+    private static JsonObject checkJSON(JsonArray pJsonArray) {
+        if (pJsonArray == null || pJsonArray.isEmpty()) {
+            throw new IllegalArgumentException("JsonArray is null or empty, cannot create Node.");
+        }
+
+        JsonElement firstElement = pJsonArray.get(0);
+        if (!firstElement.isJsonObject()) {
+            throw new IllegalArgumentException("First element in JsonArray is not a JsonObject.");
+        }
+
+        return firstElement.getAsJsonObject();
     }
 
     public static class NodeProperties {
