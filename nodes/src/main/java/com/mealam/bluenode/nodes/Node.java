@@ -65,8 +65,8 @@ public class Node {
 
     public static Node fromJson(JsonObject pJsonElement) {
         Node node = new Node();
-        node.properties.setX(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "x", "Error404")));
-        node.properties.setY(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "y", "Error404")));
+        node.properties.setX(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "x", "-1")));
+        node.properties.setY(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "y", "-1")));
         setNodeParameters(pJsonElement, node);
         return node;
     }
@@ -74,10 +74,10 @@ public class Node {
     private static void setNodeParameters(JsonObject pJsonElement, Node pNode) {
         pNode.properties.setId(JSONUtils.getOrDefault(pJsonElement, "id", "Error404"));
 
-        pNode.properties.setMinWidth(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "minWidth", "Error404")));
-        pNode.properties.setWidth(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "width", "Error404")));
-        pNode.properties.setMinHeight(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "minHeight", "Error404")));
-        pNode.properties.setHeight(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "height", "Error404")));
+        pNode.properties.setMinWidth(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "minWidth", "-1")));
+        pNode.properties.setWidth(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "width", "-1")));
+        pNode.properties.setMinHeight(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "minHeight", "-1")));
+        pNode.properties.setHeight(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "height", "-1")));
         pNode.properties.setTitle(JSONUtils.getOrDefault(pJsonElement, "title", "Error404"));
         pNode.properties.setDescription(JSONUtils.getOrDefault(pJsonElement, "description", "Error404"));
         pNode.properties.setCategory(JSONUtils.getOrDefault(pJsonElement, "category", "Error404"));

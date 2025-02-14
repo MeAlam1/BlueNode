@@ -22,8 +22,8 @@ public class BlueNodeIO {
             String fullPath = pFilePath.endsWith(FILE_EXTENSION) ? pFilePath : pFilePath + FILE_EXTENSION;
             BlueNodeSerializer.saveAsBlueNode(pJson.toString(), fullPath);
             //BaseLogger.log(BaseLogLevel.SUCCESS, "Saved to: " + fullPath);
-        } catch (IOException e) {
-            throw new RuntimeException("Error saving file: " + e.getMessage());
+        } catch (IOException pIOException) {
+            throw new RuntimeException("Error saving file: " + pIOException);
         }
     }
 
@@ -43,8 +43,8 @@ public class BlueNodeIO {
             }
             String jsonString = BlueNodeDeserializer.loadFromBlueNode(pFilePath);
             return JsonParser.parseString(jsonString).getAsJsonObject();
-        } catch (IOException e) {
-            throw new RuntimeException("Error handling file: " + e.getMessage());
+        } catch (IOException pIOException) {
+            throw new RuntimeException("Error handling file: " + pIOException);
         }
     }
 
@@ -63,8 +63,8 @@ public class BlueNodeIO {
             } else {
                 BaseLogger.log(BaseLogLevel.WARNING, "File did not exist: " + pFilePath);
             }
-        } catch (Exception e) {
-            throw new RuntimeException("Error deleting file: " + e.getMessage());
+        } catch (Exception pException) {
+            throw new RuntimeException("Error deleting file: " + pException);
         }
     }
 
@@ -85,8 +85,8 @@ public class BlueNodeIO {
             } else {
                 throw new RuntimeException("Failed to create file: " + pFilePath);
             }
-        } catch (IOException e) {
-            throw new RuntimeException("Error creating file: " + e.getMessage());
+        } catch (IOException pIOException) {
+            throw new RuntimeException("Error creating file: " + pIOException);
         }
     }
 
