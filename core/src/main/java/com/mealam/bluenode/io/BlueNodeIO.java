@@ -92,6 +92,7 @@ public class BlueNodeIO {
 
     private static JsonObject getJsonObject(String pFileName) {
         JsonObject template = JSONLoader.loadJson("data/template/SourceFileTemplate.json");
+        assert template != null;
         template.addProperty("id", RandomIDUtils.generateID(pFileName));
         template.addProperty("name", pFileName);
         template.addProperty("version", ""); //TODO: Get version from somewhere later
