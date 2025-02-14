@@ -54,23 +54,32 @@ public class Node {
         return jsonObject;
     }
 
-    public static Node fromJson(JsonArray pJsonArray) {
-        JsonObject jsonObject = checkJSON(pJsonArray);
-        return fromJson(pJsonArray, Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "x", "0")), Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "y", "0")));
+    public static Node fromJson(JsonElement jsonElement) {
+        if (jsonElement.isJsonObject()) {
+            return fromJson(jsonElement.getAsJsonObject());
+        } else if (jsonElement.isJsonArray()) {
+            return fromJson(jsonElement.getAsJsonArray(), 0, 0);
+        } else {
+            throw new IllegalArgumentException("Invalid JSON element. Expected JsonObject or JsonArray.");
+        }
     }
 
-    public static Node fromJson(JsonArray pJsonArray, double pX, double pY) {
-        JsonObject jsonObject = checkJSON(pJsonArray);
-
+    public static Node fromJson(JsonObject jsonObject) {
         Node node = new Node();
-        node.properties.setId(JSONUtils.getOrDefault(jsonObject, "id", ""));
-        node.properties.setX(pX);
-        node.properties.setY(pY);
-        node.properties.setMinWidth(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "minWidth", "")));
-        node.properties.setWidth(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "width", "")));
-        node.properties.setMinHeight(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "minHeight", "")));
-        node.properties.setHeight(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "height", "")));
-        node.properties.setTitle(JSONUtils.getOrDefault(jsonObject, "title", ""));
+        node.properties.setX(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "x", "0")));
+        node.properties.setY(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "y", "0")));
+        setNodeParameters(jsonObject, node);
+        return node;
+    }
+
+    private static void setNodeParameters(JsonObject jsonObject, Node node) {
+        node.properties.setId(JSONUtils.getOrDefault(jsonObject, "id", "0"));
+
+        node.properties.setMinWidth(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "minWidth", "0")));
+        node.properties.setWidth(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "width", "0")));
+        node.properties.setMinHeight(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "minHeight", "0")));
+        node.properties.setHeight(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "height", "0")));
+        node.properties.setTitle(JSONUtils.getOrDefault(jsonObject, "title", "0"));
         node.properties.setDescription(jsonObject.get("description").getAsString());
         node.properties.setCategory(jsonObject.get("category").getAsString());
 
@@ -89,6 +98,15 @@ public class Node {
 
         node.properties.setMetadata(Metadata.fromJson(jsonObject.getAsJsonObject("metadata")));
 
+    }
+
+    public static Node fromJson(JsonArray jsonArray, double pX, double pY) {
+        JsonObject jsonObject = checkJSON(jsonArray);
+
+        Node node = new Node();
+        node.properties.setX(pX);
+        node.properties.setY(pY);
+        setNodeParameters(jsonObject, node);
         return node;
     }
 
