@@ -4,12 +4,11 @@ import com.mealam.bluenode.mainPanel.grid.GridDrawer;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.utils.io.NodeUtils;
+import java.util.List;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
-import java.util.List;
 
 public class CanvasDragHandler {
 

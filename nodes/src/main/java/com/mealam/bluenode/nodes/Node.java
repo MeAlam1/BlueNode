@@ -7,10 +7,9 @@ import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
 import com.mealam.bluenode.utils.json.JSONUtils;
 import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
-import org.checkerframework.checker.index.qual.NonNegative;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.checkerframework.checker.index.qual.NonNegative;
 
 public class Node {
 
@@ -54,54 +53,53 @@ public class Node {
         return jsonObject;
     }
 
-    public static Node fromJson(JsonElement jsonElement) {
-        if (jsonElement.isJsonObject()) {
-            return fromJson(jsonElement.getAsJsonObject());
-        } else if (jsonElement.isJsonArray()) {
-            return fromJson(jsonElement.getAsJsonArray(), 0, 0);
+    public static Node fromJson(JsonElement pJsonElement) {
+        if (pJsonElement.isJsonObject()) {
+            return fromJson(pJsonElement.getAsJsonObject());
+        } else if (pJsonElement.isJsonArray()) {
+            return fromJson(pJsonElement.getAsJsonArray(), 0, 0);
         } else {
             throw new IllegalArgumentException("Invalid JSON element. Expected JsonObject or JsonArray.");
         }
     }
 
-    public static Node fromJson(JsonObject jsonObject) {
+    public static Node fromJson(JsonObject pJsonElement) {
         Node node = new Node();
-        node.properties.setX(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "x", "0")));
-        node.properties.setY(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "y", "0")));
-        setNodeParameters(jsonObject, node);
+        node.properties.setX(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "x", "Error404")));
+        node.properties.setY(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "y", "Error404")));
+        setNodeParameters(pJsonElement, node);
         return node;
     }
 
-    private static void setNodeParameters(JsonObject jsonObject, Node node) {
-        node.properties.setId(JSONUtils.getOrDefault(jsonObject, "id", "0"));
+    private static void setNodeParameters(JsonObject pJsonElement, Node pNode) {
+        pNode.properties.setId(JSONUtils.getOrDefault(pJsonElement, "id", "Error404"));
 
-        node.properties.setMinWidth(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "minWidth", "0")));
-        node.properties.setWidth(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "width", "0")));
-        node.properties.setMinHeight(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "minHeight", "0")));
-        node.properties.setHeight(Double.parseDouble(JSONUtils.getOrDefault(jsonObject, "height", "0")));
-        node.properties.setTitle(JSONUtils.getOrDefault(jsonObject, "title", "0"));
-        node.properties.setDescription(jsonObject.get("description").getAsString());
-        node.properties.setCategory(jsonObject.get("category").getAsString());
+        pNode.properties.setMinWidth(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "minWidth", "Error404")));
+        pNode.properties.setWidth(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "width", "Error404")));
+        pNode.properties.setMinHeight(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "minHeight", "Error404")));
+        pNode.properties.setHeight(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "height", "Error404")));
+        pNode.properties.setTitle(JSONUtils.getOrDefault(pJsonElement, "title", "Error404"));
+        pNode.properties.setDescription(JSONUtils.getOrDefault(pJsonElement, "description", "Error404"));
+        pNode.properties.setCategory(JSONUtils.getOrDefault(pJsonElement, "category", "Error404"));
 
-        List<String> categories = NodeCategoryUtils.getCategories(node.getProperties().getCategory());
+        List<String> categories = NodeCategoryUtils.getCategories(pNode.getProperties().getCategory());
         List<String> css = new ArrayList<>();
         for (String category : categories) {
             css.add(NodeCategoryUtils.getCategoryData(category, "cssName"));
         }
-        node.getProperties().setCSS(css);
+        pNode.getProperties().setCSS(css);
 
-        JsonArray inputsJsonArray = jsonObject.getAsJsonArray("inputs");
-        node.properties.setInputs(Input.fromJsonArray(inputsJsonArray));
+        JsonArray inputsJsonArray = pJsonElement.getAsJsonArray("inputs");
+        pNode.properties.setInputs(Input.fromJsonArray(inputsJsonArray));
 
-        JsonArray outputsJsonArray = jsonObject.getAsJsonArray("outputs");
-        node.properties.setOutputs(Output.fromJsonArray(outputsJsonArray));
+        JsonArray outputsJsonArray = pJsonElement.getAsJsonArray("outputs");
+        pNode.properties.setOutputs(Output.fromJsonArray(outputsJsonArray));
 
-        node.properties.setMetadata(Metadata.fromJson(jsonObject.getAsJsonObject("metadata")));
-
+        pNode.properties.setMetadata(Metadata.fromJson(pJsonElement.getAsJsonObject("metadata")));
     }
 
-    public static Node fromJson(JsonArray jsonArray, double pX, double pY) {
-        JsonObject jsonObject = checkJSON(jsonArray);
+    public static Node fromJson(JsonArray pJsonArray, double pX, double pY) {
+        JsonObject jsonObject = checkJSON(pJsonArray);
 
         Node node = new Node();
         node.properties.setX(pX);

@@ -27,10 +27,9 @@ public class JSONUtils {
         return "";
     }
 
-    public static String getOrDefault(JsonObject jsonObject, String key, String defaultValue) {
-        return jsonObject.has(key) && !jsonObject.get(key).isJsonNull()
-                ? jsonObject.get(key).getAsString()
-                : defaultValue;
+    public static String getOrDefault(JsonObject pJsonObject, String pKey, String pDefaultValue) {
+        return pJsonObject.has(pKey) && !pJsonObject.get(pKey).isJsonNull()
+                ? pJsonObject.get(pKey).getAsString()
+                : pDefaultValue;
     }
-
 }

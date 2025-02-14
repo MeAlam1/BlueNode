@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeInit;
 import com.mealam.bluenode.utils.io.NodeUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class NodeLoaderUtils {
         return nodes;
     }
 
-    public static Node getNode(String filePath, String nodeId) {
-        return Node.fromJson(NodeUtils.getNodeJSON(filePath, nodeId));
+    public static Node getNode(String pFilePath, String pNodeId) {
+        return Node.fromJson(NodeUtils.getNodeJSON(pFilePath, pNodeId));
     }
 }

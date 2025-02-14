@@ -9,7 +9,6 @@ import com.mealam.bluenode.json.JSONLoader;
 import com.mealam.bluenode.utils.RandomIDUtils;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -18,73 +17,73 @@ public class BlueNodeIO {
 
     private static final String FILE_EXTENSION = ".bluenode";
 
-    public static void save(JsonObject json, String filePath) {
+    public static void save(JsonObject pJson, String pFilePath) {
         try {
-            String fullPath = filePath.endsWith(FILE_EXTENSION) ? filePath : filePath + FILE_EXTENSION;
-            BlueNodeSerializer.saveAsBlueNode(json.toString(), fullPath);
+            String fullPath = pFilePath.endsWith(FILE_EXTENSION) ? pFilePath : pFilePath + FILE_EXTENSION;
+            BlueNodeSerializer.saveAsBlueNode(pJson.toString(), fullPath);
             //BaseLogger.log(BaseLogLevel.SUCCESS, "Saved to: " + fullPath);
         } catch (IOException e) {
             throw new RuntimeException("Error saving file: " + e.getMessage());
         }
     }
 
-    public static JsonObject load(String filePath) {
+    public static JsonObject load(String pFilePath) {
         try {
-            if (!filePath.endsWith(FILE_EXTENSION)) {
-                filePath = filePath + FILE_EXTENSION;
+            if (!pFilePath.endsWith(FILE_EXTENSION)) {
+                pFilePath = pFilePath + FILE_EXTENSION;
             }
-            File file = new File(filePath);
+            File file = new File(pFilePath);
             if (!file.exists()) {
                 if (file.createNewFile()) {
-                    BaseLogger.log(BaseLogLevel.WARNING, "File did not exist, creating new file: " + filePath);
+                    BaseLogger.log(BaseLogLevel.WARNING, "File did not exist, creating new file: " + pFilePath);
                     return new JsonObject();
                 } else {
-                    throw new RuntimeException("Failed to create file: " + filePath);
+                    throw new RuntimeException("Failed to create file: " + pFilePath);
                 }
             }
-            String jsonString = BlueNodeDeserializer.loadFromBlueNode(filePath);
+            String jsonString = BlueNodeDeserializer.loadFromBlueNode(pFilePath);
             return JsonParser.parseString(jsonString).getAsJsonObject();
         } catch (IOException e) {
             throw new RuntimeException("Error handling file: " + e.getMessage());
         }
     }
 
-    public static void delete(String filePath) {
+    public static void delete(String pFilePath) {
         try {
-            if (!filePath.endsWith(FILE_EXTENSION)) {
-                filePath = filePath + FILE_EXTENSION;
+            if (!pFilePath.endsWith(FILE_EXTENSION)) {
+                pFilePath = pFilePath + FILE_EXTENSION;
             }
-            File file = new File(filePath);
+            File file = new File(pFilePath);
             if (file.exists()) {
                 if (file.delete()) {
-                    BaseLogger.log(BaseLogLevel.SUCCESS, "Deleted file: " + filePath);
+                    BaseLogger.log(BaseLogLevel.SUCCESS, "Deleted file: " + pFilePath);
                 } else {
-                    throw new RuntimeException("Failed to delete file: " + filePath);
+                    throw new RuntimeException("Failed to delete file: " + pFilePath);
                 }
             } else {
-                BaseLogger.log(BaseLogLevel.WARNING, "File did not exist: " + filePath);
+                BaseLogger.log(BaseLogLevel.WARNING, "File did not exist: " + pFilePath);
             }
         } catch (Exception e) {
             throw new RuntimeException("Error deleting file: " + e.getMessage());
         }
     }
 
-    public static void create(String filePath, String pFileName) {
+    public static void create(String pFilePath, String pFileName) {
         try {
-            if (!filePath.endsWith(FILE_EXTENSION)) {
-                filePath = filePath + FILE_EXTENSION;
+            if (!pFilePath.endsWith(FILE_EXTENSION)) {
+                pFilePath = pFilePath + FILE_EXTENSION;
             }
-            File file = new File(filePath);
+            File file = new File(pFilePath);
             if (file.exists()) {
-                BaseLogger.log(BaseLogLevel.INFO, "File already exists: " + filePath);
+                BaseLogger.log(BaseLogLevel.INFO, "File already exists: " + pFilePath);
                 return;
             }
             if (file.createNewFile()) {
-                BaseLogger.log(BaseLogLevel.SUCCESS, "Created new file: " + filePath);
+                BaseLogger.log(BaseLogLevel.SUCCESS, "Created new file: " + pFilePath);
                 JsonObject content = getJsonObject(pFileName);
-                save(content, filePath);
+                save(content, pFilePath);
             } else {
-                throw new RuntimeException("Failed to create file: " + filePath);
+                throw new RuntimeException("Failed to create file: " + pFilePath);
             }
         } catch (IOException e) {
             throw new RuntimeException("Error creating file: " + e.getMessage());
@@ -105,5 +104,4 @@ public class BlueNodeIO {
 
         return template;
     }
-
 }

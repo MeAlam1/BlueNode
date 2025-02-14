@@ -7,24 +7,24 @@ import com.mealam.bluenode.io.BlueNodeIO;
 
 public class NodeUtils {
 
-    public static void addNode(String filePath, JsonObject node) {
+    public static void addNode(String pFilePath, JsonObject pNodeJson) {
         try {
-            JsonObject mainJson = BlueNodeIO.load(filePath);
+            JsonObject mainJson = BlueNodeIO.load(pFilePath);
             if (!mainJson.has("nodes") || !mainJson.get("nodes").isJsonArray()) {
                 mainJson.add("nodes", new JsonArray());
             }
-            mainJson.getAsJsonArray("nodes").add(node);
-            BlueNodeIO.save(mainJson, filePath);
+            mainJson.getAsJsonArray("nodes").add(pNodeJson);
+            BlueNodeIO.save(mainJson, pFilePath);
 
-            //BaseLogger.log(BaseLogLevel.SUCCESS, "Node added successfully to: " + filePath);
+            //BaseLogger.log(BaseLogLevel.SUCCESS, "Node added successfully to: " + pFilePath);
         } catch (Exception e) {
             throw new RuntimeException("Error adding node: " + e.getMessage());
         }
     }
 
-    public static void updateNode(String filePath, String nodeId, JsonObject newNodeData) {
+    public static void updateNode(String pFilePath, String pNodeId, JsonObject pNewNodeJsonData) {
         try {
-            JsonObject mainJson = BlueNodeIO.load(filePath);
+            JsonObject mainJson = BlueNodeIO.load(pFilePath);
 
             if (!mainJson.has("nodes") || !mainJson.get("nodes").isJsonArray()) {
                 throw new RuntimeException("No nodes found in the file.");
@@ -37,8 +37,8 @@ public class NodeUtils {
                 JsonElement element = nodes.get(i);
                 if (element.isJsonObject()) {
                     JsonObject node = element.getAsJsonObject();
-                    if (node.has("id") && node.get("id").getAsString().equals(nodeId)) {
-                        nodes.set(i, newNodeData);
+                    if (node.has("id") && node.get("id").getAsString().equals(pNodeId)) {
+                        nodes.set(i, pNewNodeJsonData);
                         nodeFound = true;
                         break;
                     }
@@ -46,19 +46,19 @@ public class NodeUtils {
             }
 
             if (!nodeFound) {
-                throw new RuntimeException("Node with ID " + nodeId + " not found.");
+                throw new RuntimeException("Node with ID " + pNodeId + " not found.");
             }
-            BlueNodeIO.save(mainJson, filePath);
+            BlueNodeIO.save(mainJson, pFilePath);
 
-            //BaseLogger.log(BaseLogLevel.SUCCESS, "Node with ID " + nodeId + " replaced successfully in: " + filePath);
+            //BaseLogger.log(BaseLogLevel.SUCCESS, "Node with ID " + nodeId + " replaced successfully in: " + pFilePath);
         } catch (Exception e) {
             throw new RuntimeException("Error updating node: " + e.getMessage());
         }
     }
 
-    public static void deleteNode(String filePath, String nodeId) {
+    public static void deleteNode(String pFilePath, String pNodeId) {
         try {
-            JsonObject mainJson = BlueNodeIO.load(filePath);
+            JsonObject mainJson = BlueNodeIO.load(pFilePath);
 
             if (!mainJson.has("nodes") || !mainJson.get("nodes").isJsonArray()) {
                 throw new RuntimeException("No nodes found in the file.");
@@ -71,7 +71,7 @@ public class NodeUtils {
                 JsonElement element = nodes.get(i);
                 if (element.isJsonObject()) {
                     JsonObject node = element.getAsJsonObject();
-                    if (node.has("id") && node.get("id").getAsString().equals(nodeId)) {
+                    if (node.has("id") && node.get("id").getAsString().equals(pNodeId)) {
                         nodes.remove(i);
                         nodeFound = true;
                         break;
@@ -80,19 +80,19 @@ public class NodeUtils {
             }
 
             if (!nodeFound) {
-                throw new RuntimeException("Node with ID " + nodeId + " not found.");
+                throw new RuntimeException("Node with ID " + pNodeId + " not found.");
             }
-            BlueNodeIO.save(mainJson, filePath);
+            BlueNodeIO.save(mainJson, pFilePath);
 
-            //BaseLogger.log(BaseLogLevel.SUCCESS, "Node with ID " + nodeId + " deleted successfully from: " + filePath);
+            //BaseLogger.log(BaseLogLevel.SUCCESS, "Node with ID " + nodeId + " deleted successfully from: " + pFilePath);
         } catch (Exception e) {
             throw new RuntimeException("Error deleting node: " + e.getMessage());
         }
     }
 
-    public static JsonObject getNodeJSON(String filePath, String nodeId) {
+    public static JsonObject getNodeJSON(String pFilePath, String pNodeId) {
         try {
-            JsonObject mainJson = BlueNodeIO.load(filePath);
+            JsonObject mainJson = BlueNodeIO.load(pFilePath);
 
             if (!mainJson.has("nodes") || !mainJson.get("nodes").isJsonArray()) {
                 throw new RuntimeException("No nodes found in the file.");
@@ -104,13 +104,13 @@ public class NodeUtils {
                 JsonElement element = nodes.get(i);
                 if (element.isJsonObject()) {
                     JsonObject node = element.getAsJsonObject();
-                    if (node.has("id") && node.get("id").getAsString().equals(nodeId)) {
+                    if (node.has("id") && node.get("id").getAsString().equals(pNodeId)) {
                         return node;
                     }
                 }
             }
 
-            throw new RuntimeException("Node with ID " + nodeId + " not found.");
+            throw new RuntimeException("Node with ID " + pNodeId + " not found.");
         } catch (Exception e) {
             throw new RuntimeException("Error getting node: " + e.getMessage());
         }

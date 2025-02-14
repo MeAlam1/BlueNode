@@ -1,10 +1,9 @@
 package com.mealam.bluenode.utils;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class RandomIDUtils {
 
