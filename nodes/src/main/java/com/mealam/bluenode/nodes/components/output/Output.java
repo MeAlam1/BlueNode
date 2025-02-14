@@ -3,6 +3,7 @@ package com.mealam.bluenode.nodes.components.output;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mealam.bluenode.utils.json.JSONUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +15,19 @@ public class Output {
         properties = new OutputProperties();
     }
 
+    public JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        json.addProperty("id", properties.getId());
+        json.addProperty("name", properties.getName());
+        json.addProperty("type", properties.getType());
+        return json;
+    }
+
     public static Output fromJson(JsonObject pJsonObject) {
         Output output = new Output();
-        output.properties.id = pJsonObject.get("id").getAsString();
-        output.properties.name = pJsonObject.get("name").getAsString();
-        output.properties.type = pJsonObject.get("type").getAsString();
+        output.properties.id = JSONUtils.getOrDefault(pJsonObject, "id", "Error404");
+        output.properties.name = JSONUtils.getOrDefault(pJsonObject, "name", "Error404");
+        output.properties.type = JSONUtils.getOrDefault(pJsonObject, "type", "Error404");
         return output;
     }
 

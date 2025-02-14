@@ -15,6 +15,20 @@ public class Metadata {
         properties = new MetadataProperties();
     }
 
+    public JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        json.addProperty("createdAt", properties.getCreatedAt().getTime());
+        json.addProperty("updatedAt", properties.getUpdatedAt().getTime());
+
+        JsonArray aliasesArray = new JsonArray();
+        for (String alias : properties.getAliases()) {
+            aliasesArray.add(alias);
+        }
+        json.add("aliases", aliasesArray);
+
+        return json;
+    }
+
     public static Metadata fromJson(JsonObject pJsonObject) {
         Metadata metadata = new Metadata();
 

@@ -1,8 +1,9 @@
 package com.mealam.bluenode.nodes;
 
+import com.mealam.bluenode.utils.RandomIDUtils;
+import com.mealam.bluenode.utils.io.NodeUtils;
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-import com.mealam.bluenode.utils.nodes.NodeIDGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.layout.Pane;
@@ -30,11 +31,11 @@ public class NodeManager {
         if (!isNodeAtLocation(pNode.getProperties().getX(), pNode.getProperties().getY(),
                 pNode.getProperties().getWidth(), pNode.getProperties().getHeight())) {
             nodes.add(pNode);
-            NodePane nodePane = new NodePane(pNode);
-            overlayPane.getChildren().add(nodePane);
+            NodeUtils.addNode("test", pNode.toJson());
+            NodeRenderer.render(pNode, overlayPane);
 
             BaseLogger.log(BaseLogLevel.INFO, pNode.getProperties().toString());
-            BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + NodeIDGenerator.decryptID(pNode.getProperties().getId()));
+            BaseLogger.log(BaseLogLevel.INFO, "Node Decrypted ID: " + RandomIDUtils.decryptID(pNode.getProperties().getId()));
         } else {
             BaseLogger.log(BaseLogLevel.WARNING, "No suitable position found for new node.");
         }

@@ -2,6 +2,7 @@ package com.mealam.bluenode;
 
 import com.mealam.bluenode.configs.StageConfigurer;
 import com.mealam.bluenode.events.window.WindowInteractionHandler;
+import com.mealam.bluenode.io.BlueNodeIO;
 import com.mealam.bluenode.mainPanel.MainPanel;
 import com.mealam.bluenode.styles.AsyncStyleLoader;
 import com.mealam.bluenode.styles.StyleLoader;
@@ -21,7 +22,9 @@ public class UIController extends Application {
 
             initializeComponents(pPrimaryStage);
             CoreController.initializeCore();
-
+            if (Common.getDevMode()) {
+                BlueNodeIO.create("test", "test");
+            }
             pPrimaryStage.show();
             BaseLogger.log(BaseLogLevel.SUCCESS, "BlueNode application started successfully.");
         } catch (Exception pException) {

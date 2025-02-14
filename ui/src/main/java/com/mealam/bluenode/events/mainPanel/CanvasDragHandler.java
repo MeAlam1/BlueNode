@@ -2,7 +2,8 @@ package com.mealam.bluenode.events.mainPanel;
 
 import com.mealam.bluenode.mainPanel.grid.GridDrawer;
 import com.mealam.bluenode.nodes.Node;
-import com.mealam.bluenode.nodes.NodePane;
+import com.mealam.bluenode.nodes.NodeRenderer;
+import com.mealam.bluenode.utils.io.NodeUtils;
 import java.util.List;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -62,8 +63,9 @@ public class CanvasDragHandler {
         overlayPane.getChildren().clear();
 
         for (Node node : nodes) {
-            NodePane nodePane = new NodePane(node);
-            overlayPane.getChildren().add(nodePane);
+            NodeRenderer.render(node, overlayPane);
+            NodeUtils.updateNode("test", node.getProperties().getId(), node.toJson());
+            NodeUtils.updateNode("test", node.getProperties().getId(), node.toJson());
             //BaseLogger.log(BaseLogLevel.INFO, "Node: " + node.toString());
         }
     }

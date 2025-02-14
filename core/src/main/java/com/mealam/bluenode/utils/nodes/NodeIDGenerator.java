@@ -24,15 +24,4 @@ public class NodeIDGenerator {
         String originalID = pNodeType + uniqueNumber + "_" + timestamp;
         return Base64.getEncoder().encodeToString(originalID.getBytes());
     }
-
-    /**
-     * Decrypts the Base64 encoded node ID back to the original format.
-     *
-     * @param pEncodedID The Base64 encoded ID.
-     * @return The original node ID string.
-     */
-    public static String decryptID(String pEncodedID) {
-        byte[] decodedBytes = Base64.getDecoder().decode(pEncodedID);
-        return new String(decodedBytes);
-    }
 }

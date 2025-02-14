@@ -3,6 +3,7 @@ package com.mealam.bluenode.nodes.components.input;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mealam.bluenode.utils.json.JSONUtils;
 import com.mealam.bluenode.utils.nodes.input.InputCategoryUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,26 @@ public class Input {
         properties = new InputProperties();
     }
 
+    public JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        json.addProperty("id", properties.getId());
+        json.addProperty("name", properties.getName());
+        json.addProperty("type", properties.getType());
+        json.addProperty("width", properties.getWidth());
+        json.addProperty("height", properties.getHeight());
+        json.addProperty("CSS", properties.getCss());
+        json.addProperty("validate", properties.getValidate());
+        json.addProperty("aliases", properties.getAliases());
+        json.addProperty("value", properties.getValue());
+        return json;
+    }
+
     public static Input fromJson(JsonObject pJsonObject) {
         Input input = new Input();
 
-        input.properties.setId(pJsonObject.get("id").getAsString());
-        input.properties.setName(pJsonObject.get("name").getAsString());
-        input.properties.setType(pJsonObject.get("type").getAsString());
+        input.properties.setId(JSONUtils.getOrDefault(pJsonObject, "id", "Error404"));
+        input.properties.setName(JSONUtils.getOrDefault(pJsonObject, "name", "Error404"));
+        input.properties.setType(JSONUtils.getOrDefault(pJsonObject, "type", "Error404"));
 
         String categoryType = input.getProperties().getType();
 
@@ -29,7 +44,7 @@ public class Input {
         input.properties.setValidate(InputCategoryUtils.getInputCategoryData(categoryType, "validate"));
         input.properties.setAliases(InputCategoryUtils.getInputCategoryData(categoryType, "aliases"));
 
-        input.properties.value = pJsonObject.has("defaultValue") ? pJsonObject.get("defaultValue").getAsString() : "";
+        input.properties.value = JSONUtils.getOrDefault(pJsonObject, "defaultValue", "Error404");
         return input;
     }
 
