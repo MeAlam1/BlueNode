@@ -7,9 +7,10 @@ import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
 import com.mealam.bluenode.utils.json.JSONUtils;
 import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
+import org.checkerframework.checker.index.qual.NonNegative;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.checkerframework.checker.index.qual.NonNegative;
 
 public class Node {
 
@@ -53,16 +54,6 @@ public class Node {
         return jsonObject;
     }
 
-    public static Node fromJson(JsonElement pJsonElement) {
-        if (pJsonElement.isJsonObject()) {
-            return fromJson(pJsonElement.getAsJsonObject());
-        } else if (pJsonElement.isJsonArray()) {
-            return fromJson(pJsonElement.getAsJsonArray(), 0, 0);
-        } else {
-            throw new IllegalArgumentException("Invalid JSON element. Expected JsonObject or JsonArray.");
-        }
-    }
-
     public static Node fromJson(JsonObject pJsonElement) {
         Node node = new Node();
         node.properties.setX(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "x", "-1")));
@@ -74,6 +65,8 @@ public class Node {
     private static void setNodeParameters(JsonObject pJsonElement, Node pNode) {
         pNode.properties.setId(JSONUtils.getOrDefault(pJsonElement, "id", "Error404"));
 
+        pNode.properties.setInputNode(JSONUtils.getOrDefault(pJsonElement, "inputNode", "Error404"));
+        pNode.properties.setOutputNode(JSONUtils.getOrDefault(pJsonElement, "outputNode", "Error404"));
         pNode.properties.setMinWidth(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "minWidth", "-1")));
         pNode.properties.setWidth(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "width", "-1")));
         pNode.properties.setMinHeight(Double.parseDouble(JSONUtils.getOrDefault(pJsonElement, "minHeight", "-1")));
@@ -123,6 +116,8 @@ public class Node {
         jsonObject.addProperty("id", properties.getId());
         jsonObject.addProperty("x", properties.getX());
         jsonObject.addProperty("y", properties.getY());
+        jsonObject.addProperty("inputNode", properties.getInputNode());
+        jsonObject.addProperty("outputNode", properties.getOutputNode());
         jsonObject.addProperty("minWidth", properties.getMinWidth());
         jsonObject.addProperty("width", properties.getWidth());
         jsonObject.addProperty("minHeight", properties.getMinHeight());
@@ -151,6 +146,8 @@ public class Node {
         private String id;
         private double x;
         private double y;
+        private String inputNode;
+        private String outputNode;
         private @NonNegative double minWidth;
         private @NonNegative double width;
         private @NonNegative double minHeight;
@@ -185,6 +182,22 @@ public class Node {
 
         public void setY(double pY) {
             this.y = pY;
+        }
+
+        public String getInputNode() {
+            return inputNode;
+        }
+
+        public void setInputNode(String pInputNode) {
+            this.inputNode = pInputNode;
+        }
+
+        public String getOutputNode() {
+            return outputNode;
+        }
+
+        public void setOutputNode(String pOutputNode) {
+            this.outputNode = pOutputNode;
         }
 
         public double getMinWidth() {
@@ -281,6 +294,8 @@ public class Node {
                     "  \"id\": \"" + id + "\",\n" +
                     "  \"x\": " + x + ",\n" +
                     "  \"y\": " + y + ",\n" +
+                    "  \"inputNode\": \"" + inputNode + "\",\n" +
+                    "  \"outputNode\": \"" + outputNode + "\",\n" +
                     "  \"width\": " + width + ",\n" +
                     "  \"height\": " + height + ",\n" +
                     "  \"CSS\": \"" + CSS + "\",\n" +

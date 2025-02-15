@@ -13,6 +13,8 @@ public class NodeFactory {
         pNode.getProperties().setMinHeight(100);
         pNode.getProperties().setWidth(pNode.getProperties().getMinWidth());
         pNode.getProperties().setHeight(pNode.getProperties().getMinHeight());
+        pNode.getProperties().setInputNode("-");
+        pNode.getProperties().setOutputNode("-");
         return pNode;
     }
 }
