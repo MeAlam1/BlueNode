@@ -2,9 +2,8 @@ package com.mealam.bluenode.nodes.links;
 
 import com.mealam.bluenode.utils.logging.BaseLogLevel;
 import com.mealam.bluenode.utils.logging.BaseLogger;
-import javafx.scene.input.DragEvent;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
@@ -14,8 +13,6 @@ class LinkHandler {
 
     public static void startConnection(MouseEvent event) {
         if (!(event.getSource() instanceof OutputLink)) return;
-
-        ((OutputLink) event.getSource()).startDragAndDrop(TransferMode.LINK);
 
         currentOutput = (OutputLink) event.getSource();
         currentLine = new Line(currentOutput.getCenterX(), currentOutput.getCenterY(),
@@ -33,13 +30,12 @@ class LinkHandler {
         }
     }
 
-    public static void endConnection(DragEvent event) {
-        if (currentLine == null) return;
+    public static void endConnection(MouseEvent event) {
+        if (currentLine == null || currentOutput == null) return;
 
-        BaseLogger.log(BaseLogLevel.ERROR, "Source: " + event.getSource());
+        Node target = event.getPickResult().getIntersectedNode();
 
-        if (event.getSource() instanceof InputLink input) {
-
+        if (target instanceof InputLink input) {
             currentLine.setEndX(input.getCenterX());
             currentLine.setEndY(input.getCenterY());
 
@@ -50,6 +46,7 @@ class LinkHandler {
     }
 
     private static void executeConnection(OutputLink output, InputLink input) {
+        BaseLogger.log(BaseLogLevel.INFO, "Connected: " + output + " -> " + input);
         input.parentPane.getNode().getProperties().setInputNode(output.parentPane.getNode().getProperties().getId());
         output.parentPane.getNode().getProperties().setOutputNode(input.parentPane.getNode().getProperties().getId());
     }
