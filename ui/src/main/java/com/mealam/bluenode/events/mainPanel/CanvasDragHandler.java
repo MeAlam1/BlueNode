@@ -3,12 +3,18 @@ package com.mealam.bluenode.events.mainPanel;
 import com.mealam.bluenode.mainPanel.grid.GridDrawer;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeRenderer;
+import com.mealam.bluenode.nodes.links.Connection;
+import com.mealam.bluenode.nodes.links.LinkHandler;
 import com.mealam.bluenode.utils.io.NodeUtils;
-import java.util.List;
+import com.mealam.bluenode.utils.logging.BaseLogLevel;
+import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
+
+import java.util.List;
 
 public class CanvasDragHandler {
 
@@ -46,9 +52,13 @@ public class CanvasDragHandler {
         double deltaY = pEvent.getY() - lastY;
 
         for (Node node : nodes) {
-            node.getProperties().setX(node.getProperties().getX() + deltaX);
-            node.getProperties().setY(node.getProperties().getY() + deltaY);
+            double newX = node.getProperties().getX() + deltaX;
+            double newY = node.getProperties().getY() + deltaY;
+
+            node.getProperties().setX(newX);
+            node.getProperties().setY(newY);
         }
+
 
         redraw();
 
@@ -65,10 +75,33 @@ public class CanvasDragHandler {
         for (Node node : nodes) {
             NodeRenderer.render(node, overlayPane);
             NodeUtils.updateNode("test", node.getProperties().getId(), node.toJson());
-            NodeUtils.updateNode("test", node.getProperties().getId(), node.toJson());
-            //BaseLogger.log(BaseLogLevel.INFO, "Node: " + node.toString());
+        }
+
+        for (Connection conn : LinkHandler.getConnectionObjects()) {
+            Line line = getLine(conn);
+            overlayPane.getChildren().add(line);
         }
     }
+
+    private static Line getLine(Connection conn) {
+        Line line = conn.line();
+        Node source = conn.sourceNode();
+        Node target = conn.targetNode();
+
+        double adjustedSourceX = source.getProperties().getX() + conn.sourceOffsetX() - translateX;
+        double adjustedSourceY = source.getProperties().getY() + conn.sourceOffsetY() - translateY;
+        double adjustedTargetX = target.getProperties().getX() + conn.targetOffsetX() - translateX;
+        double adjustedTargetY = target.getProperties().getY() + conn.targetOffsetY() - translateY;
+        BaseLogger.log(BaseLogLevel.INFO, "Adjusted target x: " + adjustedTargetX + " y: " + adjustedTargetY);
+
+        line.setStartX(adjustedSourceX);
+        line.setStartY(adjustedSourceY);
+        line.setEndX(adjustedTargetX);
+        line.setEndY(adjustedTargetY);
+
+        return line;
+    }
+
 
     public static double getTranslateX() {
         return translateX;

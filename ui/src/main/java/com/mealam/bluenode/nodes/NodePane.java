@@ -37,7 +37,7 @@ public class NodePane extends Pane {
         titleBar.setPrefSize(width, titleBarHeight);
         title = new Text(node.getProperties().getTitle());
         title.setTranslateY(20);
-        title.setTranslateX(5);
+        title.setTranslateX(25);
         titleBar.getChildren().add(title);
 
         OutputLink outputLink = new OutputLink(width, titleBarHeight / 2, this);

@@ -7,9 +7,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-class LinkHandler {
+import java.util.ArrayList;
+import java.util.List;
+
+public class LinkHandler {
     private static Line currentLine = null;
     private static OutputLink currentOutput = null;
+    private static final List<Connection> connections = new ArrayList<>();
 
     public static void startConnection(MouseEvent event) {
         if (!(event.getSource() instanceof OutputLink)) return;
@@ -36,17 +40,31 @@ class LinkHandler {
         Node target = event.getPickResult().getIntersectedNode();
 
         if (target instanceof InputLink input) {
-            Bounds inputBounds = input.localToScene(input.getBoundsInLocal());
-            Bounds parentBounds = currentLine.getParent().sceneToLocal(inputBounds);
-
-            currentLine.setEndX(parentBounds.getMinX() + parentBounds.getWidth() / 2);
-            currentLine.setEndY(parentBounds.getMinY() + parentBounds.getHeight() / 2);
-
-
-            executeConnection(currentOutput, input);
+            createLine(input);
         } else {
             removeLine();
         }
+    }
+
+    public static void createLine(InputLink input) {
+        Bounds inputBounds = input.localToScene(input.getBoundsInLocal());
+        Bounds parentBounds = currentLine.getParent().sceneToLocal(inputBounds);
+
+        currentLine.setEndX(parentBounds.getMinX() + parentBounds.getWidth() / 2);
+        currentLine.setEndY(parentBounds.getMinY() + parentBounds.getHeight() / 2);
+
+        com.mealam.bluenode.nodes.Node sourceNode = currentOutput.parentPane.getNode();
+        double sourceOffsetX = currentLine.getStartX();
+        double sourceOffsetY = currentLine.getStartY();
+
+        com.mealam.bluenode.nodes.Node targetNode = input.parentPane.getNode();
+        double targetOffsetX = currentLine.getEndX();
+        double targetOffsetY = currentLine.getEndY();
+
+        connections.add(new Connection(currentLine, sourceNode, sourceOffsetX, sourceOffsetY,
+                targetNode, targetOffsetX, targetOffsetY));
+
+        executeConnection(currentOutput, input);
     }
 
     private static void executeConnection(OutputLink output, InputLink input) {
@@ -63,5 +81,9 @@ class LinkHandler {
             currentOutput.parentPane.getChildren().remove(currentLine);
             currentLine = null;
         }
+    }
+
+    public static List<Connection> getConnectionObjects() {
+        return connections;
     }
 }
