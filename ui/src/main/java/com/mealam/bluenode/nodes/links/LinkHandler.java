@@ -22,7 +22,7 @@ public class LinkHandler {
 
         Bounds outputBounds = currentOutput.localToScene(currentOutput.getBoundsInLocal());
         Bounds parentBounds = currentOutput.parentPane.sceneToLocal(outputBounds);
-        double startX = parentBounds.getMinX() + parentBounds.getWidth() / 2;
+        double startX = parentBounds.getMinX() + parentBounds.getWidth();
         double startY = parentBounds.getMinY() + parentBounds.getHeight() / 2;
 
         currentLine = new Line(startX, startY, startX, startY);

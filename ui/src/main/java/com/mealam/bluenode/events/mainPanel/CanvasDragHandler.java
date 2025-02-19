@@ -70,14 +70,14 @@ public class CanvasDragHandler {
 
         overlayPane.getChildren().clear();
 
-        for (Node node : nodes) {
-            NodeRenderer.render(node, overlayPane);
-            NodeUtils.updateNode("test", node.getProperties().getId(), node.toJson());
-        }
-
         for (Connection conn : LinkHandler.getConnectionObjects()) {
             Line line = getLine(conn);
             overlayPane.getChildren().add(line);
+        }
+
+        for (Node node : nodes) {
+            NodeRenderer.render(node, overlayPane);
+            NodeUtils.updateNode("test", node.getProperties().getId(), node.toJson());
         }
     }
 
