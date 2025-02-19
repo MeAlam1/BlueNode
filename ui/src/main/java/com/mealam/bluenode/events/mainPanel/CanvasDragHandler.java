@@ -6,13 +6,12 @@ import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.nodes.links.Connection;
 import com.mealam.bluenode.nodes.links.LinkHandler;
 import com.mealam.bluenode.utils.io.NodeUtils;
+import java.util.List;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
-
-import java.util.List;
 
 public class CanvasDragHandler {
 
@@ -57,7 +56,6 @@ public class CanvasDragHandler {
             node.getProperties().setY(newY);
         }
 
-
         redraw();
 
         lastX = pEvent.getX();
@@ -81,14 +79,14 @@ public class CanvasDragHandler {
         }
     }
 
-    private static Line getLine(Connection conn) {
-        Line line = conn.line();
-        Node source = conn.sourceNode();
+    private static Line getLine(Connection pConnection) {
+        Line line = pConnection.line();
+        Node source = pConnection.sourceNode();
 
-        double adjustedSourceX = source.getProperties().getX() + conn.sourceOffsetX() - translateX;
-        double adjustedSourceY = source.getProperties().getY() + conn.sourceOffsetY() - translateY;
-        double adjustedTargetX = source.getProperties().getX() + conn.targetOffsetX() - translateX;
-        double adjustedTargetY = source.getProperties().getY() + conn.targetOffsetY() - translateY;
+        double adjustedSourceX = source.getProperties().getX() + pConnection.sourceOffsetX() - translateX;
+        double adjustedSourceY = source.getProperties().getY() + pConnection.sourceOffsetY() - translateY;
+        double adjustedTargetX = source.getProperties().getX() + pConnection.targetOffsetX() - translateX;
+        double adjustedTargetY = source.getProperties().getY() + pConnection.targetOffsetY() - translateY;
 
         line.setStartX(adjustedSourceX);
         line.setStartY(adjustedSourceY);
@@ -97,7 +95,6 @@ public class CanvasDragHandler {
 
         return line;
     }
-
 
     public static double getTranslateX() {
         return translateX;

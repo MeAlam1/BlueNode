@@ -5,12 +5,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 abstract class Link extends Circle {
+
     protected NodePane parentPane;
 
-    public Link(double x, double y, Color color, NodePane parentPane) {
-        super(x, y, 10, color);
+    public Link(double pX, double pY, Color pColor, NodePane pParentPane) {
+        super(pX, pY, 10, pColor);
         this.setStroke(Color.BLACK);
-        this.parentPane = parentPane;
+        this.parentPane = pParentPane;
         parentPane.getChildren().add(this);
     }
 }
