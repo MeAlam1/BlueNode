@@ -2,6 +2,8 @@ package com.mealam.bluenode.nodes;
 
 import com.mealam.bluenode.events.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
+import com.mealam.bluenode.nodes.links.InputLink;
+import com.mealam.bluenode.nodes.links.OutputLink;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -35,8 +37,14 @@ public class NodePane extends Pane {
         titleBar.setPrefSize(width, titleBarHeight);
         title = new Text(node.getProperties().getTitle());
         title.setTranslateY(20);
-        title.setTranslateX(5);
+        title.setTranslateX(25);
         titleBar.getChildren().add(title);
+
+        OutputLink outputLink = new OutputLink(width, titleBarHeight / 2, this);
+        titleBar.getChildren().add(outputLink);
+
+        InputLink inputLink = new InputLink(0, titleBarHeight / 2, this);
+        titleBar.getChildren().add(inputLink);
 
         this.getChildren().addAll(titleBar);
         createInputs(width, height);

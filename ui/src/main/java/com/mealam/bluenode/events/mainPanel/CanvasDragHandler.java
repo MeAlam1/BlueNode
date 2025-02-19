@@ -3,12 +3,15 @@ package com.mealam.bluenode.events.mainPanel;
 import com.mealam.bluenode.mainPanel.grid.GridDrawer;
 import com.mealam.bluenode.nodes.Node;
 import com.mealam.bluenode.nodes.NodeRenderer;
+import com.mealam.bluenode.nodes.links.Connection;
+import com.mealam.bluenode.nodes.links.LinkHandler;
 import com.mealam.bluenode.utils.io.NodeUtils;
 import java.util.List;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 
 public class CanvasDragHandler {
 
@@ -46,8 +49,11 @@ public class CanvasDragHandler {
         double deltaY = pEvent.getY() - lastY;
 
         for (Node node : nodes) {
-            node.getProperties().setX(node.getProperties().getX() + deltaX);
-            node.getProperties().setY(node.getProperties().getY() + deltaY);
+            double newX = node.getProperties().getX() + deltaX;
+            double newY = node.getProperties().getY() + deltaY;
+
+            node.getProperties().setX(newX);
+            node.getProperties().setY(newY);
         }
 
         redraw();
@@ -62,12 +68,32 @@ public class CanvasDragHandler {
 
         overlayPane.getChildren().clear();
 
+        for (Connection conn : LinkHandler.getConnectionObjects()) {
+            Line line = getLine(conn);
+            overlayPane.getChildren().add(line);
+        }
+
         for (Node node : nodes) {
             NodeRenderer.render(node, overlayPane);
             NodeUtils.updateNode("test", node.getProperties().getId(), node.toJson());
-            NodeUtils.updateNode("test", node.getProperties().getId(), node.toJson());
-            //BaseLogger.log(BaseLogLevel.INFO, "Node: " + node.toString());
         }
+    }
+
+    private static Line getLine(Connection pConnection) {
+        Line line = pConnection.line();
+        Node source = pConnection.sourceNode();
+
+        double adjustedSourceX = source.getProperties().getX() + pConnection.sourceOffsetX() - translateX;
+        double adjustedSourceY = source.getProperties().getY() + pConnection.sourceOffsetY() - translateY;
+        double adjustedTargetX = source.getProperties().getX() + pConnection.targetOffsetX() - translateX;
+        double adjustedTargetY = source.getProperties().getY() + pConnection.targetOffsetY() - translateY;
+
+        line.setStartX(adjustedSourceX);
+        line.setStartY(adjustedSourceY);
+        line.setEndX(adjustedTargetX);
+        line.setEndY(adjustedTargetY);
+
+        return line;
     }
 
     public static double getTranslateX() {
