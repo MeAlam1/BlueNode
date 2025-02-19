@@ -1,7 +1,7 @@
 package com.mealam.bluenode.nodes.links;
 
-import com.mealam.bluenode.utils.logging.BaseLogLevel;
-import com.mealam.bluenode.utils.logging.BaseLogger;
+import com.mealam.bluenode.utils.io.NodeUtils;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -17,7 +17,7 @@ class LinkHandler {
         currentOutput = (OutputLink) event.getSource();
         currentLine = new Line(currentOutput.getCenterX(), currentOutput.getCenterY(),
                 currentOutput.getCenterX(), currentOutput.getCenterY());
-        currentLine.setStroke(Color.BLACK);
+        currentLine.setStroke(Color.WHITE);
 
         currentOutput.parentPane.getChildren().add(currentLine);
         event.consume();
@@ -36,8 +36,12 @@ class LinkHandler {
         Node target = event.getPickResult().getIntersectedNode();
 
         if (target instanceof InputLink input) {
-            currentLine.setEndX(input.getCenterX());
-            currentLine.setEndY(input.getCenterY());
+            Bounds inputBounds = input.localToScene(input.getBoundsInLocal());
+            Bounds parentBounds = currentLine.getParent().sceneToLocal(inputBounds);
+
+            currentLine.setEndX(parentBounds.getMinX() + parentBounds.getWidth() / 2);
+            currentLine.setEndY(parentBounds.getMinY() + parentBounds.getHeight() / 2);
+
 
             executeConnection(currentOutput, input);
         } else {
@@ -46,9 +50,12 @@ class LinkHandler {
     }
 
     private static void executeConnection(OutputLink output, InputLink input) {
-        BaseLogger.log(BaseLogLevel.INFO, "Connected: " + output + " -> " + input);
-        input.parentPane.getNode().getProperties().setInputNode(output.parentPane.getNode().getProperties().getId());
-        output.parentPane.getNode().getProperties().setOutputNode(input.parentPane.getNode().getProperties().getId());
+        String nodeOutputID = output.parentPane.getNode().getProperties().getId();
+        String nodeInputID = input.parentPane.getNode().getProperties().getId();
+        input.parentPane.getNode().getProperties().setInputNode(nodeOutputID);
+        output.parentPane.getNode().getProperties().setOutputNode(nodeInputID);
+        NodeUtils.updateNode("test", input.parentPane.getNode().getProperties().getId(), input.parentPane.getNode().toJson());
+        NodeUtils.updateNode("test", output.parentPane.getNode().getProperties().getId(), output.parentPane.getNode().toJson());
     }
 
     private static void removeLine() {
