@@ -6,8 +6,6 @@ import com.mealam.bluenode.nodes.NodeRenderer;
 import com.mealam.bluenode.nodes.links.Connection;
 import com.mealam.bluenode.nodes.links.LinkHandler;
 import com.mealam.bluenode.utils.io.NodeUtils;
-import com.mealam.bluenode.utils.logging.BaseLogLevel;
-import com.mealam.bluenode.utils.logging.BaseLogger;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
@@ -86,13 +84,11 @@ public class CanvasDragHandler {
     private static Line getLine(Connection conn) {
         Line line = conn.line();
         Node source = conn.sourceNode();
-        Node target = conn.targetNode();
 
         double adjustedSourceX = source.getProperties().getX() + conn.sourceOffsetX() - translateX;
         double adjustedSourceY = source.getProperties().getY() + conn.sourceOffsetY() - translateY;
-        double adjustedTargetX = target.getProperties().getX() + conn.targetOffsetX() - translateX;
-        double adjustedTargetY = target.getProperties().getY() + conn.targetOffsetY() - translateY;
-        BaseLogger.log(BaseLogLevel.INFO, "Adjusted target x: " + adjustedTargetX + " y: " + adjustedTargetY);
+        double adjustedTargetX = source.getProperties().getX() + conn.targetOffsetX() - translateX;
+        double adjustedTargetY = source.getProperties().getY() + conn.targetOffsetY() - translateY;
 
         line.setStartX(adjustedSourceX);
         line.setStartY(adjustedSourceY);

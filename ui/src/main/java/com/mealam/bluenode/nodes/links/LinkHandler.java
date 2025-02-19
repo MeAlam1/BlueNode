@@ -19,13 +19,19 @@ public class LinkHandler {
         if (!(event.getSource() instanceof OutputLink)) return;
 
         currentOutput = (OutputLink) event.getSource();
-        currentLine = new Line(currentOutput.getCenterX(), currentOutput.getCenterY(),
-                currentOutput.getCenterX(), currentOutput.getCenterY());
+
+        Bounds outputBounds = currentOutput.localToScene(currentOutput.getBoundsInLocal());
+        Bounds parentBounds = currentOutput.parentPane.sceneToLocal(outputBounds);
+        double startX = parentBounds.getMinX() + parentBounds.getWidth() / 2;
+        double startY = parentBounds.getMinY() + parentBounds.getHeight() / 2;
+
+        currentLine = new Line(startX, startY, startX, startY);
         currentLine.setStroke(Color.WHITE);
 
         currentOutput.parentPane.getChildren().add(currentLine);
         event.consume();
     }
+
 
     public static void dragConnection(MouseEvent event) {
         if (currentLine != null) {
