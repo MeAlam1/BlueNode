@@ -6,16 +6,22 @@
       "category": "utility/operator",
       "inputs": [
         {
-          "id": "inputTest",
-          "name": "Input Test Name",
+          "id": "inputNumber1",
+          "name": "Number 1",
+          "type": "float",
+          "defaultValue": 0
+        },
+        {
+          "id": "inputNumber2",
+          "name": "Number 2",
           "type": "float",
           "defaultValue": 0
         }
       ],
       "outputs": [
         {
-          "id": "outputTest",
-          "name": "Output Test Name",
+          "id": "outputAnswer",
+          "name": "Answer",
           "type": "float"
         }
       ],

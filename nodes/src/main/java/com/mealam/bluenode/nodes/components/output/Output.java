@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mealam.bluenode.utils.json.JSONUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,11 @@ public class Output {
 
         private String id;
         private String name;
+        private Double x;
+        private Double y;
         private String type;
+        private String CSS;
+        private String value;
 
         public String getId() {
             return id;
@@ -70,6 +75,22 @@ public class Output {
             this.name = pName;
         }
 
+        public Double getX() {
+            return x;
+        }
+
+        public void setX(Double pX) {
+            this.x = pX;
+        }
+
+        public Double getY() {
+            return y;
+        }
+
+        public void setY(Double pY) {
+            this.y = pY;
+        }
+
         public String getType() {
             return type;
         }
@@ -78,12 +99,30 @@ public class Output {
             this.type = pType;
         }
 
+        public String getCss() {
+            return CSS;
+        }
+
+        public void setCss(String CSS) {
+            this.CSS = CSS;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String pValue) {
+            this.value = pValue;
+        }
+
         @Override
         public String toString() {
             return "\n    {\n" +
                     "      \"id\": \"" + id + "\",\n" +
                     "      \"name\": \"" + name + "\",\n" +
                     "      \"type\": " + type + "\n" +
+                    "      \"CSS\": " + CSS + "\n" +
+                    "      \"value\": " + value + "\n" +
                     "    }\n  ";
         }
     }

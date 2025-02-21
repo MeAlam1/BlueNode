@@ -1,0 +1,25 @@
+{
+  "print": [
+    {
+      "title": "Print",
+      "description": "Prints the input value to the console",
+      "category": "development",
+      "inputs": [
+        {
+          "id": "inputPrint",
+          "name": "a",
+          "type": "string",
+          "defaultValue": ""
+        }
+      ],
+      "metadata": {
+        "aliases": [
+          "log",
+          "println",
+          "console.log",
+          "debug.log"
+        ]
+      }
+    }
+  ]
+}

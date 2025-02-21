@@ -2,6 +2,7 @@ package com.mealam.bluenode.nodes;
 
 import com.mealam.bluenode.events.mainPanel.CanvasDragHandler;
 import com.mealam.bluenode.nodes.components.input.Input;
+import com.mealam.bluenode.nodes.components.output.Output;
 import com.mealam.bluenode.nodes.links.InputLink;
 import com.mealam.bluenode.nodes.links.OutputLink;
 import javafx.scene.layout.Pane;
@@ -23,7 +24,7 @@ public class NodePane extends Pane {
         double y = node.getProperties().getY() + CanvasDragHandler.getTranslateY();
         double width = node.getProperties().getWidth();
         double height = node.getProperties().getHeight();
-        double titleBarHeight = height - 70;
+        double titleBarHeight = height - 90;
         this.setPrefSize(width, height);
         this.setLayoutX(x);
         this.setLayoutY(y);
@@ -48,18 +49,40 @@ public class NodePane extends Pane {
 
         this.getChildren().addAll(titleBar);
         createInputs(width, height);
+        createOutputs(width, height);
     }
 
     private void createInputs(double pWidth, double pHeight) {
+        double yOffset = pHeight / 2;
+
         for (Input input : node.getProperties().getInputs()) {
             InputRenderer.render(this,
                     input,
                     node,
                     this,
                     5,
-                    (pHeight / 2),
+                    yOffset,
                     pWidth,
                     pHeight);
+
+            yOffset += 30;
+        }
+    }
+
+    private void createOutputs(double pWidth, double pHeight) {
+        double yOffset = pHeight / 2 + 20;
+
+        for (Output output : node.getProperties().getOutputs()) {
+            OutputRenderer.render(this,
+                    output,
+                    node,
+                    this,
+                    pWidth,
+                    yOffset,
+                    pWidth,
+                    pHeight);
+
+            yOffset += 30;
         }
     }
 

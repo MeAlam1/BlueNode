@@ -3,13 +3,15 @@ package com.mealam.bluenode.nodes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mealam.bluenode.nodes.components.Metadata;
 import com.mealam.bluenode.nodes.components.input.Input;
 import com.mealam.bluenode.nodes.components.output.Output;
 import com.mealam.bluenode.utils.json.JSONUtils;
 import com.mealam.bluenode.utils.nodes.NodeCategoryUtils;
+import org.checkerframework.checker.index.qual.NonNegative;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.checkerframework.checker.index.qual.NonNegative;
 
 public class Node {
 
@@ -82,12 +84,19 @@ public class Node {
         pNode.getProperties().setCSS(css);
 
         JsonArray inputsJsonArray = pJsonElement.getAsJsonArray("inputs");
-        pNode.properties.setInputs(Input.fromJsonArray(inputsJsonArray));
+        if (inputsJsonArray != null) {
+            pNode.properties.setInputs(Input.fromJsonArray(inputsJsonArray));
+        }
 
         JsonArray outputsJsonArray = pJsonElement.getAsJsonArray("outputs");
-        pNode.properties.setOutputs(Output.fromJsonArray(outputsJsonArray));
+        if (outputsJsonArray != null) {
+            pNode.properties.setOutputs(Output.fromJsonArray(outputsJsonArray));
+        }
 
-        pNode.properties.setMetadata(Metadata.fromJson(pJsonElement.getAsJsonObject("metadata")));
+        JsonObject metadataJsonObject = pJsonElement.getAsJsonObject("metadata");
+        if (metadataJsonObject != null) {
+            pNode.properties.setMetadata(Metadata.fromJson(metadataJsonObject));
+        }
     }
 
     public static Node fromJson(JsonArray pJsonArray, double pX, double pY) {
