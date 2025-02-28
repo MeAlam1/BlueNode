@@ -48,8 +48,13 @@ public class NodePane extends Pane {
         titleBar.getChildren().add(inputLink);
 
         this.getChildren().addAll(titleBar);
-        createInputs(width, height);
-        createOutputs(width, height);
+        if (node.getProperties().getInputs() != null && !node.getProperties().getInputs().isEmpty()) {
+            createInputs(width, height);
+        }
+
+        if (node.getProperties().getOutputs() != null && !node.getProperties().getOutputs().isEmpty()) {
+            createOutputs(width, height);
+        }
     }
 
     private void createInputs(double pWidth, double pHeight) {
