@@ -1,0 +1,11 @@
+{
+  "string": [
+    {
+      "cssName": "string-output",
+      "validate": ".*",
+      "aliases": [
+        ""
+      ]
+    }
+  ]
+}
