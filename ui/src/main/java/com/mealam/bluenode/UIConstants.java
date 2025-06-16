@@ -7,6 +7,8 @@ import javafx.scene.layout.BorderPane;
 
 public class UIConstants {
 
+    public static void init() {}
+
     public static final BorderPane MAIN_ROOT = new BorderPane();
     public static final Canvas MAIN_CANVAS = new Canvas();
     public static final Scene MAIN_SCENE = new Scene(MAIN_ROOT);

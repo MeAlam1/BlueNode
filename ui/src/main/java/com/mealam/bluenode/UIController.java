@@ -16,6 +16,7 @@ public class UIController extends Application {
 
     @Override
     public void start(Stage pPrimaryStage) {
+        UIConstants.init();
         try {
             AsyncStyleLoader.loadAllStyles(StyleLoader.class.getClassLoader().getResource("styles"));
             StageConfigurer.configureStage(pPrimaryStage);
